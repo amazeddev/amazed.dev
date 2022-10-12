@@ -1,0 +1,37 @@
+[
+  {
+    "id": "django-crash-course",
+    "title": "Django Crash Course",
+    "excerpt": "Django is a very powerful, high level Python framework for building web applications"
+  },
+  {
+    "id": "javascript-performance-tips",
+    "title": "JavaScript Performance Tips",
+    "excerpt": "We will look at 10 simple tips and tricks to increase the speed of your code when writing JS"
+  },
+  {
+    "id": "new-in-php-8",
+    "title": "What's New In PHP 8?",
+    "excerpt": "In this article we will look at some of the new features offered in version 8 of PHP"
+  },
+  {
+    "id": "python-book-review",
+    "title": "Python Book Review",
+    "excerpt": "In this review, we will be looking at the new Python book from Oriley"
+  },
+  {
+    "id": "react-crash-course",
+    "title": "React Crash Course",
+    "excerpt": "Crash course to learn the React JavaScript library. We will look at components, hooks and more"
+  },
+  {
+    "id": "tailwind-vs-bootstrap",
+    "title": "Tailwind vs. Bootstrap",
+    "excerpt": "Both Tailwind and Bootstrap are very popular CSS frameworks. In this article, we will compare them"
+  },
+  {
+    "id": "writing-great-unit-tests",
+    "title": "Writing Great Unit Tests",
+    "excerpt": "We will look at 10 simple tips and tricks on writing unit tests in JavaScript"
+  }
+]
