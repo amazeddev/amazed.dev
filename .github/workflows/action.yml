@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    name: Build app
     runs-on: ubuntu-latest
     steps:
       # checkout repo
@@ -24,13 +25,15 @@ jobs:
           path: app/out
 
   deploy:
+    name: Deploy app
     runs-on: ubuntu-latest
     needs: build
+    steps:
       # Download the build artifact
       - name: Get build artifact
         uses: actions/download-artifact@v1
         with:
-          name: out
+          name: app/out
       # Setup the AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -59,4 +62,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       # Sync website to s3
       - name: Sync S3
-        run: aws s3 sync ./out s3://next-portfolio
+        run: aws s3 sync ./app/out s3://next-portfolio
