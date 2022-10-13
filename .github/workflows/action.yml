@@ -20,10 +20,9 @@ jobs:
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
         uses: actions/upload-artifact@v1
-        working-directory: app
         with:
           name: out
-          path: out
+          path: app/out
   deploy:
     name: Deploy Site
     runs-on: ubuntu-latest
