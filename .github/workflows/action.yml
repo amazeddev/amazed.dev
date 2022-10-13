@@ -13,6 +13,12 @@ jobs:
       # checkout repo
       - name: Checkout Repo
         uses: actions/checkout@v1
+
+      - name: Setup node-16 with cahce
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm" # or 'yarn' | 'pnpm'
       # Build the static site
       - name: Create static build
         run: npm ci && npm run build
@@ -42,25 +48,31 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
-      # Terraform init
+      # Terraform
+      - uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
       - name: Terraform Init
-        uses: hashicorp/terraform-github-actions/init@v0.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_ACTION_WORKING_DIR: "terraform"
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      # Terraform validate
+        id: init
+        run: terraform init
+
       - name: Terraform Validate
-        uses: hashicorp/terraform-github-actions/validate@v0.3.7
-      # Terraform apply
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
+
       - name: Terraform Apply
-        uses: hashicorp/terraform-github-actions/apply@v0.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_ACTION_WORKING_DIR: "terraform"
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        id: apply
+        run: terraform apply -auto-approve -input=false
+
       # Sync website to s3
       - name: Sync S3
         run: aws s3 sync ./app/out s3://next-portfolio
