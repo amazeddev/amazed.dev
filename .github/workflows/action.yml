@@ -18,7 +18,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "npm" # or 'yarn' | 'pnpm'
+          cache: "npm"
+          cache-dependency-path: app/package-lock.json
       # Build the static site
       - name: Create static build
         run: npm ci && npm run build
