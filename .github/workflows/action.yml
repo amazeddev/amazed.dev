@@ -36,6 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      # checkout repo
+      - name: Checkout Repo
+        uses: actions/checkout@v1
       # Download the build artifact
       - name: Get build artifact
         uses: actions/download-artifact@v1
