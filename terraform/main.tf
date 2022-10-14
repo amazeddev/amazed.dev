@@ -14,13 +14,3 @@ locals {
   domain = "amazed.dev"
   s3_origin_id = "next-portfolio"
 }
-
-
-# resource "aws_acm_certificate" "react-aws-terraform-github-actions-cert" {
-#   provider = aws.use1
-#   domain_name = local.domain
-#   validation_method = "DNS"
-#   lifecycle {
-#     create_before_destroy = true
-#   }
-# }
