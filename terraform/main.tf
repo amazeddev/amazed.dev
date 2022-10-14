@@ -1,6 +1,5 @@
 provider "aws" {
-  version = "~> 2.0"
-  region  = "eu-central-1"
+  region = var.aws_region
 }
 
 terraform {
@@ -11,28 +10,17 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "s3Bucket" {
-  bucket = "next-portfolio"
-  acl    = "public-read"
-
-  policy = <<EOF
-{
-  "Id": "MakePublic",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:GetObject"
-      ],
-      "Effect": "Allow",
-      "Resource": "arn:aws:s3:::next-portfolio/*",
-      "Principal": "*"
-    }
-  ]
+locals {
+  domain = "amazed.dev"
+  s3_origin_id = "next-portfolio"
 }
-EOF
 
-  website {
-    index_document = "index.html"
-  }
-}
+
+# resource "aws_acm_certificate" "react-aws-terraform-github-actions-cert" {
+#   provider = aws.use1
+#   domain_name = local.domain
+#   validation_method = "DNS"
+#   lifecycle {
+#     create_before_destroy = true
+#   }
+# }
