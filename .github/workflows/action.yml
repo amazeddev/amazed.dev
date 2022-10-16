@@ -57,8 +57,6 @@ jobs:
       # Terraform
       - uses: hashicorp/setup-terraform@v2
 
-      - run: ls -a && ls -a ..
-
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
