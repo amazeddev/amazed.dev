@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build app
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # checkout repo
       - name: Checkout Repo
@@ -34,6 +35,7 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: build
     steps:
       # checkout repo
@@ -86,7 +88,7 @@ jobs:
 
       # Sync website to s3
       - name: Sync S3
-        run: aws s3 sync ./app/out s3://www-amazed-bucket
+        run: aws s3 sync ./app/out s3://www.amazed.dev
 
       # - name: Terraform Destroy
       #   id: destroy
