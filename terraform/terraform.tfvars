@@ -1,5 +1,5 @@
 domain_name = "amazed.dev"
-bucket_name = "www-amazed-bucket"
+bucket_name = "amazed.dev"
 
 aws_region = "eu-central-1"
 
