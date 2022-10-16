@@ -1,6 +1,10 @@
 provider "aws" {
   region = var.aws_region
 }
+provider "aws" {
+  alias = "acm_provider"
+  region = "us-east-1"
+}
 
 terraform {
   backend "s3" {
@@ -11,6 +15,6 @@ terraform {
 }
 
 locals {
-  domain = "amazed.dev"
-  s3_origin_id = "next-portfolio"
+  s3_origin_id = "s3_amazed_dev"
 }
+
