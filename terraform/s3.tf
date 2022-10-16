@@ -19,10 +19,18 @@ resource "aws_s3_bucket" "www_bucket" {
   acl = "public-read"
   policy = data.aws_iam_policy_document.website_bucket_policy.json
 
+  cors_rule {
+    allowed_headers = ["Authorization", "Content-Length"]
+    allowed_methods = ["GET", "POST"]
+    allowed_origins = ["https://www.${var.domain_name}"]
+    max_age_seconds = 3000
+  }
+
   website {
     index_document = "index.html"
     error_document = "index.html"
   }
+  tags = var.common_tags
 }
 
 resource "aws_s3_bucket" "root_bucket" {
@@ -37,8 +45,3 @@ resource "aws_s3_bucket" "root_bucket" {
   tags = var.common_tags
 }
 
-resource "aws_s3_bucket_public_access_block" "website_bucket_access_control" {
-  bucket = aws_s3_bucket.website_bucket.id
-  block_public_acls   = true
-  ignore_public_acls = true
-}
