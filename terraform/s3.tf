@@ -8,7 +8,7 @@ resource "aws_s3_bucket_website_configuration" "www_bucket_config" {
   bucket = aws_s3_bucket.www_bucket.bucket
 
   redirect_all_requests_to {
-    host_name = aws_s3_bucket.root_bucket.website_endpoint
+    host_name = "${var.bucket_name}"
   }
 }
 
