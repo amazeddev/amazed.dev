@@ -14,7 +14,7 @@ resource "aws_route53_record" "root-a" {
 }
 
 resource "aws_route53_record" "main-c-name" {
-  zone_id = "${aws_route53_zone.main.zone_id}"
+  zone_id = "${aws_route53_zone.primary.zone_id}"
   name = "www"
   type = "CNAME"
   ttl = "300"
