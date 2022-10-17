@@ -35,7 +35,6 @@ jobs:
   deploy:
     name: Deploy app
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     needs: build
     steps:
       # checkout repo
