@@ -47,7 +47,7 @@ resource "aws_s3_bucket" "root_bucket" {
 resource "aws_s3_bucket_website_configuration" "root_bucket_config" {
   bucket = aws_s3_bucket.root_bucket.bucket
   redirect_all_requests_to {
-    host_name = "https://www.${var.domain_name}"
+    host_name = aws_s3_bucket.www_bucket.website_endpoint
   }
 }
 resource "aws_s3_bucket_acl" "root_bucket_acl" {
