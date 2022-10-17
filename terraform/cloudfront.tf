@@ -22,7 +22,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
     }
   }
   origin {
-    domain_name = aws_s3_bucket_website_configuration.www_bucket_config.website_domain
+    domain_name = aws_s3_bucket.www_bucket.bucket_regional_domain_name
     origin_id = "S3-www.${var.bucket_name}"
   }
   restrictions {
@@ -65,7 +65,7 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
     }
   }
   origin {
-    domain_name = aws_s3_bucket_website_configuration.root_bucket_config.website_domain
+    domain_name = aws_s3_bucket.root_bucket.bucket_regional_domain_name
     origin_id = "S3-.${var.bucket_name}"
   }
   restrictions {
