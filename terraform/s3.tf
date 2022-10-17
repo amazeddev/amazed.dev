@@ -10,10 +10,10 @@ resource "aws_s3_bucket" "www_bucket" {
     max_age_seconds = 3000
   }
 
-  # website {
-  #   index_document = "index.html"
-  #   error_document = "index.html"
-  # }
+  website {
+    index_document = "index.html"
+    error_document = "index.html"
+  }
   tags = var.common_tags
 }
 
@@ -22,27 +22,27 @@ resource "aws_s3_bucket" "root_bucket" {
   acl = "public-read"
   policy = templatefile("templates/s3-policy.json", { bucket = var.bucket_name })
 
-  # website {
-  #   redirect_all_requests_to = "www.${var.domain_name}"
-  # }
+  website {
+    redirect_all_requests_to = "https://www.${var.domain_name}"
+  }
 
   tags = var.common_tags
 }
 
-resource "aws_s3_bucket_website_configuration" "www_bucket_config" {
-  bucket = aws_s3_bucket.www_bucket.bucket
-  index_document {
-    suffix = "index.html"
-  }
-  error_document {
-    key = "index.html"
-  }
-}
+# resource "aws_s3_bucket_website_configuration" "www_bucket_config" {
+#   bucket = aws_s3_bucket.www_bucket.bucket
+#   index_document {
+#     suffix = "index.html"
+#   }
+#   error_document {
+#     key = "index.html"
+#   }
+# }
 
-resource "aws_s3_bucket_website_configuration" "root_bucket_config" {
-  bucket = aws_s3_bucket.root_bucket.bucket
-  redirect_all_requests_to {
-    host_name = "www.${var.domain_name}"
-    protocol = "https"
-  }
-}
+# resource "aws_s3_bucket_website_configuration" "root_bucket_config" {
+#   bucket = aws_s3_bucket.root_bucket.bucket
+#   redirect_all_requests_to {
+#     host_name = "www.${var.domain_name}"
+#     protocol = "https"
+#   }
+# }
