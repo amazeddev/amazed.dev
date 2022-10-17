@@ -6,7 +6,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   default_root_object = "index.html"
   aliases = ["www.${var.domain_name}"]
   default_cache_behavior {
-    allowed_methods = ["*"]
+    allowed_methods = ["GET", "HEAD"]
     cached_methods = ["GET", "HEAD"]
     target_origin_id = "S3-${var.bucket_name}"
     viewer_protocol_policy = "allow-all"
