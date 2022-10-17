@@ -47,8 +47,6 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
 resource "aws_cloudfront_distribution" "root_s3_distribution" {
   enabled = true
   is_ipv6_enabled = true
-  comment = "The cloudfront distribution for amazed.dev"
-  default_root_object = "index.html"
   aliases = [var.domain_name]
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD"]
