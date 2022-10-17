@@ -9,6 +9,7 @@ resource "aws_s3_bucket_website_configuration" "www_bucket_config" {
 
   redirect_all_requests_to {
     host_name = "${var.bucket_name}"
+    protocol = "http"
   }
 }
 

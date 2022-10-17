@@ -5,6 +5,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment = "The cloudfront distribution for amazed.dev"
   default_root_object = "index.html"
   aliases = ["${var.domain_name}"]
+  price_class = "PriceClass_100"
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD"]
     cached_methods = ["GET", "HEAD"]
@@ -22,7 +23,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
   origin {
-    domain_name = "${aws_s3_bucket.root_bucket.bucket}.s3.amazonaws.com"
+    domain_name = aws_s3_bucket.root_bucket.bucket_regional_domain_name
     origin_id = "S3-${var.bucket_name}"
 
     custom_origin_config {
