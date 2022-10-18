@@ -17,13 +17,4 @@ resource "aws_s3_bucket" "root_bucket" {
   force_destroy = true
   tags = var.common_tags
 }
-# resource "aws_s3_bucket" "www_bucket" {
-#   bucket = "www.${var.bucket_name}"
-#   acl = "public-read"
-#   policy = templatefile("templates/s3-policy.json", { bucket = "www.${var.bucket_name}" })
-#   website {
-#     redirect_all_requests_to = "https://${var.bucket_name}"
-#   }
-#   tags = var.common_tags
-# }
 

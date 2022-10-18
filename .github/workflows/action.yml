@@ -25,6 +25,9 @@ jobs:
       - name: Create static build
         run: npm ci && npm run build
         working-directory: app
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://wsxhrfxovpscmomfkfne.supabase.co
+          NEXT_PUBLIC_SUPABASE_CLIENT_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_CLIENT_KEY }}
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
         uses: actions/upload-artifact@v1

@@ -10,8 +10,21 @@ import { codeTitle, copyCode } from "../../utils/code-blocks";
 import ScrollButton from "../../components/ScrollBtn";
 import Link from "next/link";
 import { slugify } from "../../utils/posts";
+import { useEffect, useState } from "react";
+import { supabaseClient } from "../../lib/supabase";
 
-export default function PostPage({ frontmatter, parsed }) {
+import PageViews from "../../components/PageViews";
+
+export default function PostPage({ frontmatter, parsed, slug }) {
+  const [views, setViews] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabaseClient.rpc("increment_view", {
+        page_slug: slug,
+      });
+      setViews(data);
+    })();
+  }, []);
   return (
     <>
       <Head>
@@ -20,9 +33,12 @@ export default function PostPage({ frontmatter, parsed }) {
       <div className="card card-page">
         <div className="post-baner">
           <img src={frontmatter.cover_image} alt="" />
-          <div className="post-meta">
+          <div className="post-info">
             <h1 className="post-title">{frontmatter.title}</h1>
-            <div className="post-date">{frontmatter.date}</div>
+            <div className="post-meta">
+              <div className="post-date">{frontmatter.date}</div>
+              <PageViews views={views} />
+            </div>
             <div className="tags">
               {frontmatter.tags &&
                 frontmatter.tags.map((tag, index) => (

@@ -5,8 +5,19 @@ import Head from "next/head";
 import matter from "gray-matter";
 
 import PostItem from "../components/PostItem";
+import { supabaseClient } from "../lib/supabase";
+import { useEffect, useState } from "react";
 
 export default function Home({ posts }) {
+  const [views, setViews] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabaseClient
+        .from("pages")
+        .select("slug, view_count");
+      setViews(data);
+    })();
+  }, []);
   return (
     <div>
       <Head>
@@ -21,7 +32,11 @@ export default function Home({ posts }) {
       </p>
       <div className="posts">
         {posts.map((post, index) => (
-          <PostItem post={post} key={index} />
+          <PostItem
+            post={post}
+            view_count={views?.find((c) => c.slug === post.slug)?.view_count}
+            key={index}
+          />
         ))}
       </div>
     </div>

@@ -165,7 +165,7 @@ footer .footer-grid {
   margin-bottom: 2rem;
 }
 
-.post-meta {
+.post-info {
   align-self: center;
 }
 
@@ -175,11 +175,25 @@ footer .footer-grid {
   font-weight: bold;
 }
 
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
 .post-date {
   /* background: #222222; */
   margin-bottom: 8px;
   padding: 3px 0;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+}
+
+.post-views {
+  font-size: 1rem;
+  padding: 3px 0;
+}
+
+.post-views svg {
+  padding-left: 0.5rem;
 }
 
 .post-body {
