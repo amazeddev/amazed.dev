@@ -4,13 +4,13 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   is_ipv6_enabled = true
   comment = "The cloudfront distribution for amazed.dev"
   default_root_object = "index.html"
-  aliases = ["${var.domain_name}"]
+  aliases = ["${var.domain_name}", "www.${var.domain_name}"]
   price_class = "PriceClass_100"
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD"]
     cached_methods = ["GET", "HEAD"]
     target_origin_id = "S3-${var.bucket_name}"
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl = 31536000
     default_ttl = 31536000
     max_ttl = 31536000
@@ -23,7 +23,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
   origin {
-    domain_name = aws_s3_bucket.root_bucket.bucket_regional_domain_name
+    domain_name = aws_s3_bucket.root_bucket.website_endpoint
     origin_id = "S3-${var.bucket_name}"
 
     custom_origin_config {
@@ -52,15 +52,17 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 }
 
 # Cloudfront S3 for redirect to www.
-# resource "aws_cloudfront_distribution" "root_s3_distribution" {
+# resource "aws_cloudfront_distribution" "www_s3_distribution" {
 #   enabled = true
 #   is_ipv6_enabled = true
-#   aliases = [var.domain_name]
+#   aliases = ["www.${var.domain_name}"]
+#   price_class = "PriceClass_100"  
+#   default_root_object = "index.html"
 #   default_cache_behavior {
 #     allowed_methods = ["GET", "HEAD"]
 #     cached_methods = ["GET", "HEAD"]
 #     target_origin_id = "S3-.${var.bucket_name}"
-#     viewer_protocol_policy = "allow-all"
+#     viewer_protocol_policy = "redirect-to-https"
 #     min_ttl = 0
 #     default_ttl = 86400
 #     max_ttl = 31536000
