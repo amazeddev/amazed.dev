@@ -14,12 +14,12 @@ export default function TagPage({ posts, tag }) {
         <title>Amazed.DEV - {tag}</title>
       </Head>
       <h1 className="post-title">
-        {tag}
+        #{tag}
         {"\t"}
         <FontAwesomeIcon icon={faTags} />
       </h1>
 
-      <div className="posts">
+      <div className="cards">
         {posts.map((post, index) => (
           <PostItem post={post} key={index} />
         ))}

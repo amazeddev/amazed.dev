@@ -30,7 +30,7 @@ export default function PostPage({ frontmatter, parsed, slug }) {
       <Head>
         <title>Amazed.DEV - {frontmatter.title}</title>
       </Head>
-      <div className="card card-page">
+      <div className="post">
         <div className="post-baner">
           <img src={frontmatter.cover_image} alt="" />
           <div className="post-info">
@@ -43,7 +43,7 @@ export default function PostPage({ frontmatter, parsed, slug }) {
               {frontmatter.tags &&
                 frontmatter.tags.map((tag, index) => (
                   <Link href={`/tag/${slugify(tag)}`} key={index}>
-                    <div className="tag-btn">{slugify(tag)}</div>
+                    <div className="tag-btn">#{slugify(tag)}</div>
                   </Link>
                 ))}
             </div>
@@ -53,7 +53,7 @@ export default function PostPage({ frontmatter, parsed, slug }) {
           <div dangerouslySetInnerHTML={{ __html: parsed }}></div>
         </div>
       </div>
-      <ScrollButton />
+      {/* <ScrollButton /> TODO: make it beautiful & responsive*/}
     </>
   );
 }

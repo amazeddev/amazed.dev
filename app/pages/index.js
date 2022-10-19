@@ -30,7 +30,7 @@ export default function Home({ posts }) {
         partem Phoebus, manus _partibus poenas_. Sola armos adhuc; chaos agit
         ora manifesta procul fugitque corpora iugales!
       </p>
-      <div className="posts">
+      <div className="cards">
         {posts.map((post, index) => (
           <PostItem
             post={post}
@@ -60,27 +60,18 @@ export async function getStaticProps() {
     return { slug, frontmatter };
   });
 
-  function add(str, id) {
-    if (!index[str]) {
-      index[str] = [id];
-    } else {
-      index[str].push(id);
-    }
-  }
-
-  posts.forEach((post, index) => {
-    const {
-      frontmatter: { title, excerpt },
-    } = post;
-    title.split(" ").forEach((word) => {
-      add(word, index + 1);
-    });
-    excerpt.split(" ").forEach((word) => {
-      add(word, index + 1);
-    });
-  });
-
-  // fs.writeFileSync("index.json", JSON.stringify(index));
+  fs.writeFileSync(
+    "search.json",
+    JSON.stringify(
+      posts.map(({ slug, frontmatter }) => ({
+        slug,
+        title: frontmatter.title,
+        excerpt: frontmatter.excerpt,
+        tags: frontmatter.tags.join(", "),
+        frontmatter,
+      }))
+    )
+  );
 
   return {
     props: {
