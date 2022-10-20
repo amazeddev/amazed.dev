@@ -35,8 +35,8 @@ export default function PostPage({ frontmatter, parsed, slug }) {
           <img src={frontmatter.cover_image} alt="" />
           <div className="post-info">
             <h1 className="post-title">{frontmatter.title}</h1>
-            <div className="post-meta">
-              <div className="post-date">{frontmatter.date}</div>
+            <div className="card-meta">
+              <div className="date">{frontmatter.date}</div>
               <PageViews views={views} />
             </div>
             <div className="tags">
@@ -52,8 +52,8 @@ export default function PostPage({ frontmatter, parsed, slug }) {
         <div className="post-body">
           <div dangerouslySetInnerHTML={{ __html: parsed }}></div>
         </div>
+        {/* <ScrollButton /> */}
       </div>
-      {/* <ScrollButton /> TODO: make it beautiful & responsive*/}
     </>
   );
 }

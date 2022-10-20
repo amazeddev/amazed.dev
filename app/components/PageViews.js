@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function PageViews({ views }) {
   return (
-    <div className="post-views">
+    <div className="views">
       {views && (
         <>
           {views}

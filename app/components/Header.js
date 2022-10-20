@@ -4,8 +4,7 @@ import SearchModal from "./SearchModal";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Header({ setIsOpen }) {
   return (
     <header>
       <nav className="navbar">
@@ -20,7 +19,6 @@ export default function Header() {
           <FontAwesomeIcon icon={faSearch} />
         </div>
       </nav>
-      {isOpen && <SearchModal setIsOpen={setIsOpen} />}
     </header>
   );
 }

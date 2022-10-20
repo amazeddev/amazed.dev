@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import search from "../search.json";
 import PostItem from "./PostItem";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchModal({ setIsOpen }) {
   const [query, setQuery] = useState("");
@@ -8,9 +10,10 @@ export default function SearchModal({ setIsOpen }) {
   useEffect(() => {
     const results =
       query.length > 1
-        ? search.filter((post) => post.title.toLowerCase().includes(query))
+        ? search.filter((post) =>
+            post.frontmatter.title.toLowerCase().includes(query)
+          )
         : [];
-    console.log(results);
     setResult(results);
   }, [query]);
   useEffect(() => {
@@ -37,8 +40,11 @@ export default function SearchModal({ setIsOpen }) {
                 onChange={(e) => setQuery(e.target.value)}
               />
             </label>
+            <div className="search-close" onClick={() => setIsOpen(false)}>
+              <FontAwesomeIcon icon={faXmark} />
+            </div>
           </div>
-          <div class="cards" onClick={() => setIsOpen(false)}>
+          <div className="cards" onClick={() => setIsOpen(false)}>
             {result && result.length > 0 ? (
               result.map((post, index) => (
                 <PostItem post={post} view_count={undefined} key={index} />

@@ -2,6 +2,7 @@
 
 :root {
   --purple: rgb(216, 9, 216);
+  --trans-purple: rgba(216, 9, 216, 0.212);
 }
 
 * {
@@ -14,16 +15,17 @@ body {
   font-family: "Montserrat", sans-serif;
   color: white;
   background: black;
+  padding-right: 0.5rem;
 }
 
-body::-webkit-scrollbar {
-  width: 0.7rem;
+::-webkit-scrollbar {
+  width: 0.5rem;
 }
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: transparent;
   border: none;
 }
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: var(--purple);
   border-radius: 8px;
 }
@@ -48,6 +50,11 @@ img {
   overflow-x: hidden;
 }
 
+.content.modal-open {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
 header {
   position: fixed;
   width: 100%;
@@ -61,23 +68,24 @@ header {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.5rem;
   display: grid;
   grid-template-columns: 8fr 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
+  z-index: 2;
 
   .logo {
     cursor: pointer;
     display: inline;
-    padding: 1rem 3rem 1rem 0;
+    padding: 0.5rem 3rem 0.5rem 0;
     justify-self: flex-start;
     color: var(--purple);
     font-size: 1.6rem;
   }
 
   a {
-    padding: 1.3rem 2rem;
+    padding: 1rem 2rem;
     transition: 0.3s;
   }
 
@@ -93,10 +101,12 @@ header {
 }
 
 .container {
+  padding: 8rem 0 2rem;
   max-width: 1024px;
-  margin: 8rem auto 2rem;
+  margin: 0 auto;
   position: relative;
   min-height: 100vh;
+  height: 100%;
 }
 
 footer {
@@ -109,15 +119,18 @@ footer {
     max-width: 1200px;
     margin: auto;
     display: grid;
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    padding-bottom: 1rem;
   }
 
   .socials {
     font-size: 2rem;
+    justify-self: flex-end;
   }
 
   .socials a {
-    padding: 0 1rem;
+    padding: 0 0.6rem;
     transition: 0.3s;
   }
 
@@ -140,23 +153,59 @@ footer {
 .card {
   padding: 15px;
   border-radius: 10px;
-}
-
-.card h2 {
-  padding: 0.5rem 0 0;
-}
-
-.card-btn {
   transition: 0.3s;
   cursor: pointer;
+
+  .card-hero {
+    display: block;
+    position: relative;
+  }
+
+  .card-hero:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+      180deg,
+      transparent 0 60%,
+      black 90% 100%
+    );
+  }
+  .card-content {
+    padding: 0 0.5rem;
+  }
+  .card-meta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .card-date {
+    margin-bottom: 8px;
+    padding: 3px 0;
+    font-size: 0.8rem;
+  }
+
+  h2 {
+    z-index: 2;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 1rem 0.5rem;
+  }
 }
 
-.card-btn:hover {
+.card:hover {
   transform: translate(0, -10px);
 }
 
 .post {
   padding: 15px 30px;
+  position: relative;
 
   .post-baner {
     display: grid;
@@ -171,34 +220,20 @@ footer {
 
   .post-title {
     margin: 1rem 0;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
   }
 
-  .post-meta {
+  .card-meta {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
 
-  .post-date {
-    margin-bottom: 8px;
-    padding: 3px 0;
-    font-size: 0.8rem;
-  }
-
-  .post-views {
-    font-size: 1rem;
-    padding: 3px 0;
-  }
-
-  .post-views svg {
-    padding-left: 0.5rem;
-  }
-
   .post-body {
     max-width: 768px;
     margin: auto;
+    text-align: justify;
   }
 
   .post-body ul,
@@ -217,6 +252,20 @@ footer {
   }
 }
 
+.date {
+  margin-bottom: 8px;
+  padding: 3px 0;
+  font-size: 0.8rem;
+}
+
+.views {
+  font-size: 1rem;
+  padding: 3px 0;
+  svg {
+    padding-left: 0.5rem;
+  }
+}
+
 .tags {
   width: 100%;
   display: flex;
@@ -228,7 +277,7 @@ footer {
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .tag-btn:hover {
@@ -238,24 +287,14 @@ footer {
 .scroll-btn {
   position: fixed;
   bottom: 6rem;
-  right: 4rem;
+  right: calc(100vw - 1200px);
   transition: 0.3s;
-
-  width: 1.9rem;
-  height: 1.9rem;
-  background-color: #fff;
-  border-radius: 5px;
-}
-
-.scroll-btn svg {
-  display: block;
-  color: #000;
-  margin: auto;
+  color: #fff;
   font-size: 2rem;
 }
 
 .scroll-btn:hover {
-  background-color: var(--purple);
+  color: var(--purple);
 }
 
 .remark-code-title {
@@ -277,54 +316,68 @@ pre[class*="language-"] {
   margin-top: 0 !important;
 }
 
+blockquote {
+  font-style: italic;
+  padding: 0.2rem 1rem;
+  border-left: 4px solid var(--purple);
+  background-color: var(--trans-purple);
+  transform: translateX(1rem);
+  border-radius: 5px;
+}
+
 /* The Modal (background) */
 .modal {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: block;
+  position: fixed;
+  overflow: auto;
+  z-index: 100;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(13, 13, 13, 0.95); /* Black w/ opacity */
-}
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(13, 13, 13, 0.95);
+  padding-right: 0.7rem;
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
 
-.search-input {
-  position: relative;
-  width: 40%;
-  min-width: 240px;
-  margin: auto;
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 1px solid #fff;
-  font-size: 1.2rem;
-  background-color: #111;
-}
+  .search-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+  .search-input {
+    position: relative;
+    width: 40%;
+    min-width: 320px;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid #fff;
+    font-size: 1.2rem;
+    background-color: #111;
+    color: #fff;
+  }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+  /* The Close Button */
+  .search-close {
+    color: #aaaaaa;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #fff;
+  }
 }
 
 @media only screen and (max-width: 1100px) {
@@ -356,20 +409,33 @@ pre[class*="language-"] {
     .post-baner {
       grid-template-columns: 1fr;
     }
+
+    .post-title {
+      font-size: 2rem;
+    }
   }
 
   footer {
     .footer-grid {
       width: 90%;
+      margin: auto;
       grid-template-columns: 1fr;
+      justify-items: center;
     }
 
     .socials {
       margin: 0.5rem 0;
+      justify-self: center;
     }
 
     .socials a {
-      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .modal {
+    .search-input {
+      min-width: 240px;
     }
   }
 }

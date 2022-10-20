@@ -46,7 +46,6 @@ export default function Home({ posts }) {
 export async function getStaticProps() {
   const files = fs.readdirSync(path.join("posts"));
 
-  const index = {};
   const posts = files.map((filename) => {
     const slug = filename.replace(".md", "");
 
@@ -59,19 +58,6 @@ export async function getStaticProps() {
 
     return { slug, frontmatter };
   });
-
-  fs.writeFileSync(
-    "search.json",
-    JSON.stringify(
-      posts.map(({ slug, frontmatter }) => ({
-        slug,
-        title: frontmatter.title,
-        excerpt: frontmatter.excerpt,
-        tags: frontmatter.tags.join(", "),
-        frontmatter,
-      }))
-    )
-  );
 
   return {
     props: {

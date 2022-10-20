@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ScrollButton = () => {
@@ -31,7 +31,7 @@ const ScrollButton = () => {
       className="scroll-btn"
       style={{ display: visible ? "inline" : "none" }}
     >
-      <FontAwesomeIcon icon={faAngleUp} onClick={scrollToTop} />
+      <FontAwesomeIcon icon={faChevronUp} onClick={scrollToTop} />
     </div>
   );
 };
