@@ -58,6 +58,8 @@ jobs:
           aws-region: eu-central-1
       # Terraform
       - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
 
       - name: Terraform fmt
         id: fmt
