@@ -93,8 +93,7 @@ jobs:
         run: aws s3 sync ./app/out s3://amazed.dev
 
       - run: |
-          output=$(terraform output cf_distribution)
-          echo $output
+          terraform output
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
