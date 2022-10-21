@@ -94,11 +94,12 @@ jobs:
 
       - run: |
           terraform output
+        working-directory: terraform
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
-          DISTRIBUTION: $(terraform output cf_distribution)
+          DISTRIBUTION: $(cd terraform && terraform output cf_distribution)
           PATHS: "/*"
           AWS_REGION: "eu-central-1"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
