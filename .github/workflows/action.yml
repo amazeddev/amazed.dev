@@ -95,7 +95,7 @@ jobs:
       - name: Terraform outputs
         id: tf_output
         run: |
-          echo "cf_distribution=$(terraform output cf_distribution)\n" >> $GITHUB_OUTPUT
+          echo "cf_distribution=$(terraform output cf_distribution)" >> $GITHUB_OUTPUT
         working-directory: terraform
 
       - name: Invalidate CloudFront
