@@ -1,0 +1,167 @@
+.cell {
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  color: #fff;
+  background-color: #111;
+  padding: 0.2rem 0.5rem;
+  // width: calc(100% + 60px);
+  // position: relative;
+  // left: -60px;
+
+  .input,
+  .output_area {
+    display: grid;
+    grid-template-columns: 70px auto;
+    grid-column-gap: 10px;
+    margin: 0.5rem auto;
+
+    .inner_cell {
+      padding: 0.3rem;
+      overflow-x: auto;
+      color: #000;
+
+      pre {
+        margin: 0;
+        padding: 0 0.5rem 0.3rem;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .prompt {
+    padding: 0.3rem;
+    font-family: monospace;
+    &.input_prompt {
+      color: #7f90ff;
+    }
+    &.output_prompt {
+      color: #ff8a67;
+    }
+  }
+
+  .output_area {
+    .output_text {
+      overflow-x: scroll;
+    }
+    pre {
+      margin: 0 !important;
+      padding: 0.3rem 0.5rem 0.3rem !important;
+      background-color: transparent !important;
+
+      .ansi-red-fg {
+        color: #ff6762;
+      }
+
+      .ansi-green-fg {
+        color: #26ce7a;
+      }
+
+      .ansi-cyan-fg {
+        color: #7bebed;
+      }
+    }
+
+    .output_png {
+      max-width: 100%;
+      background-color: #fff;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .output_subarea {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+  }
+
+  .highlight {
+    .k,
+    .kn,
+    .ow,
+    .kc {
+      color: rgb(66, 203, 66);
+      font-weight: bold;
+    }
+
+    .nb {
+      color: rgb(65, 204, 65);
+    }
+
+    .nf {
+      color: rgb(78, 144, 243);
+      font-weight: bold;
+    }
+
+    .mi,
+    .mf,
+    .p {
+      color: rgb(53, 200, 53);
+    }
+
+    .o {
+      color: #bc62f5;
+      font-weight: bold;
+    }
+
+    .nn,
+    .n {
+      color: #fff;
+    }
+
+    .s1,
+    .se {
+      color: #e65656;
+    }
+  }
+  .dataframe tbody tr th:only-of-type {
+    vertical-align: middle;
+  }
+
+  .dataframe tbody tr th {
+    vertical-align: top;
+  }
+
+  .dataframe thead th {
+    text-align: right;
+  }
+  .dataframe {
+    margin: 1rem 0 0;
+    border: none;
+    font-family: monospace;
+    border-collapse: collapse;
+
+    thead {
+      border-bottom: 1px solid;
+    }
+
+    tr,
+    th,
+    td {
+      border: none;
+      padding: 0.2rem 0.5rem;
+      border: none;
+    }
+
+    tbody {
+      tr:nth-child(odd) {
+        background: #222121;
+      }
+      tr:nth-child(even) {
+        background: rgb(67, 66, 66);
+      }
+    }
+  }
+  @media (max-width: 400px) {
+    .input,
+    .output_area {
+      grid-template-columns: none;
+    }
+  }
+}
+
+.jupyter {
+  // margin: 1rem 0;
+  padding: 1rem 0;
+}

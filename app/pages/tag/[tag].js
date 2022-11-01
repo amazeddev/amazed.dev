@@ -11,7 +11,7 @@ export default function TagPage({ posts, tag }) {
   return (
     <div>
       <Head>
-        <title>Amazed.DEV - {tag}</title>
+        <title>Amazed.DEV - #{tag}</title>
       </Head>
       <h1 className="post-title">
         #{tag}

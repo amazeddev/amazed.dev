@@ -9,7 +9,7 @@ export default function PostItem({ post, view_count }) {
       <div className="card">
         <div className="card-hero">
           <Image
-            src={post.frontmatter.cover_image}
+            src={`/images/posts/${post.frontmatter.cover_img}`}
             alt=""
             width={600}
             height={400}

@@ -11,15 +11,9 @@ import Link from "next/link";
 import { slugify } from "../../utils/posts";
 import React, { useEffect, useState } from "react";
 import { supabaseClient } from "../../lib/supabase";
-import { faTags } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PageViews from "../../components/PageViews";
 import Image from "next/image";
-
-const returnIcon = () => {
-  return <FontAwesomeIcon icon={faTags} />;
-};
 
 export default function PostPage({ frontmatter, parsed, slug }) {
   const [views, setViews] = useState([]);
@@ -54,11 +48,41 @@ export default function PostPage({ frontmatter, parsed, slug }) {
     <>
       <Head>
         <title>Amazed.DEV - {frontmatter.title}</title>
+        <meta
+          name="description"
+          hid="description"
+          content={frontmatter.excerpt}
+        />
+        <meta name="keywords" content={frontmatter.tags.join(",")} />
+        <meta
+          hid="og:image"
+          property="og:image"
+          key="og:image"
+          content={`https://amazed.dev/images/posts/${frontmatter.cover_image}`}
+        />
+        <meta
+          hid="og:title"
+          property="og:title"
+          key="og:title"
+          content={`${frontmatter.title} - Amazed.DEV`}
+        />
+        <meta
+          hid="og:url"
+          property="og:url"
+          key="og:url"
+          content={`https://amazed.dev/blog/${slug}`}
+        />
+        <meta
+          hid="og:description"
+          property="og:description"
+          key="og:description"
+          content={frontmatter.excerpt}
+        />
       </Head>
       <div className="post">
         <div className="post-baner">
           <Image
-            src={frontmatter.cover_image}
+            src={`/images/posts/${frontmatter.cover_img}`}
             alt=""
             width={700}
             height={500}

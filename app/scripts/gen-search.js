@@ -20,9 +20,11 @@ const posts = files.map((filename) => {
 fs.writeFileSync(
   "search.json",
   JSON.stringify(
-    posts.map(({ slug, frontmatter }) => ({
-      slug,
-      frontmatter,
-    }))
+    posts
+      .filter((post) => post.frontmatter.published)
+      .map(({ slug, frontmatter }) => ({
+        slug,
+        frontmatter,
+      }))
   )
 );
