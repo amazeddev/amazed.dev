@@ -31,3 +31,12 @@ export function codeTitle(options) {
       node.lang = language;
     });
 }
+
+export async function copyCode(block) {
+  if (block) {
+    let code = block.querySelector("code");
+    let text = code.innerText;
+
+    await navigator.clipboard.writeText(text);
+  }
+}

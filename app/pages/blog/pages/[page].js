@@ -4,15 +4,15 @@ import path from "path";
 import Head from "next/head";
 import matter from "gray-matter";
 
-import PostItem from "../components/PostItem";
-import { supabaseClient } from "../lib/supabase";
 import { useEffect, useState } from "react";
-import Pagnation from "../components/Pagination";
-import { pageCount } from "../utils/posts";
+import PostItem from "../../../components/PostItem";
+import { supabaseClient } from "../../../lib/supabase";
+import Pagnation from "../../../components/Pagination";
+import { pageCount } from "../../../utils/posts";
 
 const show_per_page = process.env.SHOW_PER_PAGE;
 
-export default function Home({ posts, totalPageCount }) {
+export default function Home({ posts, totalPageCount, currentPage }) {
   const [views, setViews] = useState([]);
   useEffect(() => {
     (async () => {
@@ -43,12 +43,12 @@ export default function Home({ posts, totalPageCount }) {
           />
         ))}
       </div>
-      <Pagnation totalPageCount={totalPageCount} currentPage={1} />
+      <Pagnation totalPageCount={totalPageCount} currentPage={currentPage} />
     </div>
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ params: { page } }) {
   const files = fs.readdirSync(path.join("posts"));
 
   const posts = files.map((filename) => {
@@ -70,8 +70,30 @@ export async function getStaticProps() {
         .sort(
           (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
         )
-        .slice(0, show_per_page),
+        .slice((page - 1) * show_per_page, page * show_per_page),
       totalPageCount: pageCount(posts.length),
+      currentPage: page,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const files = fs.readdirSync(path.join("posts"));
+
+  let totalPageCount = pageCount(files.length);
+  // totalPostCount number convert into a array
+  let pageIntoArray = Array.from(Array(totalPageCount).keys());
+
+  let paths = [];
+
+  pageIntoArray.map((path) =>
+    paths.push({
+      params: { page: `${path + 1}` },
+    })
+  );
+
+  return {
+    paths,
+    fallback: false,
   };
 }

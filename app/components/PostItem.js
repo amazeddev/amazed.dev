@@ -8,7 +8,12 @@ export default function PostItem({ post, view_count }) {
     <Link href={`/blog/${post.slug}`}>
       <div className="card">
         <div className="card-hero">
-          <img src={post.frontmatter.cover_image} alt="" />
+          <Image
+            src={post.frontmatter.cover_image}
+            alt=""
+            width={600}
+            height={400}
+          />
           <h2>{post.frontmatter.title}</h2>
         </div>
         <div className="card-content">
