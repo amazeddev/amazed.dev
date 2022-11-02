@@ -14,7 +14,7 @@ export default function Header({ setIsOpen }) {
           </Link>
         </div>
         <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
+        <Link href="/about">O mnie</Link>
         <div onClick={() => setIsOpen(true)} className="search-btn">
           <FontAwesomeIcon icon={faSearch} />
         </div>

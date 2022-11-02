@@ -168,8 +168,10 @@ app.use("/api/auth/", authRouter);
 Możemy uznać endpoint rejestracji użytkownika za zakończony. Dodajmy więc jeden rekord do kolekcji _Users_.
 
 ```bash:terminal
-$ curl -d '{"name":"Sebastian","email":"sebastian@mail.com","password":"pass123"}' -H "Content-Type: application/json" -X POST http://localhost:5000/api/auth/register
+curl -d '{"name":"Sebastian","email":"sebastian@mail.com","password":"pass123"}' -H "Content-Type: application/json" -X POST http://localhost:5000/api/auth/register
+```
 
+```bash
 {
   "data": {
     "_id": "5db36e54735bcd41988c2ed7",

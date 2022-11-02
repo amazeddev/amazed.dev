@@ -23,16 +23,16 @@ export default function Home({ posts, totalPageCount, currentPage }) {
     })();
   }, []);
   return (
-    <div>
+    <div className="container-content">
       <Head>
         <title>Amazed.DEV - Blog</title>
       </Head>
-      <h1 className="post-title">Hello</h1>
+      <h1 className="post-title">Blog</h1>
       <p>
-        Ille fida formosus, et addunt viscera perdidit ad pondere quia tellus
-        consequitur et quoque scinditque in. Ratis laborum instabat quaedam
-        partem Phoebus, manus _partibus poenas_. Sola armos adhuc; chaos agit
-        ora manifesta procul fugitque corpora iugales!
+        Poniższy blog przedstawia proces mojej nauki i rzeczy, z
+        szerokorozumianej branży IT, które mnie interesują i którymi się zajmuję
+        na codzień. Artykuły traktuję jak notatki z procesu nauki, które mogą
+        się kiedyś przydać jako referencja w mojej pracy.
       </p>
       <div className="cards">
         {posts.map((post, index) => (
