@@ -85,7 +85,7 @@ header {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   display: grid;
   grid-template-columns: 8fr 1fr 1fr 1fr;
   justify-items: center;
@@ -95,7 +95,7 @@ header {
   .logo {
     cursor: pointer;
     display: inline;
-    padding: 0.5rem 3rem 0.5rem 0;
+    padding: 0.2rem 3rem 0.2rem 0;
     justify-self: flex-start;
     color: var(--purple);
 
@@ -106,7 +106,7 @@ header {
   }
 
   a {
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     transition: 0.3s;
     white-space: nowrap;
   }
