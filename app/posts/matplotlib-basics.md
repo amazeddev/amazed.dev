@@ -7,6 +7,18 @@ cover_img: charts.jpg
 published: true
 ---
 
+## Wstęp
+
+<div class="admission">
+Artykuły w tym cyklu:
+
+1. [Podstawy pakietu Numpy - część 1](https://amazed.dev/blog/numpy-basics-1)
+2. [Podstawy pakietu Numpy - część 2](https://amazed.dev/blog/numpy-basics-2)
+3. [Podstawy pakietu Pandas - część 1](https://amazed.dev/blog/pandas-basics-1)
+4. [Podstawy pakietu Pandas - część 2](hhttps://amazed.dev/blog/pandas-basics-2)
+5. **Wizualizacja danych - podstawy pakietu Matplotlib**
+</div>
+
 ## Pakiet Matplotlib
 
 Teraz gdy podstawy _NumPy_ i _Pandas_ mamy już opanowane, pora zająć się kwestią wizualizacji danych. Nic tak nie pomaga w zrozumieniu struktury zbioru danych, jak zobrazowanie go przy użyciu odpowiedniego wykresu.

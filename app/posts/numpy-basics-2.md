@@ -7,6 +7,18 @@ cover_img: numbers2.jpg
 published: true
 ---
 
+## Wstęp
+
+<div class="admission">
+Artykuły w tym cyklu:
+
+1. [Podstawy pakietu Numpy - część 1](https://amazed.dev/blog/numpy-basics-1)
+2. **Podstawy pakietu Numpy - część 2**
+3. [Podstawy pakietu Pandas - część 1](https://amazed.dev/blog/pandas-basics-1)
+4. [Podstawy pakietu Pandas - część 2](hhttps://amazed.dev/blog/pandas-basics-2)
+5. [Wizualizacja danych - podstawy pakietu Matplotlib](https://amazed.dev/blog/matplotlib-basics)
+</div>
+
 ## Ciąg dalszy
 
 W poprzednim wpisie na temat podstaw _NumPy_ omówiliśmy podstawy podstaw wykorzystania tego jakże przydatnego pakietu. Pora teraz, aby rozszerzyć nieco przedstawione tam zagadnienia oraz omówić pokrótce co właściwie sprawia, że _ndarrays_ mają tak dużą przewagę nad _python list_.

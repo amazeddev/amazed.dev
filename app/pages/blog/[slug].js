@@ -14,6 +14,7 @@ import { supabaseClient } from "../../lib/supabase";
 
 import PageViews from "../../components/PageViews";
 import Image from "next/image";
+import { ShareButtons } from "../../components/ShareButtons";
 
 const node_env = process.env.NODE_ENV;
 
@@ -66,7 +67,7 @@ export default function PostPage({ frontmatter, parsed, slug }) {
           hid="og:image"
           property="og:image"
           key="og:image"
-          content={`https://amazed.dev/images/posts/${frontmatter.cover_image}`}
+          content={`https://amazed.dev/images/posts/${frontmatter.cover_img}`}
         />
         <meta
           hid="og:title"
@@ -89,11 +90,16 @@ export default function PostPage({ frontmatter, parsed, slug }) {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@AmazedDeveloper" />
+        <meta
+          name="twitter:creator"
+          key="twitter:creator"
+          content="@AmazedDeveloper"
+        />
         <meta name="twitter:title" content={frontmatter.title} />
         <meta name="twitter:description" content={frontmatter.excerpt} />
         <meta
           name="twitter:image"
-          content={`https://amazed.dev/images/posts/${frontmatter.cover_image}`}
+          content={`https://amazed.dev/images/posts/${frontmatter.cover_img}`}
         />
       </Head>
       <div className="post">
@@ -118,6 +124,10 @@ export default function PostPage({ frontmatter, parsed, slug }) {
                   </Link>
                 ))}
             </div>
+            <ShareButtons
+              link={`https://amazed.dev/blog/${slug}`}
+              title={frontmatter.title}
+            />
           </div>
         </div>
         <div className="post-body">

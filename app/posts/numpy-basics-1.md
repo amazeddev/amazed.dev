@@ -7,6 +7,18 @@ cover_img: "numbers.jpg"
 published: true
 ---
 
+## Wstęp
+
+<div class="admission">
+Artykuły w tym cyklu:
+
+1. **Podstawy pakietu Numpy - część 1**
+2. [Podstawy pakietu Numpy - część 2](https://amazed.dev/blog/numpy-basics-2)
+3. [Podstawy pakietu Pandas - część 1](https://amazed.dev/blog/pandas-basics-1)
+4. [Podstawy pakietu Pandas - część 2](hhttps://amazed.dev/blog/pandas-basics-2)
+5. [Wizualizacja danych - podstawy pakietu Matplotlib](https://amazed.dev/blog/matplotlib-basics)
+</div>
+
 ## Numpy jako wstęp do data science
 
 Na blogu postanowiłem zacząć opisywać nowy większy temat związany ze wstępem do zagadnień _data science_. Pakiet _Numpy_, od _numeric python_, jest według mnie pierwszym etapem na drodze do zgłębienia tematyki analizy danych i tematów z nią związanych. Opiera się na nim bezpośrednio wiele pakietów, które będziemy tu w późniejszym czasie opisywać, np. _Pandas_, _Matplotlib_, czy _Scikit-Learn_.

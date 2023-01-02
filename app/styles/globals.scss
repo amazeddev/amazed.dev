@@ -335,6 +335,18 @@ footer {
   }
 }
 
+.share-btns {
+  margin-top: 2rem;
+
+  a {
+    padding: 1rem 1rem 1rem 0;
+  }
+
+  svg {
+    width: 2rem;
+  }
+}
+
 .tags {
   width: 100%;
   display: flex;

@@ -15,12 +15,12 @@ export default function Footer() {
           {new Date().getFullYear()} © <strong>AmazedDev</strong> Software
         </div>
         <div className="socials">
-          <Link href="https://github.com/sebastianluszczek">
+          <Link href="https://github.com/amazeddev">
             <a target="_blank" rel="Github profile" aria-label="Github profile">
               <FontAwesomeIcon icon={faGithubSquare} />
             </a>
           </Link>
-          <Link href="https://twitter.com/AmazedBear">
+          <Link href="https://twitter.com/AmazedDeveloper">
             <a
               target="_blank"
               rel="twitter profile"

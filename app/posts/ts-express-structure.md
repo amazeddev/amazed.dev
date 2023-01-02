@@ -12,12 +12,12 @@ published: true
 <div class="admission">
 Artykuły w tym cyklu:
 
-1. [Express + TypeScript - konfiguracja projektu](http://localhost:3333/blog/ts-express-base-config)
-2. [Express + TypeScript - CRUD boilerplate](http://localhost:3333/blog/ts-express-base-crud)
+1. [Express + TypeScript - konfiguracja projektu](https://amazed.dev/blog/ts-express-base-config)
+2. [Express + TypeScript - CRUD boilerplate](https://amazed.dev/blog/ts-express-base-crud)
 3. **Express + TypeScript - struktura aplikacji**
-4. [Express + TypeScript - konfiguracja MongoDB](http://localhost:3333/blog/ts-express-mongo)
-5. [Express + TypeScript - walidacja requestów z biblioteką Joi](http://localhost:3333/blog/ts-express-validation)
-6. [Express + TypeScript - middlewares aplikacji](http://localhost:3333/blog/ts-express-middlewares)
+4. [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo)
+5. [Express + TypeScript - walidacja requestów z biblioteką Joi](https://amazed.dev/blog/ts-express-validation)
+6. [Express + TypeScript - middlewares aplikacji](https://amazed.dev/blog/ts-express-middlewares)
 </div>
 
 ## Po co właściwie sytuktura aplikacji
@@ -62,7 +62,7 @@ O ile zasad o które mozemy oprzeć architektóre aplikacji jest bardzo dużo, w
 
 ## Moduły aplikacji
 
-Moje aplikacje lubie dzielić ze względu na _resources_ dookołoa których są obudowywane. W poprzednim artykule [Express + TypeScript - CRUD boilerplate](http://localhost:3333/blog/ts-express-base-crud) skupiłem się na ksiązkach, więc dookoła tego zasobu będę dalej budował aplikację. Tworząc moduł `books` będę chciał w nim umieścić cały kod powiązany bezpoośrednio z zasobem. Wszystko pozostałe, czyli niezwiązane bezpośrenio lub takie, które moze być dzielone pomiędzy więcej zasóbów, będzie znajdowało się na zewnątrz modułu.
+Moje aplikacje lubie dzielić ze względu na _resources_ dookołoa których są obudowywane. W poprzednim artykule [Express + TypeScript - CRUD boilerplate](https://amazed.dev/blog/ts-express-base-crud) skupiłem się na ksiązkach, więc dookoła tego zasobu będę dalej budował aplikację. Tworząc moduł `books` będę chciał w nim umieścić cały kod powiązany bezpoośrednio z zasobem. Wszystko pozostałe, czyli niezwiązane bezpośrenio lub takie, które moze być dzielone pomiędzy więcej zasóbów, będzie znajdowało się na zewnątrz modułu.
 
 Budowę modułu oczywiście zaczynam od strzenia folderu.
 
@@ -341,7 +341,7 @@ app.listen(PORT, () => {
 
 Warto zwrócić uwagę na sposób użycia `booksRouter`. Przekazujemy jedynie aplikacji, że gdy uzyska jakiekolwiek zapytanie (metoda `use()`) na adres `/api/books`, ma przekazać odpowiedzialność za wykonanie tego zapytanie właśnie do `booksRouter`.
 
-Co do użycia zmiennych środowiskowych `const PORT = process.env.PORT || 5000;` odsyłam do jednego z wcześniejszych artykułów: [Zarządzanie lokalnymi zmiennymi środowiskowymi - direnv](http://localhost:3333/blog/dev-env-vars-manage).
+Co do użycia zmiennych środowiskowych `const PORT = process.env.PORT || 5000;` odsyłam do jednego z wcześniejszych artykułów: [Zarządzanie lokalnymi zmiennymi środowiskowymi - direnv](https://amazed.dev/blog/dev-env-vars-manage).
 
 ## Rozdzielenie modułu aplikacji od servera
 

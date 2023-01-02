@@ -12,11 +12,11 @@ published: true
 <div class="admission">
 Artykuły w tym cyklu:
 
-1. [Express + TypeScript - konfiguracja projektu](http://localhost:3333/blog/ts-express-base-config)
-2. [Express + TypeScript - CRUD boilerplate](http://localhost:3333/blog/ts-express-base-crud)
-3. [Express + TypeScript - struktura aplikacji](http://localhost:3333/blog/ts-express-structure)
-4. [Express + TypeScript - konfiguracja MongoDB](http://localhost:3333/blog/ts-express-mongo)
-5. [Express + TypeScript - walidacja requestów z biblioteką Joi](http://localhost:3333/blog/ts-express-validation)
+1. [Express + TypeScript - konfiguracja projektu](https://amazed.dev/blog/ts-express-base-config)
+2. [Express + TypeScript - CRUD boilerplate](https://amazed.dev/blog/ts-express-base-crud)
+3. [Express + TypeScript - struktura aplikacji](https://amazed.dev/blog/ts-express-structure)
+4. [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo)
+5. [Express + TypeScript - walidacja requestów z biblioteką Joi](https://amazed.dev/blog/ts-express-validation)
 6. **Express + TypeScript - middlewares aplikacji**
 </div>
 

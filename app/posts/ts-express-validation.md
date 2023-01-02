@@ -12,17 +12,17 @@ published: true
 <div class="admission">
 Artykuły w tym cyklu:
 
-1. [Express + TypeScript - konfiguracja projektu](http://localhost:3333/blog/ts-express-base-config)
-2. [Express + TypeScript - CRUD boilerplate](http://localhost:3333/blog/ts-express-base-crud)
-3. [Express + TypeScript - struktura aplikacji](http://localhost:3333/blog/ts-express-structure)
-4. [Express + TypeScript - konfiguracja MongoDB](http://localhost:3333/blog/ts-express-mongo)
+1. [Express + TypeScript - konfiguracja projektu](https://amazed.dev/blog/ts-express-base-config)
+2. [Express + TypeScript - CRUD boilerplate](https://amazed.dev/blog/ts-express-base-crud)
+3. [Express + TypeScript - struktura aplikacji](https://amazed.dev/blog/ts-express-structure)
+4. [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo)
 5. **Express + TypeScript - walidacja requestów z biblioteką Joi**
-6. [Express + TypeScript - middlewares aplikacji](http://localhost:3333/blog/ts-express-middlewares)
+6. [Express + TypeScript - middlewares aplikacji](https://amazed.dev/blog/ts-express-middlewares)
 </div>
 
 ## Przygotowanie projektu
 
-Omawiany problem walidacji i _error handlingu_ kontynuuję na podstawie artykułu [Express + TypeScript - konfiguracja MongoDB](http://localhost:3333/blog/ts-express-mongo).
+Omawiany problem walidacji i _error handlingu_ kontynuuję na podstawie artykułu [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo).
 
 ## Gdzie walidować
 

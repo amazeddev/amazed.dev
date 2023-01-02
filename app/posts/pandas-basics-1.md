@@ -7,6 +7,18 @@ cover_img: pandas1.jpg
 published: true
 ---
 
+## Wstęp
+
+<div class="admission">
+Artykuły w tym cyklu:
+
+1. [Podstawy pakietu Numpy - część 1](https://amazed.dev/blog/numpy-basics-1)
+2. [Podstawy pakietu Numpy - część 2](https://amazed.dev/blog/numpy-basics-2)
+3. **Podstawy pakietu Pandas - część 1**
+4. [Podstawy pakietu Pandas - część 2](hhttps://amazed.dev/blog/pandas-basics-2)
+5. [Wizualizacja danych - podstawy pakietu Matplotlib](https://amazed.dev/blog/matplotlib-basics)
+</div>
+
 ## Czym jest Pandas?
 
 _Pandas_ jest w tym momencie podstawowym pakietem służącym do przetwarzania i analizy danych w języku Python. Oparty na _NumPy_, poznanym we wcześniejszych wpisach, dziedziczy po nim wiele funkcjonalności i zasad działania. Wiele metod i podejść, jak optymalizacja operacji element po elemencie na całych tablicach, sposoby indeksowania czy też wykorzystanie uniwersalnych funkcji (_unfunc_), działają zazwyczaj tak samo, lub są tylko rozwinięciem tego, co znamy z _NumPY_.

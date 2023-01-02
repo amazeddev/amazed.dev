@@ -7,6 +7,18 @@ cover_img: pandas2.jpg
 published: true
 ---
 
+## Wstęp
+
+<div class="admission">
+Artykuły w tym cyklu:
+
+1. [Podstawy pakietu Numpy - część 1](https://amazed.dev/blog/numpy-basics-1)
+2. [Podstawy pakietu Numpy - część 2](https://amazed.dev/blog/numpy-basics-2)
+3. [Podstawy pakietu Pandas - część 1](https://amazed.dev/blog/pandas-basics-1)
+4. **Podstawy pakietu Pandas - część 2**
+5. [Wizualizacja danych - podstawy pakietu Matplotlib](https://amazed.dev/blog/matplotlib-basics)
+</div>
+
 ## Praca z danymi w Pandas
 
 W poprzednim wpisie poznaliśmy różne sposoby tworzenia _DataFrames_. Możemy teraz zająć się pracą z tymi strukturami. Dlatego też w tym wpisie poruszymy między innymi tematy indeksowania i wycinania fragmentów, podstawowych operacje na całych tablicach, łączenia tablic, czy grupowania elementów. Wprowadzenie to pozwoli nam na rozpoczęcie prawdziwej pracy z pakietem _Pandas_.

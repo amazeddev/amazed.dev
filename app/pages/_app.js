@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
         <meta
           name="description"
           hid="description"
-          content="Blog poświęcony nauce programowania"
+          content="Blog o programowaniu"
         />
         <meta
           name="keywords"
@@ -27,11 +27,19 @@ function MyApp({ Component, pageProps }) {
           key="twitter:card"
           content="summary_large_image"
         />
-        <meta name="twitter:site" key="twitter:site" content="@AmazedBear" />
+        <meta
+          name="twitter:site"
+          key="twitter:site"
+          content="@AmazedDeveloper"
+        />
         <meta
           name="twitter:creator"
           key="twitter:creator"
-          content="@AmazedBear"
+          content="@AmazedDeveloper"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.amazed.dev/images/og_bgi.jpg"
         />
         <meta
           hid="og:title"
