@@ -10,19 +10,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function TagPage({ posts, tag }) {
   return (
     <div>
-      <Head>
-        <title>Amazed.DEV - #{tag}</title>
-      </Head>
-      <h1 className="post-title">
-        #{tag}
-        {"\t"}
-        <FontAwesomeIcon icon={faTags} />
-      </h1>
+      <div className="container-content">
+        <Head>
+          <title>Amazed.DEV - #{tag}</title>
+        </Head>
+        <h1 className="post-title">
+          #{tag}
+          {"\t"}
+          <FontAwesomeIcon icon={faTags} />
+        </h1>
 
-      <div className="cards">
-        {posts.map((post, index) => (
-          <PostItem post={post} key={index} />
-        ))}
+        <div className="cards">
+          {posts.map((post, index) => (
+            <PostItem post={post} key={index} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import PostItem from "../../../components/PostItem";
 import { supabaseClient } from "../../../lib/supabase";
 import Pagnation from "../../../components/Pagination";
 import { pageCount } from "../../../utils/posts";
+import BlogHero from "../../../components/BlogHero";
 
 const show_per_page = process.env.SHOW_PER_PAGE;
 
@@ -27,13 +28,7 @@ export default function Home({ posts, totalPageCount, currentPage }) {
       <Head>
         <title>Amazed.DEV - Blog</title>
       </Head>
-      <h1 className="post-title">Blog</h1>
-      <p>
-        Poniższy blog przedstawia proces mojej nauki i rzeczy, z
-        szerokorozumianej branży IT, które mnie interesują i którymi się zajmuję
-        na codzień. Artykuły traktuję jak notatki z procesu nauki, które mogą
-        się kiedyś przydać jako referencja w mojej pracy.
-      </p>
+      <BlogHero />
       <div className="cards">
         {posts.map((post, index) => (
           <PostItem

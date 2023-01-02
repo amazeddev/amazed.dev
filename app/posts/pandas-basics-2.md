@@ -1,5 +1,5 @@
 ---
-title: Podstawy pakietu Pandas - część 2, analiza i przetwarzanie zbiorów danych
+title: Podstawy pakietu Pandas - część 2
 excerpt: Pandas daje użytkownikowi niemal nieograniczone możliwości przetwarzania i analizy danych. W tym wpisie postaramy się przybliżyć w prosty sposób możliwości pakietu, między innymi pobieranie na różne sposoby fragmentów tabel, łączenie datasetów, grupowanie powiązanych danych czy obliczanie statystyk i przekształceń danych.
 date: April 13, 2020
 tags: [python, datascience]

@@ -15,14 +15,19 @@ import { supabaseClient } from "../../lib/supabase";
 import PageViews from "../../components/PageViews";
 import Image from "next/image";
 
+const node_env = process.env.NODE_ENV;
+
 export default function PostPage({ frontmatter, parsed, slug }) {
   const [views, setViews] = useState([]);
   useEffect(() => {
     (async () => {
-      const { data } = await supabaseClient.rpc("increment_view", {
-        page_slug: slug,
-      });
-      setViews(data);
+      console.log(node_env);
+      if (node_env === "production") {
+        const { data } = await supabaseClient.rpc("increment_view", {
+          page_slug: slug,
+        });
+        setViews(data);
+      }
       // use a class selector if available
       let blocks = document.querySelectorAll(".remark-highlight");
 
@@ -69,6 +74,7 @@ export default function PostPage({ frontmatter, parsed, slug }) {
           key="og:title"
           content={`${frontmatter.title} - Amazed.DEV`}
         />
+        <meta property="og:type" content="article" />
         <meta
           hid="og:url"
           property="og:url"
@@ -80,6 +86,14 @@ export default function PostPage({ frontmatter, parsed, slug }) {
           property="og:description"
           key="og:description"
           content={frontmatter.excerpt}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@AmazedDeveloper" />
+        <meta name="twitter:title" content={frontmatter.title} />
+        <meta name="twitter:description" content={frontmatter.excerpt} />
+        <meta
+          name="twitter:image"
+          content={`https://amazed.dev/images/posts/${frontmatter.cover_image}`}
         />
       </Head>
       <div className="post">

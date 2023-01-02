@@ -1,5 +1,5 @@
 ---
-title: Podstawy pakietu Pandas - część 1, struktura i tworzenie obiektów Series i DataFrame
+title: Podstawy pakietu Pandas - część 1
 excerpt: Pakiet Pandas to kolejna biblioteka, którą trzeba omówić w kontekście wprowadzenia do narzędzi związanych z podstawami Data Science w Python. Pandas świetnie nadaje się do pracy z danymi tabelarycznymi, które w przeciwieństwie do NumPy mogą posiadać kolumny różnych typów. Pozwala, między innymi, na czyszczenie, przetwarzanie czy grupowanie danych w jedno lub dwuwymiarowych tabelach.
 date: April 12, 2020
 tags: [python, datascience]

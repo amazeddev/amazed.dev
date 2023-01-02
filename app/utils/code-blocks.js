@@ -17,18 +17,44 @@ export function codeTitle(options) {
       }
 
       const className = "remark-code-title";
+      let langIcon = "";
+
+      switch (language) {
+        case "ts":
+          langIcon = '<i class="devicon-typescript-plain"></i>';
+          break;
+        case "js":
+          langIcon = '<i class="devicon-javascript-plain"></i>';
+          break;
+        case "bash":
+          langIcon = '<i class="devicon-bash-plain"></i>';
+          break;
+        case "mysql":
+          langIcon = '<i class="devicon-mysql-plain"></i>';
+          language = "bash";
+          break;
+        case "json":
+          if (title === "package.json") {
+            langIcon = '<i class="devicon-nodejs-plain"></i>';
+          } else {
+            langIcon = "";
+          }
+          break;
+      }
 
       const titleNode = {
         type: "html",
         value: `
           <div class="${className}">
-            ${title}
+            ${langIcon}  ${title}
           </div>
         `.trim(),
       };
 
-      tree.children.splice(index, 0, titleNode);
-      node.lang = language;
+      if (tree.children[index].type === "code") {
+        tree.children.splice(index, 0, titleNode);
+        node.lang = language;
+      }
     });
 }
 

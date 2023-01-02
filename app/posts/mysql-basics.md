@@ -18,7 +18,7 @@ Na wstępie wypadałoby w skrócie opisać, czym są i po co nam te relacyjne ba
 Implementacją relacyjnej bazy danych, z jakiej będziemy korzystać w tym wpisie, jest _**MySQL**_. Instalacja serwera jest dość prosta. Ze względu na to, że powstało wiele opisów jak to zrobić, nie będę się tu nad tym skupiał. Zakładam, że mamy zainstalowany serwer MySQL lokalnie na komputerze oraz nadaliśmy hasło zabezpieczające dla _root'a_ i możemy odpalić serwer z poziomu konsoli.
 
 ```bash:terminal
-$ mysql -u root -p
+mysql -u root -p
 ```
 
 Zostaniemy zapytani o hasło, a po wpisaniu hasła otworzy nam się interaktywny wiersz poleceń _MySQL_. Rozpoznamy go po prompcie _mysql>_.
@@ -31,17 +31,21 @@ SQL (Structured Query Language) jest językiem zapytań, służącym do komunika
 
 Dobrym pomysłem na początek jest dodanie nowego użytkownika, aby nie tworzyć każdej kolejnej bazy danych za pomocą _root'a_.
 
-```bash:terminal
-mysql> CREATE USER 'sebastian'@'localhost' IDENTIFIED BY 'pass123';
+```mysql:terminal
+CREATE USER 'sebastian'@'localhost' IDENTIFIED BY 'pass123';
+```
 
+```mysql
 Query OK, 0 rows affected (0.22 sec)
 ```
 
 Możemy teraz sprawdzić jakich użytkowników widzi _MySQL_.
 
-```bash:terminal
-mysql> SELECT User, Host FROM mysql.user;
+```mysql:terminal
+SELECT User, Host FROM mysql.user;
+```
 
+```mysql
 +------------------+-----------+
 | User             | Host      |
 +------------------+-----------+
@@ -56,39 +60,43 @@ mysql> SELECT User, Host FROM mysql.user;
 
 Początek tej tabeli nas nie interesuje, gdyż są to klienci serwera. Dla nas ważne są _root_ i nasz świeżo utworzony użytkownik. Teraz musimy dodać użytkownikowi uprawnienie, gdyż w tym momencie nie może on praktycznie nic jeszcze robić.
 
-```bash:terminal
-mysql> GRANT ALL PRIVILEGES ON * . * TO 'sebastian'@'localhost';
+```mysql:terminal
+GRANT ALL PRIVILEGES ON * . * TO 'sebastian'@'localhost';
+```
 
-mysql> FLUSH PRIVILEGES;
+```mysql:terminal
+FLUSH PRIVILEGES;
 ```
 
 Te dwie komendy nadadzą użytkownikowi _sebastian_ wszystkie możliwe uprawnienia. Na etapie produkcji rozdawanie tak uprawnień będzie niedopuszczalne, ale podczas nauki jest całkiem _ok_.
 
 Aby wyjść z interaktywnej konsoli _MySQL_ wystarczy wpisać komendę _exit_.
 
-```bash:terminal
-mysql> exit
+```mysql:terminal
+exit
 ```
 
 ### Pierwsza baza danych i tabela
 
 Zacznijmy od zalogowanie się do _MySQL_ na nowo utworzone konto.
 
-```bash:terminal
-$ mysql -u sebsatian -p
+```mysql:terminal
+mysql -u sebsatian -p
 ```
 
 Gdy mamy już zalogowanego użytkownika i możemy przy jego pomocy komunikować się z bazą danych (ma nadane prawa), dodajmy pierwszą bazę danych, w której będą przechowywane wszystkie nasze dane w tabelach.
 
-```bash:terminal
-mysql> CREATE DATABASE sqlbasics;
+```mysql:terminal
+CREATE DATABASE sqlbasics;
 ```
 
 Możemy teraz sprawdzić, jakie posiada bazy danych nasz zalogowany użytkownik.
 
-```bash:terminal
-mysql> SHOW DATABASES;
+```mysql:terminal
+SHOW DATABASES;
+```
 
+```mysql
 +--------------------+
 | Database           |
 +--------------------+
@@ -104,8 +112,8 @@ mysql> SHOW DATABASES;
 
 Teraz, aby móc dodawać tabele i rekordy, musimy wybrać, z którą bazą danych chcemy pracować. W naszym wypadku będzie to oczywiście świeżo utworzona baza _sqlbasics_. Pozostałe bazy danych są to systemowe twory, zostawmy je więc w spokoju.
 
-```bash:terminal
-mysql> USE sqlbasics;
+```mysql:terminal
+USE sqlbasics;
 ```
 
 Możemy teraz dodać pierwszą tabelę, w której będą znajdować się rekordy naszych użytkowników. Tworząc tabelę, od razu na sztywno deklarujemy, jakie będą argumenty tabeli i jakie wartości te argumenty będą mogły przyjmować. Tak nieelastyczny model jest jedna z podstawowych cech relacyjnych baz danych. Wszystkie rekordy muszą wpisywać się w ten ściśle scharakteryzowany model, aby zostać dodane do tabeli.
@@ -124,8 +132,8 @@ Argumenty rekordu mogą przyjmować bardzo wiele różnych typów, oto podstawow
 
 Dla każdego definiowanego argumentu tabeli oprócz definiowania typu musimy zdefiniować również maksymalną długość, jaka może zostać wprowadzona (określamy ją w nawiasie, za typem argumentu). Tak więc nasza pierwsza tabela będzie wyglądała w następujący sposób.
 
-```bash:terminal
-mysql> CREATE TABLE users(
+```mysql:terminal
+CREATE TABLE users(
     -> id INT AUTO_INCREMENT,
     -> name VARCHAR(50),
     -> email VARCHAR(50),
@@ -140,9 +148,11 @@ Ten zapis mówi, że nowa tabela będzie miała nazwę _users_ i będzie zawiera
 
 Możemy teraz sprawdzić, czy nasz tabela znajduje się w bazie danych.
 
-```bash:terminal
-mysql> SHOW TABLES;
+```mysql:terminal
+SHOW TABLES;
+```
 
+```mysql
 +---------------------+
 | Tables_in_sqlbasics |
 +---------------------+
@@ -155,25 +165,27 @@ mysql> SHOW TABLES;
 
 Gdy posiadamy już bazę danych a w niej tabelę pora na dodanie pierwszego rekordu.
 
-```bash:terminal
-mysql> INSERT INTO users (name, email, password, job) VALUES ('Sebastian', 'sebastian@mail.com', 'pass123', 'front-end developer');
+```mysql:terminal
+INSERT INTO users (name, email, password, job) VALUES ('Sebastian', 'sebastian@mail.com', 'pass123', 'front-end developer');
 ```
 
 Rekord dodajemy przy pomocy metody _INSERT INTO_, definiując, do jakiej tabeli chcemy dodać nasz rekord, następnie w nawiasie definiujemy, do jakich argumentów będziemy przypisywać dane. Na końcu musimy w kolejnym nawiasie po parametrze _VELUES_ wpisać wartości argumentów. Kolejność nazw argumentów i ich wartości musi się zgadzać. Jako że _register_date_ ustawiamy z defaultu, nie musimy go podawać.
 
 Możemy też dodawać po kilka rekordów jednocześnie.
 
-```bash:terminal
-mysql> INSERT INTO users (name, email, password, job) VALUES ('John', 'john@gmail.com', 'pass123', 'back-end developer'), ('Sam', 'sam@yahoo.com', 'pass123', 'designer');
+```mysql:terminal
+INSERT INTO users (name, email, password, job) VALUES ('John', 'john@gmail.com', 'pass123', 'back-end developer'), ('Sam', 'sam@yahoo.com', 'pass123', 'designer');
 ```
 
 ### Odczytywanie rekordów z bazy danych
 
 Podstawowym sposobem _czytania_ z bazy danych jest metoda _SELECT_ bez definiowania argumentów (\*), podajemy tylko z jakiej tabeli pobieramy dane.
 
-```bash:terminal
-mysql> SELECT * FROM users;
+```mysql:terminal
+SELECT * FROM users;
+```
 
+```mysql
 +----+-----------+--------------------+----------+---------------------+---------------------+
 | id | name      | email              | password | job                 | register_date       |
 +----+-----------+--------------------+----------+---------------------+---------------------+
@@ -186,9 +198,11 @@ mysql> SELECT * FROM users;
 
 Możemy też odczytać tylko interesujące nas argumenty, np.:
 
-```bash:terminal
-mysql> SELECT name, job FROM users;
+```mysql:terminal
+SELECT name, job FROM users;
+```
 
+```mysql
 +-----------+---------------------+
 | name      | job                 |
 +-----------+---------------------+
@@ -201,9 +215,11 @@ mysql> SELECT name, job FROM users;
 
 Gdy chcemy zawęzić pobierane rekordy, możemy dodać parametr _WHERE_ do query stringu, a po nim zdefiniować do chcemy otrzymać. Poza operatorem przyrównania możemy również używać np. znaków mniejszości i większości dla wartości numerycznych.
 
-```bash:terminal
-mysql> SELECT * FROM users WHERE job='designer';
+```mysql:terminal
+SELECT * FROM users WHERE job='designer';
+```
 
+```mysql
 +----+------+---------------+----------+----------+---------------------+
 | id | name | email         | password | job      | register_date       |
 +----+------+---------------+----------+----------+---------------------+
@@ -214,9 +230,11 @@ mysql> SELECT * FROM users WHERE job='designer';
 
 Przydatne może być też sortowanie danych. Posortujmy np. po imionach w kolejności rosnącej.
 
-```bash:terminal
-mysql> SELECT * FROM users ORDER BY name ASC;
+```mysql:terminal
+SELECT * FROM users ORDER BY name ASC;
+```
 
+```mysql
 +----+-----------+----------------+----------+---------------------+---------------------+
 | id | name      | email          | password | job                 | register_date       |
 +----+-----------+----------------+----------+---------------------+---------------------+
@@ -229,9 +247,11 @@ mysql> SELECT * FROM users ORDER BY name ASC;
 
 Możemy również przeszukiwać rekordy tabeli na podstawie wartości w argumentach. Służy do tego metoda _LIKE_, po niej mówimy, czego szukamy (składnia zbliżona do regex).
 
-```bash:terminal
-mysql> SELECT * FROM users WHERE job LIKE '%end%';
+```mysql:terminal
+SELECT * FROM users WHERE job LIKE '%end%';
+```
 
+```mysql
 +----+-----------+----------------+----------+---------------------+---------------------+
 | id | name      | email          | password | job                 | register_date       |
 +----+-----------+----------------+----------+---------------------+---------------------+
@@ -245,8 +265,11 @@ Taki zapis zapytania mówi: zwróć wszystkie rekordy tabeli _users_, gdzie w ar
 
 Ostatnim z podstawowych parametrów związanym z pokazywaniem danych jest _IN_
 
-```bash:terminal
-mysql> SELECT * FROM users WHERE id IN (1, 5)
+```mysql:terminal
+SELECT * FROM users WHERE id IN (1, 5)
+```
+
+```mysql
 +----+-----------+----------------+----------+---------------------+---------------------+
 | id | name      | email          | password | job                 | register_date       |
 +----+-----------+----------------+----------+---------------------+---------------------+
@@ -261,23 +284,27 @@ Deklarujemy w ten sposób, że _SQL_ ma nam zwrócić rekordy, gdzie _id_ ma war
 
 W tabeli możemy również dokonywać zmian już istniejących rekordów. Robimy to za pomocą metody _UPDATE_, definiujemy po niej, w której tabeli chcemy robić zmiany i jaki argument zmieniamy. Aby nie zmienić wszystkich rekordów w tabeli, musimy pamiętać, aby zawęzić _query_ metodą _WHERE_.
 
-```bash:terminal
-mysql> UPDATE users SET email = 'seba@gmail.com' WHERE id = 1;
+```mysql:terminal
+UPDATE users SET email = 'seba@gmail.com' WHERE id = 1;
+```
 
+```mysql
 Rows matched: 1 Changed: 1 Warnings: 0
 ```
 
 Rekordy usuwamy za pomocą metody _DELETE_, tu również musimy określić, który rekord chcemy usunąć, aby przez przypadek nie usunąć wszystkich.
 
-```bash:terminal
-mysql> DELETE FROM users WHERE id = 3;
-```
+DELETE FROM users WHERE id = 3;
+
+````
 
 Po naszych zmianach tabele _users_ wygląda następująco. Zauważmy, że obie nasze wcześniejsze metody, _UPDATE_ i _DELETE_ zadziałały. Rekord o _id=3_ został usunięty, a _mail_ dla pierwszego rekordu się zmienił.
 
-```bash:terminal
-mysql> SELECT * FROM users;
+```mysql:terminal
+SELECT * FROM users;
+````
 
+```mysql
 +----+-----------+----------------+----------+---------------------+---------------------+
 | id | name      | email          | password | job                 | register_date       |
 +----+-----------+----------------+----------+---------------------+---------------------+
@@ -293,8 +320,8 @@ Główną zaletą baz relacyjnych baz danych, poza z góry zdefiniowanym modelem
 
 W pierwszej kolejności zdefiniujmy nową tabelę _posts_, która będzie zawierała _user_id_ powiązane z rekordem tabeli _users_.
 
-```bash:terminal
-mysql> CREATE TABLE posts(
+```mysql:terminal
+CREATE TABLE posts(
     -> id INT AUTO_INCREMENT,
     -> user_id INT,
     -> title VARCHAR(100),
@@ -309,15 +336,19 @@ _posts_ również posiada _PRIMARY KEY_, którym jest jego _id_. _FOREIGN KEY (u
 
 Dodajmy więc kilka postów do tabeli _posts_.
 
-```bash:terminal
-mysql> INSERT INTO posts(user_id, title, body) VALUES (1, 'Post One', 'This is post one'),(5, 'Post Two', 'This is post two'),(5, 'Post Three', 'This is post three'),(5, 'Post Four', 'This is post four'),(2, 'Post Five', 'This is post five'),(1, 'Post Six', 'This is post six'),(2, 'Post Seven', 'This is post seven'),(1, 'Post Eight', 'This is post eight'),(5, 'Post Nine', 'This is post none');
+```mysql:terminal
+INSERT INTO posts(user_id, title, body) VALUES (1, 'Post One', 'This is post one'),(5, 'Post Two', 'This is post two'),(5, 'Post Three', 'This is post three'),(5, 'Post Four', 'This is post four'),(2, 'Post Five', 'This is post five'),(1, 'Post Six', 'This is post six'),(2, 'Post Seven', 'This is post seven'),(1, 'Post Eight', 'This is post eight'),(5, 'Post Nine', 'This is post none');
+```
 
+```mysql
 Records: 9 Duplicates: 0 Warnings: 0
 ```
 
-```bash:terminal
-mysql> SELECT * FROM posts;
+```mysql:terminal
+SELECT * FROM posts;
+```
 
+```mysql
 +----+---------+------------+--------------------+---------------------+
 | id | user_id | title      | body               | publish_date        |
 +----+---------+------------+--------------------+---------------------+
@@ -335,13 +366,15 @@ mysql> SELECT * FROM posts;
 
 Gdy posiadamy już dwie tabele, z czego w tabeli _posts_ mamy _foreign key_ odwołujący się do _id_ z tabeli _users_, możemy powiązać wyszukiwania z dwóch tabel w jedno za pomocą _JOIN_. Skupimy się na _INNER JOIN_, po pozostałe warianty odsyłam do dokumentacji.
 
-```bash:terminal
-mysql> SELECT users.name, posts.title, posts.body, posts.publish_date
+```mysql:terminal
+SELECT users.name, posts.title, posts.body, posts.publish_date
     -> FROM users
     -> INNER JOIN posts
     -> ON users.id = posts.user_id
     -> ORDER BY posts.publish_date;
+```
 
+```mysql
 +-----------+------------+--------------------+---------------------+
 | name      | title      | body               | publish_date        |
 +-----------+------------+--------------------+---------------------+

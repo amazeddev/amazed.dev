@@ -60,6 +60,11 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content={"#111"} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content={"#111"} />
+
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+        />
       </Head>
       <main className={`content ${isOpen ? "modal-open" : ""}`}>
         <Header setIsOpen={setIsOpen} />

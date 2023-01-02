@@ -9,8 +9,10 @@ import { supabaseClient } from "../lib/supabase";
 import { useEffect, useState } from "react";
 import Pagnation from "../components/Pagination";
 import { pageCount } from "../utils/posts";
+import BlogHero from "../components/BlogHero";
 
-const show_per_page = process.env.SHOW_PER_PAGE;
+const show_per_page = process.env.SHOW_PER_PAGE || 8;
+const stage = process.env.NODE_ENV;
 
 export default function Home({ posts, totalPageCount }) {
   const [views, setViews] = useState([]);
@@ -27,13 +29,7 @@ export default function Home({ posts, totalPageCount }) {
       <Head>
         <title>Amazed.DEV - Blog</title>
       </Head>
-      <h1 className="post-title">Blog</h1>
-      <p>
-        Poniższy blog przedstawia proces mojej nauki i rzeczy, z
-        szerokorozumianej branży IT, które mnie interesują i którymi się zajmuję
-        na codzień. Artykuły traktuję jak notatki z procesu nauki, które mogą
-        się kiedyś przydać jako referencja w mojej pracy.
-      </p>
+      <BlogHero />
       <div className="cards">
         {posts.map((post, index) => (
           <PostItem
@@ -60,7 +56,6 @@ export async function getStaticProps() {
     );
 
     const { data: frontmatter } = matter(markdowWithMeta);
-
     return { slug, frontmatter };
   });
 
@@ -72,7 +67,9 @@ export async function getStaticProps() {
           (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
         )
         .slice(0, show_per_page),
-      totalPageCount: pageCount(posts.length),
+      totalPageCount: pageCount(
+        posts.filter((post) => post.frontmatter.published).length
+      ),
     },
   };
 }

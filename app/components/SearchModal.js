@@ -10,9 +10,14 @@ export default function SearchModal({ setIsOpen }) {
   useEffect(() => {
     const results =
       query.length > 1
-        ? search.filter((post) =>
-            post.frontmatter.title.toLowerCase().includes(query)
-          )
+        ? search
+            .filter((post) =>
+              post.frontmatter.title.toLowerCase().includes(query)
+            )
+            .sort(
+              (a, b) =>
+                new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+            )
         : [];
     setResult(results);
   }, [query]);
@@ -28,30 +33,35 @@ export default function SearchModal({ setIsOpen }) {
   return (
     <>
       <div id="myModal" className="modal" onClick={() => setIsOpen(false)}>
-        <div className="container" onClick={(e) => e.stopPropagation()}>
-          <div className="search-wrapper">
-            <label htmlFor="search-form">
-              <input
-                type="search"
-                name="search-form"
-                id="search-form"
-                className="search-input"
-                placeholder="Search posts..."
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </label>
-            <div className="search-close" onClick={() => setIsOpen(false)}>
-              <FontAwesomeIcon icon={faXmark} />
+        <div className="container">
+          <div
+            className="container-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="search-wrapper">
+              <label htmlFor="search-form">
+                <input
+                  type="search"
+                  name="search-form"
+                  id="search-form"
+                  className="search-input"
+                  placeholder="Search posts..."
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </label>
+              <div className="search-close" onClick={() => setIsOpen(false)}>
+                <FontAwesomeIcon icon={faXmark} />
+              </div>
             </div>
-          </div>
-          <div className="cards" onClick={() => setIsOpen(false)}>
-            {result && result.length > 0 ? (
-              result.map((post, index) => (
-                <PostItem post={post} view_count={undefined} key={index} />
-              ))
-            ) : (
-              <h2>Brak postów...</h2>
-            )}
+            <div className="cards" onClick={() => setIsOpen(false)}>
+              {result && result.length > 0 ? (
+                result.map((post, index) => (
+                  <PostItem post={post} view_count={undefined} key={index} />
+                ))
+              ) : (
+                <h2>Brak pasujących wpisów...</h2>
+              )}
+            </div>
           </div>
         </div>
       </div>

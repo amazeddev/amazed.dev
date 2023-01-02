@@ -7,7 +7,7 @@ function Pagnation({ totalPageCount, currentPage }) {
 
   let pageIntoArray = Array.from(Array(totalPageCount).keys());
 
-  return (
+  return pageIntoArray.length > 1 ? (
     <nav className="pagination">
       <ul className="page-items">
         {pageIntoArray.map((page) => {
@@ -30,6 +30,8 @@ function Pagnation({ totalPageCount, currentPage }) {
         })}
       </ul>
     </nav>
+  ) : (
+    ""
   );
 }
 
