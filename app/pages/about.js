@@ -10,19 +10,19 @@ export default function About() {
         <div className="about">
           <h1 className="post-title">O mnie</h1>
           <p>
-            Komercyjnie programuję od 5 lat ale przygodę z programowaniem
-            rozpoczołem juz na studiach (Geofizyka na Akademi Górniczo-Hutniczej
-            w Krakowie), gdzie miałem dość sporo doczyienia z Pythonem oraz
-            zagadnieniami przetwarzania i analizy danych.
+            Komercyjnie programuję od 5 lat, ale przygodę z programowaniem
+            rozpocząłem już na studiach (Geofizyka na Akademii
+            Górniczo-Hutniczej w Krakowie), gdzie miałem dość sporo do czynienia
+            z Pythonem oraz zagadnieniami przetwarzania i analizy danych.
             <br />
             <br />
             Jako osoba bez wykształcenia IT cały czas czuję potrzebę poszerzania
             wiedzy i rozwoju w tej branży, do której wszedłem dość późno. Stąd
             też pomysł bloga pisanego w pierwszej osobie, będącego niejako
-            zapisem notatek z procesu nauki. Tak naprawde opisuje tu
-            powtarzajęce się w mojej pracy problemy, oraz to jak je rozwiązać.
+            zapisem notatek z procesu nauki. Tak naprawdę opisuje tu
+            powtarzające się w mojej pracy problemy oraz to jak je rozwiązać.
             Każdy artykuł pisany jest jako przepis jak napisać konkretny
-            fragment aplikacji lub jako opis technologi którą chcę utrwalić.
+            fragment aplikacji lub jako opis technologi, którą chcę utrwalić.
           </p>
 
           <h3>Języki programowania</h3>
@@ -38,11 +38,11 @@ export default function About() {
             to głównie kod backendowy, sporadycznie praca z frontendowymi
             frameworkami lub jakieś proste skrypty czy CLI. W prywatnych
             projektach staram się jednak pisać dużo w Golang'u i jest to
-            zdecydowanie język, a który chciał bym się w jakimś stopniu
-            przesiąść również w pracy zawodowej.
+            zdecydowanie język, a który chciałbym się w jakimś stopniu przesiąść
+            również w pracy zawodowej.
             <br />
             Wcześniej sporo programowałem również w Pythonie. Pracowałem przy
-            przetwarzaniu i analizie danch, ale również pisałem serwisy i
+            przetwarzaniu i analizie danych, ale również pisałem serwisy i
             narzędzia w postaci skryptów.
           </p>
 
@@ -58,7 +58,7 @@ export default function About() {
             <i class="devicon-redis-plain" title="Redis"></i>
           </span>
           <p>
-            Majwiecej ostatnio doczynienia mam z microservisami zbudowanymi w
+            Najwięcej ostatnio do czynienia mam z microservisami zbudowanymi w
             Nest.JS, komunikującymi się poprzez RabbitMQ. Pracuję z systemami
             rozproszonymi, opartymi mi. o DDD, rzadziej TDD, ale również
             bardziej wyspecjalizowanymi pomocniczymi narzędziami czy
@@ -67,7 +67,7 @@ export default function About() {
             Bardzo lubię również pracę z systemami opartymi o serverless (nie
             framework a podejście!).
             <br />
-            Pracuję lub pracowałem zarówno z relacyjnymi jak i nierelacyjnymi
+            Pracuję lub pracowałem zarówno z relacyjnymi, jak i nierelacyjnymi
             bazami danych. Najwięcej doświadczenia zdobyłem w pracy z MongoDB
             oraz z silnikiem wyszukiwań Elasticseach.
           </p>
@@ -82,15 +82,15 @@ export default function About() {
             <i class="devicon-raspberrypi-line" title="RaspberryPI"></i>
           </span>
           <p>
-            Zarówno zadania komercyjne jak i prywatne projekty staram się zawsze
-            budować z myślą o chmurze. Stąd też swoją pracę i rozwój opieram o
-            technologie związane z komercyjną chmurą obliczeniową AWS,
+            Zarówno zadania komercyjne, jak i prywatne projekty staram się
+            zawsze budować z myślą o chmurze. Stąd też swoją pracę i rozwój
+            opieram o technologie związane z komercyjną chmurą obliczeniową AWS,
             konteneryzacją i podejściem do opisywania infrastruktury jako kodu
             (IaaC).
             <br />
             W projektach poza samym Dockerem i Terraformem używam podejść CI/CD,
-            głównie opartych o Gitlab-CI i GithubActions, żadziej Jenkins. W
-            najbliśzym czasie szczególnie zamierzam się skupić na zagadnieniach
+            głównie opartych o Gitlab-CI i GithubActions, rzadziej Jenkins. W
+            najbliższym czasie szczególnie zamierzam się skupić na zagadnieniach
             związanych z Kubernetesem i pogłębić wiedzę na temat AWS.
             <br />W wolnych chwilach sporo czasu poświęcam projektom opartym o
             platformę RaspberryPI, głównie w zagadnieniach związanych z
