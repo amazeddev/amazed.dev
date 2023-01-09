@@ -4,7 +4,6 @@ import {
   faTwitterSquare,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { faLinkSimple } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ShareButtons = ({ link, title }) => {

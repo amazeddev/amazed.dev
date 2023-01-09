@@ -4,5 +4,5 @@ excerpt: Każda aplikacja powinna być udokumentowana w sposób czytelny i wycze
 date: January 7, 2023
 tags: [node, express, ts, swagger]
 cover_img: swagger.jpg
-published: true
+published: false
 ---

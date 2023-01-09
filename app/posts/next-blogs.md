@@ -26,14 +26,15 @@ Lista pomysłów na wpisy z zaznaczeniem czy zostały wykonane.
 ### Express + TS REST
 
 1. ✔ Express + TS boilerplate
-2. ✔ Express + TS basic REST API
-3. ✔ Express + TS project structure
-4. ✔ Express + TS + MongoDB
-5. Express + TS validators & error handling
-6. Express + TS middlewares
-7. Express + TS + Postgres
-8. ✎ Express + TS Simple Auth
-9. Dokeryzacja
+2. ✔ Express + TS + ESLint + Prettier
+3. ✔ Express + TS basic REST API
+4. ✔ Express + TS project structure
+5. ✔ Express + TS + MongoDB
+6. ✔ Express + TS validators
+7. ✔ Express + TS middlewares & error handling
+8. Express + TS + Postgres
+9. ✎ Express + TS Simple Auth
+10. Dokeryzacja
 
 ### Express + TS + GraphQL
 
@@ -45,6 +46,7 @@ Lista pomysłów na wpisy z zaznaczeniem czy zostały wykonane.
 2. ✎ Relacje w MongoDB
 3. ✎ SQL basics
 4. Redis basics
+5. Elasticsearch basics
 
 ### Golang
 
@@ -59,6 +61,8 @@ Lista pomysłów na wpisy z zaznaczeniem czy zostały wykonane.
 1. ✔ Direnv
 2. ✔ cURL
 3. Markdown
+4. nvm
+5. Husky & pre-commit hooks
 
 ### NextJS
 

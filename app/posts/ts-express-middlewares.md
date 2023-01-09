@@ -13,11 +13,12 @@ published: true
 Artykuły w tym cyklu:
 
 1. [Express + TypeScript - konfiguracja projektu](https://amazed.dev/blog/ts-express-base-config)
-2. [Express + TypeScript - CRUD boilerplate](https://amazed.dev/blog/ts-express-base-crud)
-3. [Express + TypeScript - struktura aplikacji](https://amazed.dev/blog/ts-express-structure)
-4. [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo)
-5. [Express + TypeScript - walidacja requestów z biblioteką Joi](https://amazed.dev/blog/ts-express-validation)
-6. **Express + TypeScript - middlewares aplikacji**
+2. [Express + TypeScript - ESLint i Prettier](https://amazed.dev/blog/ts-express-linter-prettier)
+3. [Express + TypeScript - CRUD boilerplate](https://amazed.dev/blog/ts-express-base-crud)
+4. [Express + TypeScript - struktura aplikacji](https://amazed.dev/blog/ts-express-structure)
+5. [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo)
+6. [Express + TypeScript - walidacja requestów z biblioteką Joi](https://amazed.dev/blog/ts-express-validation)
+7. **Express + TypeScript - middlewares aplikacji**
 </div>
 
 ## Middlewares

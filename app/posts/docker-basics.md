@@ -4,5 +4,5 @@ excerpt: Kolejny etap pracy z Express i TypeScript. Tym razem skupiam się na po
 date: December 31, 2022
 tags: [docker, utils]
 cover_img: docker-basics.jpg
-published: true
+published: false
 ---

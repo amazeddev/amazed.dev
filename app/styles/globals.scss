@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap");
 
 @import "_jupyter.scss";
 @import "_uniform.scss";
@@ -100,15 +100,27 @@ header {
 
   .logo {
     cursor: pointer;
+    position: relative;
     display: inline;
-    padding: 0.2rem 3rem 0.2rem 0;
+    margin: 0.2rem 3rem 0.2rem 1rem;
+    padding: 0 1rem;
     justify-self: flex-start;
     color: var(--purple);
 
+    h1 {
+      font-weight: bold;
+      font-size: 3rem;
+      text-align: right;
+      margin: 0 0 0 2.5rem;
+      font-weight: 900;
+    }
     h2 {
       font-weight: bold;
-      font-size: 1.6rem;
-      margin-top: 1rem;
+      font-size: 1.7rem;
+      margin-bottom: 0;
+      margin-top: -2rem;
+      transform: translateY(2rem);
+      text-shadow: 2px 2px black;
     }
   }
 
@@ -121,6 +133,10 @@ header {
   .search-btn {
     cursor: pointer;
     transition: 0.3s;
+
+    svg {
+      width: 1.5rem;
+    }
   }
 
   a:hover,
@@ -295,8 +311,8 @@ footer {
 
   .post-body code:not([class*="language-"]) {
     background-color: #434242;
-    padding: 2px 7px;
-    // border-radius: 3px;
+    padding: 1px 6px;
+    border-radius: 3px;
     font-size: 0.9rem;
   }
 
@@ -437,6 +453,28 @@ blockquote {
   }
 }
 
+.about {
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.tech-icons {
+  margin-bottom: 1rem;
+  display: flex;
+  i {
+    font-size: 3rem;
+    padding-right: 1rem;
+  }
+
+  img {
+    width: 3rem;
+    margin: 0 0.4rem;
+    color: #fff;
+  }
+}
+
 /* The Modal (background) */
 .modal {
   display: block;
@@ -488,6 +526,10 @@ blockquote {
     color: #aaaaaa;
     font-size: 2rem;
     cursor: pointer;
+
+    svg {
+      width: 1.7rem;
+    }
   }
 
   .close:hover,
@@ -533,6 +575,7 @@ blockquote {
     grid-template-columns: 2fr 1fr 1fr 1fr;
     .logo {
       font-size: 0.9rem;
+      padding: 0 3rem 0 0;
     }
     a {
       padding: 0.4rem;

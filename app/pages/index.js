@@ -12,7 +12,6 @@ import { pageCount } from "../utils/posts";
 import BlogHero from "../components/BlogHero";
 
 const show_per_page = process.env.SHOW_PER_PAGE || 8;
-const stage = process.env.NODE_ENV;
 
 export default function Home({ posts, totalPageCount }) {
   const [views, setViews] = useState([]);

@@ -6,20 +6,41 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SearchModal({ setIsOpen }) {
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState([]);
+  const [articleResult, setArticleResult] = useState([]);
+  const [tagResult, setTagResult] = useState([]);
   useEffect(() => {
     const results =
       query.length > 1
         ? search
-            .filter((post) =>
-              post.frontmatter.title.toLowerCase().includes(query)
-            )
+            .filter((post) => {
+              const phrases = [
+                ...new Set([
+                  ...post.frontmatter.title.match(/\w+(?:'\w+)*/g),
+                  ...post.frontmatter.tags,
+                ]),
+              ].map((p) => p.toLowerCase());
+
+              const querySet = query
+                .match(/\w+(?:'\w+)*/g)
+                .filter((q) => q.length > 2)
+                .map((q) => q.toLowerCase());
+
+              return querySet.every((q) => phrases.some((p) => p.includes(q)));
+            })
             .sort(
               (a, b) =>
                 new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
             )
         : [];
-    setResult(results);
+    setArticleResult(results);
+    const tagsResults =
+      query.length > 1
+        ? search.filter((post) =>
+            post.frontmatter.tags.some((t) => t.includes(query))
+          )
+        : [];
+
+    setTagResult(tagsResults);
   }, [query]);
   useEffect(() => {
     const close = (e) => {
@@ -54,8 +75,8 @@ export default function SearchModal({ setIsOpen }) {
               </div>
             </div>
             <div className="cards" onClick={() => setIsOpen(false)}>
-              {result && result.length > 0 ? (
-                result.map((post, index) => (
+              {articleResult?.length > 0 ? (
+                articleResult.map((post, index) => (
                   <PostItem post={post} view_count={undefined} key={index} />
                 ))
               ) : (

@@ -67,7 +67,9 @@ export async function getStaticProps({ params: { page } }) {
           (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
         )
         .slice((page - 1) * show_per_page, page * show_per_page),
-      totalPageCount: pageCount(posts.length),
+      totalPageCount: pageCount(
+        posts.filter((post) => post.frontmatter.published).length
+      ),
       currentPage: page,
     },
   };

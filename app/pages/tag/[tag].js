@@ -4,8 +4,6 @@ import path from "path";
 import Head from "next/head";
 import PostItem from "../../components/PostItem";
 import { slugify } from "../../utils/posts";
-import { faTags } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function TagPage({ posts, tag }) {
   return (
@@ -14,11 +12,7 @@ export default function TagPage({ posts, tag }) {
         <Head>
           <title>Amazed.DEV - #{tag}</title>
         </Head>
-        <h1 className="post-title">
-          #{tag}
-          {"\t"}
-          <FontAwesomeIcon icon={faTags} />
-        </h1>
+        <h1 className="post-title">#{tag}</h1>
 
         <div className="cards">
           {posts.map((post, index) => (
@@ -44,8 +38,6 @@ export async function getStaticPaths() {
     }
     return null;
   });
-
-  console.log(Array.from(new Set(tags.filter((tag) => tag))));
 
   return {
     paths: Array.from(new Set(tags.filter((tag) => tag))).map((tag) => ({
@@ -84,7 +76,7 @@ export async function getStaticProps({ params: { tag } }) {
   return {
     props: {
       posts: posts
-        .filter((post) => post)
+        .filter((post) => post?.frontmatter.published)
         .sort(
           (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
         ),
