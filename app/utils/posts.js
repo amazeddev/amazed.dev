@@ -8,5 +8,5 @@ export function slugify(title) {
 
 // count the page number
 export function pageCount(number) {
-  return Math.ceil(number / process.env.SHOW_PER_PAGE);
+  return Math.ceil(number / 8);
 }

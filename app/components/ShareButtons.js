@@ -9,7 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const ShareButtons = ({ link, title }) => {
   return (
     <div className="share-btns">
-      <Link href={`http://www.facebook.com/share.php?u=${link}`}>
+      <Link
+        href={`http://www.facebook.com/share.php?u=${link}`}
+        legacyBehavior={true}
+      >
         <a
           target="_blank"
           rel="facebook share"
@@ -19,7 +22,10 @@ export const ShareButtons = ({ link, title }) => {
           <FontAwesomeIcon icon={faFacebookSquare} />
         </a>
       </Link>
-      <Link href={`https://twitter.com/intent/tweet?text=${title}:%0A${link}`}>
+      <Link
+        href={`https://twitter.com/intent/tweet?text=${title}:%0A${link}`}
+        legacyBehavior={true}
+      >
         <a
           target="_blank"
           rel="twitter share"
@@ -31,6 +37,7 @@ export const ShareButtons = ({ link, title }) => {
       </Link>
       <Link
         href={`https://linkedin.com/shareArticle?url=${link}&title=${title}`}
+        legacyBehavior={true}
       >
         <a
           target="_blank"

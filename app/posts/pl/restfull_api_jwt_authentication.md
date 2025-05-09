@@ -4,7 +4,7 @@ excerpt: Kolejna część cyklu tutoriali opisujących budowę RESTful API. Tym 
 date: October 26, 2019
 tags: [node, express, mongo, JWT]
 cover_img: restfull_api_jwt_authentication.jpg
-published: false
+published: true
 ---
 
 ## Zabezpieczenie API przy użyciu JSON Web Token (JWT)

@@ -28,7 +28,7 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: https://wsxhrfxovpscmomfkfne.supabase.co
           NEXT_PUBLIC_SUPABASE_CLIENT_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_CLIENT_KEY }}
-          SHOW_PER_PAGE: 6
+          SHOW_PER_PAGE: 10
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
         uses: actions/upload-artifact@v1

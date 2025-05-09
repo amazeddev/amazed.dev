@@ -1,10 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
-function Pagnation({ totalPageCount, currentPage }) {
-  let router = useRouter();
-
+function Pagnation({ totalPageCount, currentPage, setPage, language }) {
   let pageIntoArray = Array.from(Array(totalPageCount).keys());
 
   return pageIntoArray.length > 1 ? (
@@ -13,7 +10,7 @@ function Pagnation({ totalPageCount, currentPage }) {
         {pageIntoArray.map((page) => {
           return (
             <Link
-              href={page === 0 ? "/" : `/blog/pages/${page + 1}`}
+              href={page === 0 ? "/" : `/blog/${language}/pages/${page + 1}`}
               key={page}
             >
               <li
@@ -22,6 +19,7 @@ function Pagnation({ totalPageCount, currentPage }) {
                     ? "page-item current-page"
                     : "page-item"
                 }
+                onClick={() => setPage(page + 1)}
               >
                 {page + 1}
               </li>

@@ -1,13 +1,53 @@
 import "../styles/globals.scss";
 import "../styles/prism.scss";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import { useState } from "react";
-import SearchModal from "../components/SearchModal";
+import search from "../search.json";
 import Head from "next/head";
+import RootLayout from "../components/RootLayout";
+import { useEffect, useState } from "react";
+import cookieCutter from "cookie-cutter";
+import { useRouter } from "next/router";
+
+const allTranslations = require("../public/locales/translations.json");
 
 function MyApp({ Component, pageProps }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [language, setLanguage] = useState("en"); // Initialize with the current locale
+  const [page, setPage] = useState(1);
+  const [translations, setTranslations] = useState(allTranslations[language]);
+  const router = useRouter();
+
+  useEffect(() => {
+    const langCookie = cookieCutter.get("language");
+    if (langCookie) {
+      setLanguage(langCookie);
+    }
+  }, []);
+
+  useEffect(() => {
+    setTranslations(allTranslations[language]);
+  }, [language]);
+
+  const toggleLocale = () => {
+    const newLocale = language === "en" ? "pl" : "en";
+    cookieCutter.set("language", newLocale);
+    setPage(1);
+    setLanguage(newLocale);
+    setTranslations(allTranslations[newLocale]);
+
+    if (router.route !== "/about") {
+      if (
+        router.pathname === "/blog/[lang]/[slug]" &&
+        router.query &&
+        search.find(
+          (post) => post.slug === router.query.slug && post.lang === newLocale,
+        )
+      ) {
+        router.push(`/blog/${newLocale}/${router.query.slug}`);
+      } else {
+        router.push("/");
+      }
+    }
+  };
+
   return (
     <>
       <Head>
@@ -74,14 +114,20 @@ function MyApp({ Component, pageProps }) {
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
         />
       </Head>
-      <main className={`content ${isOpen ? "modal-open" : ""}`}>
-        <Header setIsOpen={setIsOpen} />
-        <div className="container">
-          <Component {...pageProps} />
-        </div>
-        <Footer />
-        {isOpen && <SearchModal setIsOpen={setIsOpen} />}
-      </main>
+      <RootLayout
+        language={language}
+        toggleLocale={toggleLocale}
+        translations={translations}
+      >
+        <Component
+          {...pageProps}
+          translations={translations}
+          language={language}
+          toggleLocale={toggleLocale}
+          page={page}
+          setPage={setPage}
+        />
+      </RootLayout>
     </>
   );
 }

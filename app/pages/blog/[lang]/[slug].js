@@ -6,29 +6,17 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import html from "remark-html";
 import prism from "remark-prism";
-import { codeTitle, copyCode } from "../../utils/code-blocks";
+import { codeTitle, copyCode } from "../../../utils/code-blocks";
 import Link from "next/link";
-import { slugify } from "../../utils/posts";
-import React, { useEffect, useState } from "react";
-import { supabaseClient } from "../../lib/supabase";
+import { slugify } from "../../../utils/posts";
+import React, { useEffect } from "react";
 
-import PageViews from "../../components/PageViews";
 import Image from "next/image";
-import { ShareButtons } from "../../components/ShareButtons";
+import { ShareButtons } from "../../../components/ShareButtons";
 
-const node_env = process.env.NODE_ENV;
-
-export default function PostPage({ frontmatter, parsed, slug }) {
-  const [views, setViews] = useState([]);
+export default function PostPage({ frontmatter, parsed, slug, language }) {
   useEffect(() => {
     (async () => {
-      console.log(node_env);
-      if (node_env === "production") {
-        const { data } = await supabaseClient.rpc("increment_view", {
-          page_slug: slug,
-        });
-        setViews(data);
-      }
       // use a class selector if available
       let blocks = document.querySelectorAll(".remark-highlight");
 
@@ -114,12 +102,14 @@ export default function PostPage({ frontmatter, parsed, slug }) {
             <h1 className="post-title">{frontmatter.title}</h1>
             <div className="card-meta">
               <div className="date">{frontmatter.date}</div>
-              <PageViews views={views} />
             </div>
             <div className="tags">
               {frontmatter.tags &&
                 frontmatter.tags.map((tag, index) => (
-                  <Link href={`/tag/${slugify(tag)}`} key={index}>
+                  <Link
+                    href={`/blog/${language}/tag/${slugify(tag)}`}
+                    key={index}
+                  >
                     <div className="tag-btn">#{slugify(tag)}</div>
                   </Link>
                 ))}
@@ -140,22 +130,30 @@ export default function PostPage({ frontmatter, parsed, slug }) {
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join("posts"));
-  const paths = files.map((filename) => ({
+  const enFiles = fs.readdirSync(path.join("posts", "en"));
+  const plFiles = fs.readdirSync(path.join("posts", "pl"));
+  const enPaths = enFiles.map((filename) => ({
     params: {
       slug: filename.replace(".md", ""),
+      lang: "en",
+    },
+  }));
+  const plPaths = plFiles.map((filename) => ({
+    params: {
+      slug: filename.replace(".md", ""),
+      lang: "pl",
     },
   }));
 
   return {
-    paths,
+    paths: [...enPaths, ...plPaths],
     fallback: false,
   };
 }
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps({ params: { slug, lang } }) {
   const markdowWithMeta = fs.readFileSync(
-    path.join("posts", `${slug}.md`),
-    "utf-8"
+    path.join("posts", lang, `${slug}.md`),
+    "utf-8",
   );
 
   const { data: frontmatter, content } = matter(markdowWithMeta);

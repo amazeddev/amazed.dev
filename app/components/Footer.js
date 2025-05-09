@@ -12,15 +12,18 @@ export default function Footer() {
     <footer>
       <div className="footer-grid">
         <div className="info">
-          {new Date().getFullYear()} © <strong>AmazedDev</strong> Software
+          {new Date().getFullYear()} © <strong>amazeddev</strong> Software
         </div>
         <div className="socials">
-          <Link href="https://github.com/amazeddev">
+          <Link href="https://github.com/amazeddev" legacyBehavior={true}>
             <a target="_blank" rel="Github profile" aria-label="Github profile">
               <FontAwesomeIcon icon={faGithubSquare} />
             </a>
           </Link>
-          <Link href="https://twitter.com/AmazedDeveloper">
+          <Link
+            href="https://twitter.com/AmazedDeveloper"
+            legacyBehavior={true}
+          >
             <a
               target="_blank"
               rel="twitter profile"
@@ -29,7 +32,10 @@ export default function Footer() {
               <FontAwesomeIcon icon={faTwitterSquare} />
             </a>
           </Link>
-          <Link href="https://www.linkedin.com/in/luszczeksebastian/">
+          <Link
+            href="https://www.linkedin.com/in/luszczeksebastian/"
+            legacyBehavior={true}
+          >
             <a
               target="_blank"
               rel="LinkedIn profile"

@@ -4,7 +4,7 @@ import PostItem from "./PostItem";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function SearchModal({ setIsOpen }) {
+export default function SearchModal({ setIsOpen, language, translations }) {
   const [query, setQuery] = useState("");
   const [articleResult, setArticleResult] = useState([]);
   const [tagResult, setTagResult] = useState([]);
@@ -12,6 +12,7 @@ export default function SearchModal({ setIsOpen }) {
     const results =
       query.length > 1
         ? search
+            .filter((post) => post.lang === language)
             .filter((post) => {
               const phrases = [
                 ...new Set([
@@ -29,14 +30,14 @@ export default function SearchModal({ setIsOpen }) {
             })
             .sort(
               (a, b) =>
-                new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+                new Date(b.frontmatter.date) - new Date(a.frontmatter.date),
             )
         : [];
     setArticleResult(results);
     const tagsResults =
       query.length > 1
         ? search.filter((post) =>
-            post.frontmatter.tags.some((t) => t.includes(query))
+            post.frontmatter.tags.some((t) => t.includes(query)),
           )
         : [];
 
@@ -66,7 +67,7 @@ export default function SearchModal({ setIsOpen }) {
                   name="search-form"
                   id="search-form"
                   className="search-input"
-                  placeholder="Search posts..."
+                  placeholder={translations.search.placeholder}
                   onChange={(e) => setQuery(e.target.value)}
                 />
               </label>
@@ -80,7 +81,7 @@ export default function SearchModal({ setIsOpen }) {
                   <PostItem post={post} view_count={undefined} key={index} />
                 ))
               ) : (
-                <h2>Brak pasujących wpisów...</h2>
+                <h2>{translations.search.noPosts}</h2>
               )}
             </div>
           </div>

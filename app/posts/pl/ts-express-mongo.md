@@ -112,9 +112,7 @@ Z pliku `src/books/books.model.ts` eksportuję również dwa typy `CreateBookInp
 > Globalne typy pomocnicze typescript ułatwiają najczęstsze transformacje typów. Majczęściej używane preze mnie to:
 >
 > - `Partial<Type>` - tworzy typ, dla którego wszystkie pola typu transformowanego `Type` stają się opcjonalne;
->
 > - `Pick<Type, Keys>` - tworzy typ zbudowany na bazie transformowanego typu `Type`, lecz wybiera tylko jego pola przekazane w drugim argumencie. Gdy pól jest więcej niż jednio, należy je przekazać jako _stringi_ oddzielone znakiem | (pionow kreska), np. `Pick<Todo, "title" | "completed">`;
->
 > - `Omit<Type, Keys>` - podobnt do `Pick`, lecz buerze wszystie pola typu `Type`, poza tymi przekazanymi w drugim argumencie.
 
 ## Wykorzystanie modelu

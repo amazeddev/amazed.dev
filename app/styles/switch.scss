@@ -1,0 +1,29 @@
+:root {
+  --purple: rgb(216, 9, 216);
+}
+.switch {
+  display: grid;
+  font-size: 1.2rem;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.5rem 2rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  p {
+    padding: 0.5rem;
+  }
+
+  .switch-choice {
+    color: grey;
+  }
+
+  .pressed {
+    color: white;
+  }
+
+  p:first-child {
+    border-right: 2px solid black;
+  }
+}
+.switch:hover {
+  color: var(--purple);
+}
