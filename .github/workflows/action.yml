@@ -99,12 +99,12 @@ jobs:
           echo "cf_distribution=$(terraform output cf_distribution)" >> $GITHUB_OUTPUT
         working-directory: terraform
 
-      - name: Invalidate CloudFront
-        uses: chetan/invalidate-cloudfront-action@v2
-        env:
-          DISTRIBUTION: ${{ steps.tf_output.outputs.cf_distribution }}
-          PATHS: "/*"
-          DEBUG: "1"
+      # - name: Invalidate CloudFront
+      #   uses: chetan/invalidate-cloudfront-action@v2
+      #   env:
+      #     DISTRIBUTION: ${{ steps.tf_output.outputs.cf_distribution }}
+      #     PATHS: "/*"
+      #     DEBUG: "1"
 
       # - name: Terraform Destroy
       #   id: destroy
