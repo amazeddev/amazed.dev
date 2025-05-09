@@ -16,13 +16,13 @@ This post is a continuation of the article [Express + TypeScript - Project Confi
 <div class="admission">
 Articles in this series:
 
-1. [Express + TypeScript - Project Configuration](https://amazed.dev/blog/ts-express-base-config)
+1. [Express + TypeScript - Project Configuration](https://amazed.dev/blog/en/ts-express-base-config)
 2. **Express + TypeScript - ESLint and Prettier**
-3. [Express + TypeScript - CRUD Boilerplate](https://amazed.dev/blog/ts-express-base-crud)
-4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/ts-express-structure)
-5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/ts-express-mongo)
-6. [Express + TypeScript - Request Validation with Joi Library](https://amazed.dev/blog/ts-express-validation)
-7. [Express + TypeScript - Application Middlewares](https://amazed.dev/blog/ts-express-middlewares)
+3. [Express + TypeScript - CRUD Boilerplate](https://amazed.dev/blog/en/ts-express-base-crud)
+4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/en/ts-express-structure)
+5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/en/ts-express-mongo)
+6. [Express + TypeScript - Request Validation with Joi Library](https://amazed.dev/blog/en/ts-express-validation)
+7. [Express + TypeScript - Application Middlewares](https://amazed.dev/blog/en/ts-express-middlewares)
 </div>
 
 ## ESLint

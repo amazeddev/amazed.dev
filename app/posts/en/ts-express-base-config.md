@@ -17,12 +17,12 @@ This post, like the others in this series, contains the complete discussed code 
 Articles in this series:
 
 1. **Express + TypeScript - Project Configuration**
-2. [Express + TypeScript - ESLint and Prettier](https://amazed.dev/blog/ts-express-linter-prettier)
-3. [Express + TypeScript - CRUD Boilerplate](https://amazed.dev/blog/ts-express-base-crud)
-4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/ts-express-structure)
-5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/ts-express-mongo)
-6. [Express + TypeScript - Request Validation with Joi](https://amazed.dev/blog/ts-express-validation)
-7. [Express + TypeScript - Application Middleware](https://amazed.dev/blog/ts-express-middlewares)
+2. [Express + TypeScript - ESLint and Prettier](https://amazed.dev/blog/en/ts-express-linter-prettier)
+3. [Express + TypeScript - CRUD Boilerplate](https://amazed.dev/blog/en/ts-express-base-crud)
+4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/en/ts-express-structure)
+5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/en/ts-express-mongo)
+6. [Express + TypeScript - Request Validation with Joi](https://amazed.dev/blog/en/ts-express-validation)
+7. [Express + TypeScript - Application Middleware](https://amazed.dev/blog/en/ts-express-middlewares)
 </div>
 
 ## Why?

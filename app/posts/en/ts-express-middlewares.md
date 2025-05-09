@@ -12,12 +12,12 @@ published: true
 <div class="admission">
 Articles in this series:
 
-1. [Express + TypeScript - Project Configuration](https://amazed.dev/blog/ts-express-base-config)
-2. [Express + TypeScript - ESLint and Prettier](https://amazed.dev/blog/ts-express-linter-prettier)
-3. [Express + TypeScript - CRUD Boilerplate](https://amazed.dev/blog/ts-express-base-crud)
-4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/ts-express-structure)
-5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/ts-express-mongo)
-6. [Express + TypeScript - Request Validation with Joi Library](https://amazed.dev/blog/ts-express-validation)
+1. [Express + TypeScript - Project Configuration](https://amazed.dev/blog/en/ts-express-base-config)
+2. [Express + TypeScript - ESLint and Prettier](https://amazed.dev/blog/en/ts-express-linter-prettier)
+3. [Express + TypeScript - CRUD Boilerplate](https://amazed.dev/blog/en/ts-express-base-crud)
+4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/en/ts-express-structure)
+5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/en/ts-express-mongo)
+6. [Express + TypeScript - Request Validation with Joi Library](https://amazed.dev/blog/en/ts-express-validation)
 7. **Express + TypeScript - Application Middlewares**
 </div>
 

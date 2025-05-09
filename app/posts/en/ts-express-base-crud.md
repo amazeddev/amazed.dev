@@ -16,13 +16,13 @@ The complete code discussed in this article is available in the [GitHub reposito
 <div class="admission">
 Articles in this series:
 
-1. [Express + TypeScript - Project Configuration](https://amazed.dev/blog/ts-express-base-config)
-2. [Express + TypeScript - ESLint and Prettier](https://amazed.dev/blog/ts-express-linter-prettier)
+1. [Express + TypeScript - Project Configuration](https://amazed.dev/blog/en/ts-express-base-config)
+2. [Express + TypeScript - ESLint and Prettier](https://amazed.dev/blog/en/ts-express-linter-prettier)
 3. **Express + TypeScript - CRUD Boilerplate**
-4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/ts-express-structure)
-5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/ts-express-mongo)
-6. [Express + TypeScript - Request Validation with Joi](https://amazed.dev/blog/ts-express-validation)
-7. [Express + TypeScript - Application Middleware](https://amazed.dev/blog/ts-express-middlewares)
+4. [Express + TypeScript - Application Structure](https://amazed.dev/blog/en/ts-express-structure)
+5. [Express + TypeScript - MongoDB Configuration](https://amazed.dev/blog/en/ts-express-mongo)
+6. [Express + TypeScript - Request Validation with Joi](https://amazed.dev/blog/en/ts-express-validation)
+7. [Express + TypeScript - Application Middleware](https://amazed.dev/blog/en/ts-express-middlewares)
 </div>
 
 ## First Server
@@ -117,7 +117,7 @@ app.post("/api/books", (req: Request, res: Response) => {
 ```ts
 app.get("/api/books/:id", (req: Request, res: Response) => {
   const { id } = req.params;
-  const book = books.find(item => item.id === id);
+  const book = books.find((item) => item.id === id);
   res.json({ data: book });
 });
 ```
@@ -127,7 +127,7 @@ app.get("/api/books/:id", (req: Request, res: Response) => {
 ```ts
 app.delete("/api/books/:id", (req: Request, res: Response) => {
   const { id } = req.params;
-  books = books.filter(book => book.id !== id);
+  books = books.filter((book) => book.id !== id);
   res.status(204).send();
 });
 ```
@@ -138,7 +138,7 @@ app.delete("/api/books/:id", (req: Request, res: Response) => {
 app.put("/api/books/:id", (req: Request, res: Response) => {
   const { id } = req.params;
   const { title, author, published } = req.body;
-  const existingBook = books.find(item => item.id === id);
+  const existingBook = books.find((item) => item.id === id);
 
   if (!existingBook) {
     const newBook = { id: randomId(), title, author, published };
@@ -153,7 +153,7 @@ app.put("/api/books/:id", (req: Request, res: Response) => {
     published: published || existingBook.published,
   };
 
-  books = books.map(book => (book.id === id ? updatedBook : book));
+  books = books.map((book) => (book.id === id ? updatedBook : book));
   res.json({ data: updatedBook });
 });
 ```
@@ -163,4 +163,3 @@ app.put("/api/books/:id", (req: Request, res: Response) => {
 Even though this was a lengthy explanation, the application remains a single-file project. However, what we now have is a simple **CRUD** application that provides a solid foundation for further development. The complete code for this application is available in the [repository](https://github.com/amazeddev/express-ts/tree/base-crud).
 
 Upcoming articles will cover topics such as database integration, proper error handling, middleware usage, and more.
-
