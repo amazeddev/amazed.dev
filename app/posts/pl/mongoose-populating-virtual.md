@@ -4,7 +4,7 @@ excerpt: Gdy posiadamy w różnych tabelach powiązane ze sobą dane, dobrym pom
 date: "November 8, 2019"
 tags: [node, mongo, NoSQL]
 cover_img: mongoose-populating-virtual.jpg
-published: false
+published: true
 ---
 
 ## Relacje w nierelacyjnych bazach danych

@@ -16,12 +16,19 @@ Lista pomysłów na wpisy z zaznaczeniem czy zostały wykonane.
 ### NestJS
 
 1. ✔ NestJS basics
-2. NestJS + MongoDB
-3. NestJS + Postgres
-4. Dokeryzacja
-5. NestJS + Rabbit
-6. NestJS microservicess
-7. NestJS CQRS
+2. NestJS controllers
+3. NestJS providers + dependency injections
+4. NestJS modules
+5. NestJS elements (pipes, validators, guards, interceptors)
+6. NestJS error handling
+7. NestJS envs & config
+8. NestJS + MongoDB
+9. NestJS + Postgres
+10. NestJS + Redis
+11. NestJS + Rabbit (event driven + req-res)
+12. NestJS + websocket (socket.io)
+13. NestJS microservicess
+14. NestJS CQRS
 
 ### Express + TS REST
 
@@ -55,6 +62,9 @@ Lista pomysłów na wpisy z zaznaczeniem czy zostały wykonane.
 3. GO + Gin basic API
 4. GO + Gin + Postgres (GORM)
 5. GO + Gin + MongoDB
+6. GO cli
+7. GO dataframes with gota
+8. GO runing python code (with C)
 
 ### Inne
 
@@ -63,6 +73,7 @@ Lista pomysłów na wpisy z zaznaczeniem czy zostały wykonane.
 3. Markdown
 4. nvm
 5. Husky & pre-commit hooks
+6. make
 
 ### NextJS
 
@@ -118,6 +129,13 @@ Lista pomysłów na wpisy z zaznaczeniem czy zostały wykonane.
 3. ✔ Pandas basics
 4. ✔ Pandas basics - part 2
 5. ✔ Matplotlib
+
+### Homelab
+
+1. Install proxmox & inital setup
+2. Creata VM & Vm template
+3. HomeAssistant
+4. Portainer
 
 # Projekty
 

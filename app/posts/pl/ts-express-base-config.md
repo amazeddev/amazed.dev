@@ -9,6 +9,10 @@ published: true
 
 ## Wstęp
 
+Opisuje tutaj prosty sposób na rozpoczęcie pracy z `TypeScripty` i `Node` a dokładniej z jego frameworkiem `Express`. W tym wpisie powstanie całkiem prosty _boilerplate_ aplikacji, która w kolejnych artykułach rozwijana będzie o coraz to bardziej zaawansowane elementy. Omówię konfiguracje projektu, strukturę aplikacji, integracje z bazami danych o nie tylko.
+
+Ten wpis, jak i kolejne, zawiera kompletny omawiany kod w [repozytorium github](https://github.com/amazeddev/express-ts/tree/boilerplate).
+
 <div class="admission">
 Artykuły w tym cyklu:
 
@@ -19,6 +23,7 @@ Artykuły w tym cyklu:
 5. [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo)
 6. [Express + TypeScript - walidacja requestów z biblioteką Joi](https://amazed.dev/blog/ts-express-validation)
 7. [Express + TypeScript - middlewares aplikacji](https://amazed.dev/blog/ts-express-middlewares)
+
 </div>
 
 ## Właściwie po co?
@@ -98,13 +103,13 @@ W terminalu pojawiła się informacja, że aplikacja wystartowała na porcie 500
 
 ### Inicjalizacja TypeScript
 
-Aby móc używać w aplikacji _TypeScript_ i dobrodziejstw z niego płynących, zainstaluję go jak _dev-dependency_ wraz bardzo przydatnymi deklaracjami typów dla _Node_ i _Express_. Deklaracje typów to paczki, które można zainstalować poprzez _NPM_, zawierające nazwę paczki, dla której typów potrzebuję, poprzedzone `@types/...`, predefiniujące typy i kształty obiektów, wykorzystywanych przez daną paczkę. W tym wypadku będzie to `@types/express` i ogólny `@types/node`.
+Aby móc używać w aplikacji `TypeScript` i dobrodziejstw z niego płynących, zainstaluję go jak _dev-dependency_ wraz bardzo przydatnymi deklaracjami typów dla _Node_ i _Express_. Deklaracje typów to paczki, które można zainstalować poprzez _NPM_, zawierające nazwę paczki, dla której typów potrzebuję, poprzedzone `@types/...`, predefiniujące typy i kształty obiektów, wykorzystywanych przez daną paczkę. W tym wypadku będzie to `@types/express` i ogólny `@types/node`.
 
 ```bash:terminal
 npm i -D typescript @types/express @types/node
 ```
 
-Kolejnym krokiem jest inicjalizacja _TypeScrypt'u_ w projekcie.
+Kolejnym krokiem jest inicjalizacja `TypeScrypt` w projekcie.
 
 ```bash:terminal
 npx tsc --init
