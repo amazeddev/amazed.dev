@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v1
       # Download the build artifact
       - name: Get build artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: out
           path: app/out
