@@ -1,7 +1,7 @@
 ---
 title: Autentykacja użytkownika RESTowego API oparta o JWT
 excerpt: Kolejna część cyklu tutoriali opisujących budowę RESTful API. Tym razem dodamy możliwość tworzenia i logowani użytkowników. Oraz ograniczenie dostępu do zasobów wyłącznie dla zalogowanych, oparte o JWT.
-date: October 26, 2019
+date: January 15, 2023
 tags: [node, express, mongo, JWT]
 cover_img: restfull_api_jwt_authentication.jpg
 published: true
@@ -13,10 +13,12 @@ Ten wpis jest kolejnym etapem mojej drogi przez proces budowania RESTowego API w
 
 #### RESTfull API z Express, MongoDB, JWT
 
-1. [Konfiguracja projektu w Node.js](https://amazed.dev/blog/node-base-config/)
-2. [Node.JS & Express.JS CRUD app starter](https://www.amazed.dev/blog/node-express-crud-starter/)
-3. [Node.JS, Express.JS & MongoDB RESTful starter](https://www.amazed.dev/blog/express-rest-starter-with-mongodb/)
-4. _**Autentykacja RESTowego API oparta o JWT**_
+1. [Express + TypeScript - konfiguracja projektu](https://amazed.dev/blog/ts-express-base-config)
+2. [Express + TypeScript - ESLint i Prettier](https://amazed.dev/blog/ts-express-linter-prettier)
+3. [Express + TypeScript - CRUD boilerplate](https://amazed.dev/blog/ts-express-base-crud)
+4. [Express + TypeScript - struktura aplikacji](https://amazed.dev/blog/ts-express-structure)
+5. [Express + TypeScript - konfiguracja MongoDB](https://amazed.dev/blog/ts-express-mongo)
+6. _**Express + TypeScript - autentykacja REST API oparta o JWT**_
 
 Skoro ten wpis ma być kontynuacją wpisu o tworzeniu RESTful API z _Express_ i _MongoDB_, wykorzystamy API w nim utworzone jako podstawę. Do API pozwalającego na sprawdzanie, dodawanie i edycję rekordów związanych z książkami dodamy możliwość tworzenia i logowania (autentykacji) istniejących użytkowników. Każdy zainteresowany będzie mógł pobrać informacji o książkach, czyli wysyłać zapytania na endpointy korzystające z metody GET. Natomiast tylko zalogowani użytkownicy będą mogli dodawać, edytować i usuwać rekordy. Weryfikacja uprawnień będzie odbywała się przy pomocy _**JWT**_ (JSON Web Token).
 
@@ -32,12 +34,19 @@ Skoro ten wpis ma być kontynuacją wpisu o tworzeniu RESTful API z _Express_ i 
 
 ## Model użytkownika
 
-Zacznijmy od zdefiniowania, co powinien zawierać użytkownik, którego będziemy dodawać do bazy danych w procesie rejestracji. Na pewno imię i hasło dostępu. Jako że w ostatnim czasie zamiast loginu używa się częściej maila, więc do shcemy dodajmy mail. Dobrym pomysłem jest też zapisanie, kiedy użytkownik został dodany. Dodajmy więc w pliku _src/models/User.js_ model dla _User_.
+Zacznijmy od zdefiniowania, co powinien zawierać użytkownik, którego będziemy dodawać do bazy danych w procesie rejestracji. Na pewno imię i hasło dostępu. Jako że w ostatnim czasie zamiast loginu używa się częściej maila, więc do shcemy dodajmy mail. Dobrym pomysłem jest też zapisanie, kiedy użytkownik został dodany. Dodajmy więc w pliku _src/models/User.ts_ model dla _User_.
 
-```js:src/models/User.js
-const mongoose = require("mongoose");
+```ts:src/models/User.ts
+import { Schema, model, Document } from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  date: Date;
+}
+
+const userSchema = new Schema<IUser>({
   name: {
     type: String,
     required: true,
@@ -59,7 +68,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("User", userSchema);
+export default model<IUser>('User', userSchema);
 ```
 
 Model użytkownika poza zmianą nazw pól nie różni się wiele od modelu _Book_. Jedyną nową rzeczą jest określenie minimalnej ilości znaków w poszczególnych polach. Ten bardzo prosty sposób wstępnej walidacji wartości wejściowych podmienimy w następnym wpisie bardziej kompleksową metodą, opartą o zewnętrzną bibliotekę.
@@ -68,30 +77,89 @@ Model użytkownika poza zmianą nazw pól nie różni się wiele od modelu _Book
 
 Pierwszym endpointem do omówienia jest ten związany z rejestracją. Musimy w końcu najpierw kogoś dodać, aby mógł się zalogować. Zacznijmy od utworzenia w katalogu _src/routes/api/_ pliku definiującego endpointy użytkownika.
 
-```js:src/routes/api/auth.js
-const router = require("express").Router();
+```ts:src/routes/api/auth.ts
+import { Router, Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../../models/User';
 
-// import User model
-const User = require("../models/User");
+const router = Router();
 
-router.post("/register", async (req, res) => {
+interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+router.post('/register', async (req: Request<{}, {}, RegisterRequest>, res: Response) => {
   try {
+    // check if email exist in database
+    const emailExist = await User.findOne({ email: req.body.email });
+    if (emailExist) {
+      return res.status(400).json({
+        err: 'Email already exist'
+      });
+    }
+
+    // hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    // create new user
     const response = await User.create({
       name: req.body.name,
       email: req.body.email,
-      password: heshedPassword,
+      password: hashedPassword
     });
+
     res.json({
-      data: response,
+      data: response
     });
   } catch (err) {
     res.status(400).json({
-      err,
+      err
     });
   }
 });
 
-module.exports = router;
+router.post('/login', async (req: Request<{}, {}, LoginRequest>, res: Response) => {
+  // check if email exist
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return res.status(400).json({
+      err: 'User not exist'
+    });
+  }
+
+  // check if password is correct
+  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  if (!validPassword) {
+    return res.status(400).json({
+      err: 'Invalid password'
+    });
+  }
+
+  // create and assign a token
+  const token = jwt.sign(
+    {
+      _id: user._id,
+      name: user.name
+    },
+    process.env.JWT_SECRET || 'default_secret'
+  );
+
+  res.json({
+    msg: 'User logged in',
+    token
+  });
+});
+
+export default router;
 ```
 
 Tworzenie użytkownika (rejestracja), jak na razie jest bardzo podobna do tworzenia rekordu książki. Musimy jednak, od razu zauważyć dwa problemy. Po pierwsze, powinniśmy sprawdzić, czy e-mail nie jest już używany. Po drugie, nie powinniśmy przechowywać hasła w bazie danych ot tak. Powinno być w jakiś sposób zakodowane, aby poprawić bezpieczeństwo naszego API.
@@ -281,28 +349,41 @@ Jedyna rzecz, która pozostała nam do zrobienia to zabezpieczenie określonych 
 
 Jak już powiedziałem, część naszych endpointów związanych z kolekcją _Books_ powinna być zabezpieczona. Chodzi oczywiście o wszystkie te endpointy odpowiadające za zmiany w kolekcji. Aby to osiągnąć, musimy napisać funkcję, która będzie sprawdzała requesty pod względem posiadania, jak i poprawności tokena.
 
-Utwórzmy więc taką funkcję w pliku _src/utils/verifyToken.js_
+Utwórzmy więc taką funkcję w pliku _src/utils/verifyToken.ts_
 
-```js:src/utils/verifyToken.js
-const jwt = require("jsonwebtoken");
+```ts:src/utils/verifyToken.ts
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
-const verifyToken = (req, res, next) => {
-  const token = req.header("Authentication");
-  if (!token)
-    return res.status(401).json({
-      msg: "Access Denied!",
+interface AuthRequest extends Request {
+  user?: {
+    _id: string;
+    name: string;
+  };
+}
+
+const verifyToken = (req: AuthRequest, res: Response, next: NextFunction): void => {
+  const token = req.header('Authentication');
+
+  if (!token) {
+    res.status(401).json({
+      msg: 'Access Denied!'
     });
+    return;
+  }
+
   try {
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    const verified = jwt.verify(token, process.env.JWT_SECRET || 'default_secret') as { _id: string; name: string };
+    req.user = verified;
     next();
   } catch (err) {
-    return res.status(401).json({
-      err,
+    res.status(401).json({
+      err
     });
   }
 };
 
-module.exports = verifyToken;
+export default verifyToken;
 ```
 
 Funkcja ta, jak przystało na _middleware_ przyjmuje parametry _req, res, next_. Dzięki nim możemy mieć dostęp do zapytania, jak i zwracać odpowiedź, oraz oczywiście blokować endpoint przy niepowodzeniu.

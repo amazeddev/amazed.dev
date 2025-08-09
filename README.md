@@ -1,34 +1,196 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Amazed.DEV - Personal Development Blog
 
-## Getting Started
+A modern, multilingual personal website and blog focused on software development, built with Next.js and featuring a clean, responsive design.
 
-First, run the development server:
+## 🚀 Features
+
+- **Multilingual Support**: Available in English and Polish with seamless language switching
+- **Responsive Design**: Mobile-first approach with smooth animations and transitions
+- **Dark Theme**: Modern dark UI with elegant styling
+- **Search Functionality**: Fast client-side search through blog posts
+- **Markdown Blog Posts**: Write content in Markdown with syntax highlighting
+- **Tech Stack Showcase**: Interactive about page with technology icons
+- **SEO Optimized**: Proper meta tags and structured data
+- **Static Site Generation**: Built with Next.js for optimal performance
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- **Next.js 12** - React framework for production
+- **React 18** - UI library
+- **SASS/SCSS** - Advanced CSS preprocessing
+- **FontAwesome** - Icon library
+
+### Content Management
+
+- **Markdown** - Content authoring with frontmatter
+- **Gray Matter** - YAML frontmatter parser
+- **Prism.js** - Syntax highlighting for code blocks
+- **Remark/Rehype** - Markdown processing pipeline
+
+### Internationalization
+
+- **Next-i18next** - Internationalization framework
+- **React-i18next** - React bindings for i18n
+
+### Development Tools
+
+- **ESLint** - Code linting
+- **Husky** - Git hooks for automation
+- **Sass** - CSS preprocessing
+
+## 📁 Project Structure
+
+```
+app/
+├── components/          # Reusable React components
+│   ├── Header.js       # Navigation with burger menu
+│   ├── Footer.js       # Site footer
+│   ├── SearchModal.js  # Search functionality
+│   └── ...
+├── pages/              # Next.js pages
+│   ├── blog/           # Blog post routing
+│   ├── about.js        # About page
+│   └── index.js        # Homepage
+├── posts/              # Markdown blog posts
+│   ├── en/             # English posts
+│   └── pl/             # Polish posts
+├── public/             # Static assets
+│   ├── images/         # Blog images and assets
+│   └── locales/        # Translation files
+├── styles/             # SCSS stylesheets
+│   ├── globals.scss    # Global styles
+│   └── ...
+├── utils/              # Utility functions
+├── scripts/            # Build and automation scripts
+└── lib/                # Core functionality
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 16.x or higher
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/amazed.dev.git
+cd amazed.dev/app
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3333](http://localhost:3333) in your browser
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Available Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- `npm run dev` - Start development server on port 3333
+- `npm run build` - Build and export static site
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run gen-search` - Generate search index
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 📝 Content Management
 
-## Learn More
+### Adding Blog Posts
 
-To learn more about Next.js, take a look at the following resources:
+1. Create a new Markdown file in `posts/en/` or `posts/pl/`
+2. Add frontmatter metadata:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```markdown
+---
+title: Your Post Title
+excerpt: Brief description of the post
+date: January 1, 2024
+tags: [javascript, react, tutorial]
+cover_img: your-image.jpg
+published: true
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Your content here...
+```
 
-## Deploy on Vercel
+3. Run `npm run gen-search` to update the search index
+4. The post will automatically appear on the blog
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Supported Frontmatter Fields
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `title` - Post title
+- `excerpt` - Short description for previews
+- `date` - Publication date
+- `tags` - Array of tags for categorization
+- `cover_img` - Featured image filename
+- `published` - Boolean to control visibility
+
+## 🎨 Customization
+
+### Styling
+
+- Main styles are in `styles/globals.scss`
+- Uses CSS custom properties for theming
+- Responsive breakpoints defined for mobile/desktop
+
+### Translations
+
+- Add new languages in `public/locales/translations.json`
+- Update `i18n.js` configuration
+- Language switcher automatically detects available languages
+
+## 🔧 Configuration
+
+### Search Functionality
+
+The search feature uses a pre-generated JSON index created by `scripts/gen-search.js`. This script:
+
+- Indexes all published blog posts
+- Extracts searchable content from Markdown
+- Creates a client-side search database
+
+### Git Hooks
+
+Husky is configured to automatically regenerate the search index on commit:
+
+```json
+"pre-commit": "npm run gen-search && git add search.js"
+```
+
+## 🚀 Deployment
+
+The site is configured for static export:
+
+```bash
+npm run build
+```
+
+This generates a static site in the `out/` directory that can be deployed to any static hosting service like Vercel, Netlify, or GitHub Pages.
+
+## 📧 Contact
+
+**Sebastian Łuszczek**
+
+- Website: [amazed.dev](https://amazed.dev)
+- Twitter: [@amazed_dev](https://twitter.com/amazed_dev)
+- GitHub: [Your GitHub](https://github.com/yourusername)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+_This blog serves as documentation of my learning process and provides reference material for software development concepts, focusing on backend development with Node.js, TypeScript, and modern web technologies._

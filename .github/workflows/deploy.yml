@@ -1,0 +1,175 @@
+name: Deploy Infrastructure
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  NODE_VERSION: 18
+  TERRAFORM_VERSION: 1.6.0
+
+jobs:
+  build:
+    name: Build app
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Checkout repo
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      # Setup Node.js with cache
+      - name: Setup Node.js with cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: app/package-lock.json
+
+      # Security audit
+      - name: Run npm audit
+        run: npm audit --audit-level high
+        working-directory: app
+        continue-on-error: true
+
+      # Install dependencies and build
+      - name: Install dependencies
+        run: npm ci
+        working-directory: app
+
+      - name: Generate search index
+        run: npm run gen-search
+        working-directory: app
+
+      - name: Build static site
+        run: npm run build
+        working-directory: app
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_CLIENT_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_CLIENT_KEY }}
+          SHOW_PER_PAGE: 10
+
+      # Upload build artifact
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ github.sha }}
+          path: app/out
+          retention-days: 7
+
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    timeout-minutes: 15
+    steps:
+      # Checkout repo
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      # Download build artifact
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-${{ github.sha }}
+          path: app/out
+
+      # Setup AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      # Setup Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+          terraform_wrapper: false
+
+      # Terraform Cache
+      - name: Cache Terraform
+        uses: actions/cache@v4
+        with:
+          path: |
+            terraform/.terraform
+            terraform/.terraform.lock.hcl
+          key: terraform-${{ hashFiles('terraform/*.tf') }}
+
+      # Terraform steps
+      - name: Terraform Format Check
+        id: fmt
+        run: terraform fmt -check
+        working-directory: terraform
+        continue-on-error: true
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: terraform
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        working-directory: terraform
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -out=tfplan
+        working-directory: terraform
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -auto-approve tfplan
+        working-directory: terraform
+
+      # Deploy to S3
+      - name: Sync to S3
+        run: |
+          aws s3 sync ./app/out s3://${{ secrets.S3_BUCKET_NAME }} --delete --cache-control max-age=31536000,public
+          aws s3 cp ./app/out/index.html s3://${{ secrets.S3_BUCKET_NAME }}/index.html --cache-control max-age=0,no-cache,no-store,must-revalidate
+
+      # Get CloudFront distribution ID
+      - name: Get Terraform outputs
+        id: tf_output
+        run: |
+          cf_dist=$(terraform output -raw cf_distribution)
+          echo "cf_distribution=$cf_dist" >> $GITHUB_OUTPUT
+        working-directory: terraform
+
+      # Invalidate CloudFront
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ steps.tf_output.outputs.cf_distribution }}
+          PATHS: "/*"
+
+      # Cleanup
+      - name: Cleanup Terraform plan
+        run: rm -f tfplan
+        working-directory: terraform
+        if: always()
+
+  # Optional: Add a notification job
+  notify:
+    name: Notify deployment status
+    runs-on: ubuntu-latest
+    needs: [build, deploy]
+    if: always()
+    steps:
+      - name: Deployment Success
+        if: needs.deploy.result == 'success'
+        run: echo "✅ Deployment successful to amazed.dev"
+
+      - name: Deployment Failed
+        if: needs.deploy.result == 'failure'
+        run: |
+          echo "❌ Deployment failed"
+          exit 1

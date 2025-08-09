@@ -11,9 +11,6 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-grid">
-        <div className="info">
-          {new Date().getFullYear()} © <strong>amazeddev</strong> Software
-        </div>
         <div className="socials">
           <Link href="https://github.com/amazeddev" legacyBehavior={true}>
             <a target="_blank" rel="Github profile" aria-label="Github profile">
@@ -45,6 +42,11 @@ export default function Footer() {
             </a>
           </Link>
         </div>
+        <div className="info">
+          <strong>amazed.dev</strong> Software © Copyright{" "}
+          {new Date().getFullYear()}
+        </div>
+        <p>Powered by Next.js, TypeScript, Terraform & AWS</p>
       </div>
     </footer>
   );

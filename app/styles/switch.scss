@@ -1,19 +1,20 @@
 :root {
   --purple: rgb(216, 9, 216);
+  --dark: rgb(55, 55, 55);
 }
 .switch {
+  width: 5rem;
   display: grid;
   font-size: 1.2rem;
   grid-template-columns: 1fr 1fr;
-  padding: 0.5rem 2rem;
   margin-top: 1rem;
   cursor: pointer;
   p {
-    padding: 0.5rem;
+    padding: 0 0.5rem;
   }
 
   .switch-choice {
-    color: grey;
+    color: rgb(107, 106, 106);
   }
 
   .pressed {
@@ -21,7 +22,7 @@
   }
 
   p:first-child {
-    border-right: 2px solid black;
+    border-right: 2px solid var(--dark);
   }
 }
 .switch:hover {

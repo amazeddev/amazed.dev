@@ -14,23 +14,23 @@ export default function RootLayout({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="container">
-        <div className={`content ${isOpen ? "modal-open" : ""}`}>
-          <Header
+      <div className={`content ${isOpen ? "modal-open" : ""}`}>
+        <Header
+          setIsOpen={setIsOpen}
+          language={language}
+          toggleLocale={toggleLocale}
+        />
+        <main className="main">
+          <div className="container">{children}</div>
+        </main>
+        <Footer />
+        {isOpen && (
+          <SearchModal
             setIsOpen={setIsOpen}
             language={language}
-            toggleLocale={toggleLocale}
+            translations={translations}
           />
-          <main>{children}</main>
-          <Footer />
-          {isOpen && (
-            <SearchModal
-              setIsOpen={setIsOpen}
-              language={language}
-              translations={translations}
-            />
-          )}
-        </div>
+        )}
       </div>
     </>
   );

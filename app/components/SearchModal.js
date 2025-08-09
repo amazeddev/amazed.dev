@@ -30,14 +30,14 @@ export default function SearchModal({ setIsOpen, language, translations }) {
             })
             .sort(
               (a, b) =>
-                new Date(b.frontmatter.date) - new Date(a.frontmatter.date),
+                new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
             )
         : [];
     setArticleResult(results);
     const tagsResults =
       query.length > 1
         ? search.filter((post) =>
-            post.frontmatter.tags.some((t) => t.includes(query)),
+            post.frontmatter.tags.some((t) => t.includes(query))
           )
         : [];
 
@@ -78,7 +78,12 @@ export default function SearchModal({ setIsOpen, language, translations }) {
             <div className="cards" onClick={() => setIsOpen(false)}>
               {articleResult?.length > 0 ? (
                 articleResult.map((post, index) => (
-                  <PostItem post={post} view_count={undefined} key={index} />
+                  <PostItem
+                    post={post}
+                    language={language}
+                    view_count={undefined}
+                    key={index}
+                  />
                 ))
               ) : (
                 <h2>{translations.search.noPosts}</h2>
