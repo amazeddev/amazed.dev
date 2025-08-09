@@ -4,20 +4,36 @@ import path from "path";
 import matter from "gray-matter";
 
 import React, { useEffect } from "react";
-import BlogPage from "../components/BlogPage";
+import { structText } from "../utils/text";
 
-export default function Home({ posts, language, page, setPage, translations }) {
-  const currentPosts = posts.filter((post) => post.lang === language);
-  useEffect(() => setPage(1), []);
-
+export default function Home({ translations }) {
   return (
-    <BlogPage
-      posts={currentPosts}
-      page={page}
-      setPage={setPage}
-      translations={translations}
-      language={language}
-    />
+    <>
+      <div className="container-content">
+        <div className="home">
+          <div className="banner">
+            <div>
+              <h1 className="title">
+                Senior <span className="highlight">{`{Backend}`}</span>
+                <br /> web & app developer
+              </h1>
+              {/* <h1 className="title">{translations.main.greeting}</h1> */}
+              <>{structText(translations.main.banner.paragraph)}</>
+
+              <a
+                href="/SebastianLuszczek_CV.pdf"
+                download="Sebastian_Luszczek_CV.pdf"
+              >
+                <button className="cv-btn">{translations.main.cvBtn}</button>
+              </a>
+            </div>
+            <div className="about-image">
+              <img src="/images/profile.jpeg" title="AmazedDEV" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -27,7 +43,7 @@ const constructLangPosts = (files, lang) => {
 
     const markdowWithMeta = fs.readFileSync(
       path.join("posts", lang, filename),
-      "utf-8",
+      "utf-8"
     );
 
     const { data: frontmatter } = matter(markdowWithMeta);
@@ -47,7 +63,7 @@ export async function getStaticProps() {
       ]
         .filter((post) => post.frontmatter.published)
         .sort(
-          (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date),
+          (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
         ),
     },
   };

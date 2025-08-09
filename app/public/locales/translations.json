@@ -1,5 +1,19 @@
 {
   "en": {
+    "header": {
+      "blog": "Blog",
+      "about": "About me"
+    },
+    "main": {
+      "greeting": "Software engineer,\ntech enthusiast,\n lifelong learner.",
+      "banner": {
+        "paragraph": "Hi! I am Sebastian and I have been working with backend development in Node.js for about six years. However, my journey with programming began during my geophysics studies, where I used Python for data processing and analysis."
+      },
+      "blogs": {
+        "caption": "Latest blog posts"
+      },
+      "cvBtn": "Get my CV"
+    },
     "search": {
       "noPosts": "Nothing found...",
       "placeholder": "search posts..."
@@ -8,19 +22,24 @@
       "paragraph": "The entries below document my learning process and serve as a reference for information I may want to revisit in the future, whether for professional work or personal projects. \n All articles are written as notes from the software development process, presenting solutions to specific problems. I always follow the approach of \"Make sh*t works!\", which is why many entries focus on building and running a simple application that is then progressively developed, step by step, in subsequent articles."
     },
     "about": {
-      "greeting": "Hello! I am Sebastian...",
       "banner": {
-        "paragraph": "...and I have been working with backend development in Node.js for about six years. However, my journey with programming began during my geophysics studies, where I used Python for data processing and analysis. \n As someone without a formal IT education, I constantly feel the need to expand my knowledge and grow in this industry, which I entered quite late. This is where the idea for my blog came from—written in the first person, it serves as a collection of notes from my learning process. In essence, I describe recurring problems I encounter in my work and how to solve them. Each article is structured either as a step-by-step guide on implementing a specific part of an application or as an overview of a technology I want to reinforce."
+        "title": "About me",
+        "paragraph": "As someone without a formal IT education, I constantly feel the need to expand my knowledge and grow in this industry, which I entered quite late. This is where the idea for my blog came from—written in the first person, it serves as a collection of notes from my learning process. In essence, I describe recurring problems I encounter in my work and how to solve them. Each article is structured either as a step-by-step guide on implementing a specific part of an application or as an overview of a technology I want to reinforce."
       },
       "stack": {
         "title": "Tech stack",
+        "tech": "Technologies",
         "languages": {
           "title": "Programing languages",
           "paragraph": "During working hours, I primarily use a combination of Node.js and TypeScript. However, after hours, I often base my personal projects on Go. \n Throughout my career, I have also worked with Python, mainly for building microservices and handling data processing tasks."
         },
-        "backend": {
+        "tools": {
           "title": "Back-end technologies",
           "paragraph": "My primary backend tool is NestJS, which I use to build microservice-based applications utilizing event-driven communication with message brokers, as well as more advanced forms like RPC and WebSockets. When needed, I also develop solutions based on serverless architecture. \n In my work, I use both relational and non-relational databases. I have gained the most experience working with MongoDB and Redis, as well as the Elasticsearch search engine."
+        },
+        "ai": {
+          "title": "Artificial Intelligence",
+          "paragraph": "I am currently learning about AI and its applications. I am particularly interested in the use of AI in software development and how it can be added to backend applications."
         },
         "infrastructure": {
           "title": "Infrastructure",
@@ -30,6 +49,20 @@
     }
   },
   "pl": {
+    "header": {
+      "blog": "Blog",
+      "about": "O mnie"
+    },
+    "main": {
+      "greeting": "Inżynier oprogramowania,\n entuzjasta technologii.",
+      "banner": {
+        "paragraph": "Cześć! Jestem Sebastian i zajmuję się backendem w Node.JS od około 6 lat, ale przygodę z programowaniem rozpocząłem już na studiach geofizycznych, gdzie wykorzystywałem Python do przetwarzania i analizy danych."
+      },
+      "blogs": {
+        "caption": "Najnowsze wpisy na blogu"
+      },
+      "cvBtn": "Pobierz CV"
+    },
     "search": {
       "noPosts": "Brak pasujących wpisów...",
       "placeholder": "szukaj postów..."
@@ -38,12 +71,13 @@
       "paragraph": "Wpisy zamieszczone poniżej są zapisem procesu mojej nauki i referencją informacji, do których w przyszłości mogę chcieć wrócić podczas pracy zawodowej i prywatnych projektów. \nWszystkie artykuły pisane są w formie notatek z procesu tworzenia oprogramowania i przestawiają sposoby na rozwiązanie konkretnego problemu. Zawsze kieruje się podejściem \"Make sh*t works!\", stąd też częst wpisy przedstawiają sposób na budowę i uruchomienie prostej aplikacji, która w kolejnych artykułach jest rozwijana, etap, po etapie."
     },
     "about": {
-      "greeting": "Cześć! Jestem Sebastian...",
       "banner": {
-        "paragraph": "...i zajmuję się backendem w Node.JS od około 6 lat, ale przygodę z programowaniem rozpocząłem już na studiach geofizycznych, gdzie wykorzystywałem Python do przetwarzania i analizy danych. \n Jako osoba bez wykształcenia IT cały czas czuję potrzebę poszerzania wiedzy i rozwoju w tej branży, do której wszedłem dość późno. Stąd też pomysł bloga pisanego w pierwszej osobie, będącego niejako zapisem notatek z procesu nauki. Tak naprawdę opisuje tu powtarzające się w mojej pracy problemy oraz to jak je rozwiązać. Każdy artykuł pisany jest jako przepis jak napisać konkretny fragment aplikacji lub jako opis technologi, którą chcę utrwalić."
+        "title": "O mnie",
+        "paragraph": "Jako osoba bez wykształcenia IT cały czas czuję potrzebę poszerzania wiedzy i rozwoju w tej branży, do której wszedłem dość późno. Stąd też pomysł bloga pisanego w pierwszej osobie, będącego niejako zapisem notatek z procesu nauki. Tak naprawdę opisuje tu powtarzające się w mojej pracy problemy oraz to jak je rozwiązać. Każdy artykuł pisany jest jako przepis jak napisać konkretny fragment aplikacji lub jako opis technologi, którą chcę utrwalić."
       },
       "stack": {
         "title": "Stack technologiczny",
+        "tech": "Technologie",
         "languages": {
           "title": "Języki programowania",
           "paragraph": "W godzinach pracy wykożystuje prawie wyłacznie połączenie Node.JS i TypeScrypt. Jednak po godzinach często własne rozwiązania operam o GO. W sowjej dotychczasowej karierze pracowałem również z Pythonem, głównie do tworzenia microservisów i zagadnień przetwarzania danych."
@@ -51,6 +85,10 @@
         "backend": {
           "title": "Technologie backendowe",
           "paragraph": "Moim podstawowym nażędziem backendowym jest Nest.JS, przy pomocy którego tworzę microservice-base aplikacje bazujace na eventowej formie komunikacji opartej o message brokery ale również formy bardziej wyszukane, jak RPC czy sockety. Gdy trzeba, tworzę też rozwiązania oparte o architektórę sereverless. \n W pracy wykorzystuję zarówno relacyjne, jak i nierelacyjne bazy danych. Najwięcej doświadczenia zdobyłem w pracy z MongoDB czy Redisem oraz z silnikiem wyszukiwań Elasticseach."
+        },
+        "ai": {
+          "title": "Artificial Intelligence",
+          "paragraph": "I am currently learning about AI and its applications. I am particularly interested in the use of AI in software development and how it can be added to backend applications."
         },
         "infrastructure": {
           "title": "Infrastruktura",

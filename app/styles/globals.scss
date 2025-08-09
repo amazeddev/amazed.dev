@@ -107,12 +107,13 @@ header {
   margin: 0 auto;
   padding: 0 0.5rem;
   display: grid;
-  margin-top: 1rem;
   grid-template-columns: 5fr 1fr 3fr;
   align-items: center;
   z-index: 2;
   background-color: var(--dark);
   border-radius: 3rem;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   height: fit-content;
 
   .nav-btns {
@@ -183,12 +184,178 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  min-height: 100vh;
+  // min-height: 100vh;
   height: 100%;
 
   .container-content {
     max-width: 1024px;
     margin: auto;
+  }
+}
+
+.home {
+  .banner {
+    padding-top: 4rem;
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: center;
+
+    .title {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .highlight {
+      color: var(--purple);
+      font-family: "Lacquer", system-ui;
+      font-size: 4rem;
+    }
+
+    .about-image {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 10px solid var(--purple);
+        border-radius: 80% 20% 20% 80% / 31% 30% 70% 69%;
+        transform: scale(1.2) translate(0rem, -1rem);
+        z-index: -3;
+      }
+    }
+
+    img {
+      border-radius: 80% 20% 20% 80% / 31% 30% 70% 69%;
+      transform: scale(1.3) translate(3rem, 1rem);
+      z-index: 2;
+    }
+
+    .cv-btn {
+      margin-top: 2rem;
+      padding: 1rem 3rem;
+      border-radius: 0;
+      border: none;
+      border-radius: 5px;
+      background-color: white;
+      color: black;
+      font-size: 1.4rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: "Lacquer", system-ui;
+
+      &:hover {
+        background-color: var(--purple);
+      }
+    }
+  }
+
+  .blogs {
+    margin-top: 7rem;
+  }
+}
+
+// Floating Icons
+.floating-icons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.1);
+
+  .floating-icon {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+    animation: float var(--duration, 20s) linear infinite;
+    animation-delay: var(--delay, 0s);
+    left: var(--start-position, 50%);
+    top: 100%;
+    transform: translateX(-50%);
+    transition: color 0.3s ease;
+
+    // Ensure icons fit within the container
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Scale down oversized icons to fit
+    &::before {
+      font-size: inherit;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+// Add subtle rotation variation
+.floating-icon:nth-child(odd) {
+  animation-direction: reverse;
+}
+
+.floating-icon:nth-child(3n) {
+  width: 3rem;
+  height: 3rem;
+  font-size: 3rem;
+}
+
+.floating-icon:nth-child(5n) {
+  width: 5rem;
+  height: 5rem;
+  font-size: 5rem;
+}
+
+// Responsive adjustments
+@media only screen and (max-width: 700px) {
+  .floating-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 2.5rem;
+
+    &:nth-child(3n) {
+      width: 2rem;
+      height: 2rem;
+      font-size: 2rem;
+    }
+
+    &:nth-child(5n) {
+      width: 3rem;
+      height: 3rem;
+      font-size: 3rem;
+    }
   }
 }
 
@@ -521,18 +688,17 @@ blockquote {
 
   position: relative;
 
-  .about-baner {
-    padding-top: 3rem;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 4rem;
+  .about-banner {
+    padding-top: 1rem;
     margin-bottom: 5rem;
-    align-items: center;
+  }
 
-    img {
-      border-radius: 80% 20% 20% 80% / 31% 30% 70% 69%;
-      transform: scale(1.3) translate(3rem, 1rem);
-    }
+  .tech-stack-blocks-desktop {
+    width: 100%;
+  }
+
+  .tech-stack-blocks-mobile {
+    display: none;
   }
 
   .tech-stack {
@@ -546,6 +712,70 @@ blockquote {
       margin-top: 1rem;
     }
   }
+
+  .about-tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    .tab {
+      float: left;
+      width: 40%;
+      height: 300px;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tabBtn {
+      display: block;
+      background-color: transparent;
+
+      border-left: 8px solid transparent;
+      color: var(--purple);
+      font-family: "Lacquer", system-ui;
+      font-size: 1.4rem;
+
+      padding: 22px 16px;
+      width: 100%;
+      outline: none;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tabBtn:hover {
+      background-color: var(--purple);
+      color: black;
+    }
+
+    /* Create an active/current "tab button" class */
+    .tabBtn.active {
+      background-color: var(--purple);
+      color: black;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      float: left;
+      padding: 0px 12px;
+      border-left: 8px solid var(--purple);
+      width: 100%;
+      border-left: none;
+      height: 300px;
+      display: none;
+
+      &.active {
+        display: block;
+        border-left: 8px solid var(--purple);
+      }
+    }
+  }
+}
+
+.stack-title {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .stack-header {
@@ -555,25 +785,25 @@ blockquote {
   grid-gap: 1rem;
 
   h3 {
-    margin-top: 0;
+    margin: 0;
   }
-}
 
-.tech-icons {
+  .tech-icons {
+    display: flex;
+    flex-direction: row-reverse;
+    i {
+      font-size: 2.5rem;
+      padding-right: 1rem;
+    }
+
+    img {
+      width: 2.5rem;
+      margin-right: 1rem;
+      color: #fff;
+    }
+  }
+
   margin-bottom: 1rem;
-  display: flex;
-  flex-direction: row-reverse;
-
-  i {
-    font-size: 2.5rem;
-    padding-right: 1rem;
-  }
-
-  img {
-    width: 2.5rem;
-    margin: 0 0.4rem;
-    color: #fff;
-  }
 }
 
 /* The Modal (background) */
@@ -794,6 +1024,82 @@ blockquote {
     .about-baner {
       grid-template-columns: 1fr;
       grid-gap: 0;
+    }
+  }
+
+  .tech-stack-blocks-desktop {
+    display: none;
+  }
+
+  .tech-stack-blocks-mobile {
+    display: block !important;
+    border-left: 4px solid var(--purple);
+    height: fit-content;
+
+    .about-tabs {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+
+      .tab {
+        display: block;
+        flex: none;
+        width: 100% !important;
+        height: fit-content;
+      }
+
+      /* Style the buttons that are used to open the tab content */
+      .tabBtn {
+        display: block;
+        background-color: transparent;
+
+        border-left: 8px solid transparent;
+        color: var(--purple);
+        font-family: "Lacquer", system-ui;
+        font-size: 1.4rem;
+
+        padding: 22px 16px;
+        width: 100%;
+        outline: none;
+        text-align: left;
+        cursor: pointer;
+        transition: 0.3s;
+
+        .tab-icon {
+          float: right;
+          font-size: 2rem;
+          color: var(--purple);
+        }
+      }
+
+      /* Change background color of buttons on hover */
+      .tabBtn:hover {
+        background-color: var(--purple);
+        color: black;
+      }
+
+      /* Create an active/current "tab button" class */
+      .tabBtn.active {
+        background-color: var(--purple);
+        color: black;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        float: left;
+        padding: 1rem;
+        border-left: none;
+        width: 100% !important;
+        border-left: none;
+        display: none;
+
+        &.active {
+          display: block;
+          border-left: none;
+          height: 100%;
+          margin-bottom: 2rem;
+        }
+      }
     }
   }
 

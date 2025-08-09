@@ -1,10 +1,6 @@
 import Link from "next/link";
 
-import {
-  faLinkedin,
-  faGithubSquare,
-  faTwitterSquare,
-} from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Footer() {
@@ -15,18 +11,6 @@ export default function Footer() {
           <Link href="https://github.com/amazeddev" legacyBehavior={true}>
             <a target="_blank" rel="Github profile" aria-label="Github profile">
               <FontAwesomeIcon icon={faGithubSquare} />
-            </a>
-          </Link>
-          <Link
-            href="https://twitter.com/AmazedDeveloper"
-            legacyBehavior={true}
-          >
-            <a
-              target="_blank"
-              rel="twitter profile"
-              aria-label="twitter profile"
-            >
-              <FontAwesomeIcon icon={faTwitterSquare} />
             </a>
           </Link>
           <Link
@@ -43,8 +27,10 @@ export default function Footer() {
           </Link>
         </div>
         <div className="info">
-          <strong>amazed.dev</strong> Software © Copyright{" "}
-          {new Date().getFullYear()}
+          <Link href="/" legacyBehavior={true}>
+            <strong>amazed.dev</strong>
+          </Link>{" "}
+          Software © Copyright {new Date().getFullYear()}
         </div>
         <p>Powered by Next.js, TypeScript, Terraform & AWS</p>
       </div>

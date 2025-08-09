@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { slugify } from "../utils/posts";
 
-export default function PostItem({ post, language }) {
+export default function PostItem({ post, language, extended = true }) {
   return (
     <Link href={`/blog/${language}/${post.slug}`}>
       <div className="card">
@@ -30,7 +30,7 @@ export default function PostItem({ post, language }) {
                 </Link>
               ))}
           </div>
-          <p>{post.frontmatter.excerpt}</p>
+          {extended && <p>{post.frontmatter.excerpt}</p>}
         </div>
       </div>
     </Link>

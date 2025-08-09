@@ -4,7 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LanguageSwitcher from "./LanguageSwitch";
 import { useState } from "react";
 
-export default function Header({ setIsOpen, toggleLocale, language }) {
+export default function Header({
+  setIsOpen,
+  toggleLocale,
+  language,
+  translations,
+}) {
   const [burgerOpen, setBurgerOpen] = useState(false);
 
   return (
@@ -18,8 +23,8 @@ export default function Header({ setIsOpen, toggleLocale, language }) {
         </Link>
         <LanguageSwitcher toggleLocale={toggleLocale} language={language} />
         <div className="nav-btns">
-          <Link href="/">Blog</Link>
-          <Link href="/about">About</Link>
+          <Link href="/blog">{translations.header.blog}</Link>
+          <Link href="/about">{translations.header.about}</Link>
           <div onClick={() => setIsOpen(true)} className="search-btn">
             <FontAwesomeIcon icon={faSearch} />
           </div>
@@ -35,7 +40,7 @@ export default function Header({ setIsOpen, toggleLocale, language }) {
           onClick={() => setBurgerOpen(false)}
         >
           {/* <LanguageSwitcher toggleLocale={toggleLocale} language={language} /> */}
-          <Link href="/">Blog</Link>
+          <Link href="/blog">Blog</Link>
           <Link href="/about">About</Link>
           <div onClick={() => setIsOpen(true)} className="search-btn">
             <FontAwesomeIcon icon={faSearch} />
