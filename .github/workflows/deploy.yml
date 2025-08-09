@@ -133,8 +133,8 @@ jobs:
       # Deploy to S3
       - name: Sync to S3
         run: |
-          aws s3 sync ./app/out s3://${{ secrets.S3_BUCKET_NAME }} --delete --cache-control max-age=31536000,public
-          aws s3 cp ./app/out/index.html s3://${{ secrets.S3_BUCKET_NAME }}/index.html --cache-control max-age=0,no-cache,no-store,must-revalidate
+          aws s3 sync ./app/out s3://amazed.dev --delete --cache-control max-age=31536000,public
+          aws s3 cp ./app/out/index.html s3://amazed.dev/index.html --cache-control max-age=0,no-cache,no-store,must-revalidate
 
       # Get CloudFront distribution ID
       - name: Get Terraform outputs
