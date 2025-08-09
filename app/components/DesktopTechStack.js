@@ -66,6 +66,7 @@ const DesktopTechStack = ({ translations }) => {
           tabName="ai"
           translations={translations}
         >
+          <img src="/images/cursor.png" title="Cursor" />
           <img src="/images/mcp.png" title="MCP" />
           <img src="/images/langfuse.png" title="Langfuse" />
           <img src="/images/langchain.png" title="Langchain" />

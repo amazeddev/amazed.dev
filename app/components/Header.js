@@ -23,8 +23,9 @@ export default function Header({
         </Link>
         <LanguageSwitcher toggleLocale={toggleLocale} language={language} />
         <div className="nav-btns">
-          <Link href="/blog">{translations.header.blog}</Link>
-          <Link href="/about">{translations.header.about}</Link>
+          <Link href="/">{translations.header.home ?? "Home"}</Link>
+          <Link href="/blog">{translations.header.blog ?? "Blog"}</Link>
+          <Link href="/about">{translations.header.about ?? "About"}</Link>
           <div onClick={() => setIsOpen(true)} className="search-btn">
             <FontAwesomeIcon icon={faSearch} />
           </div>
@@ -40,8 +41,9 @@ export default function Header({
           onClick={() => setBurgerOpen(false)}
         >
           {/* <LanguageSwitcher toggleLocale={toggleLocale} language={language} /> */}
-          <Link href="/blog">Blog</Link>
-          <Link href="/about">About</Link>
+          <Link href="/">{translations.header.home ?? "Home"}</Link>
+          <Link href="/blog">{translations.header.blog ?? "Blog"}</Link>
+          <Link href="/about">{translations.header.about ?? "About"}</Link>
           <div onClick={() => setIsOpen(true)} className="search-btn">
             <FontAwesomeIcon icon={faSearch} />
           </div>

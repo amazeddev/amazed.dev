@@ -8,7 +8,7 @@
 :root {
   --purple: rgb(216, 9, 216);
   --trans-purple: rgba(216, 9, 216, 0.212);
-  --dark: rgb(10, 10, 10);
+  --dark: rgb(18, 18, 18);
 }
 
 * {
@@ -107,7 +107,7 @@ header {
   margin: 0 auto;
   padding: 0 0.5rem;
   display: grid;
-  grid-template-columns: 5fr 1fr 3fr;
+  grid-template-columns: 5fr 1fr 4fr;
   align-items: center;
   z-index: 2;
   background-color: var(--dark);
@@ -761,7 +761,6 @@ blockquote {
       border-left: 8px solid var(--purple);
       width: 100%;
       border-left: none;
-      height: 300px;
       display: none;
 
       &.active {
@@ -882,7 +881,6 @@ blockquote {
   .page-item {
     padding: 1rem;
     transition: 0.3s;
-    // border-radius: 5px;
     cursor: pointer;
 
     &:hover {
@@ -1000,6 +998,32 @@ blockquote {
   .container {
     width: 90%;
   }
+
+  .home {
+    .banner {
+      grid-template-columns: 1fr;
+
+      .title {
+        font-size: 2rem;
+
+        span {
+          font-size: 3rem;
+        }
+      }
+    }
+
+    .about-image {
+      width: 50%;
+      justify-self: right;
+      z-index: -1;
+      transform: translateY(-50%);
+
+      &::after {
+        border: 7px solid var(--purple) !important;
+      }
+    }
+  }
+
   .cards {
     grid-template-columns: 1fr;
   }
