@@ -4,6 +4,7 @@ import PostItem from "../components/PostItem";
 import React from "react";
 import Pagnation from "../components/Pagination";
 import { pageCount } from "../utils/posts";
+import BlogHero from "./BlogHero";
 
 const show_per_page = process.env.SHOW_PER_PAGE || 8;
 
@@ -12,6 +13,7 @@ export default function BlogPage({
   page,
   setPage,
   language,
+  translations,
   extended = true,
 }) {
   return (
@@ -19,6 +21,7 @@ export default function BlogPage({
       <Head>
         <title>Amazed.DEV - Blog</title>
       </Head>{" "}
+      <BlogHero translations={translations} />
       <div className="cards">
         {posts
           .slice((page - 1) * show_per_page, show_per_page * page)

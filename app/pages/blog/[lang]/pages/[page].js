@@ -5,18 +5,21 @@ import matter from "gray-matter";
 
 import { pageCount } from "../../../../utils/posts";
 import BlogPage from "../../../../components/BlogPage";
+import BlogHero from "../../../../components/BlogHero";
 
 export default function Home({ posts, page, language, setPage, translations }) {
   const currentPosts = posts.filter((post) => post.lang === language);
 
   return (
-    <BlogPage
-      posts={currentPosts}
-      page={page}
-      setPage={setPage}
-      translations={translations}
-      language={language}
-    />
+    <>
+      <BlogPage
+        posts={currentPosts}
+        page={page}
+        setPage={setPage}
+        translations={translations}
+        language={language}
+      />
+    </>
   );
 }
 const constructLangPosts = (files, lang) => {
@@ -25,7 +28,7 @@ const constructLangPosts = (files, lang) => {
 
     const markdowWithMeta = fs.readFileSync(
       path.join("posts", lang, filename),
-      "utf-8",
+      "utf-8"
     );
 
     const { data: frontmatter } = matter(markdowWithMeta);
@@ -45,7 +48,7 @@ export async function getStaticProps({ params: { page } }) {
       ]
         .filter((post) => post.frontmatter.published)
         .sort(
-          (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date),
+          (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
         ),
     },
   };
@@ -64,12 +67,12 @@ export async function getStaticPaths() {
   enPageIntoArray.map((path) =>
     paths.push({
       params: { page: `${path + 1}`, lang: "en" },
-    }),
+    })
   );
   plPageIntoArray.map((path) =>
     paths.push({
       params: { page: `${path + 1}`, lang: "pl" },
-    }),
+    })
   );
 
   return {

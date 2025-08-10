@@ -5,23 +5,22 @@ import matter from "gray-matter";
 
 import React, { useEffect } from "react";
 import BlogPage from "../components/BlogPage";
-import BlogHero from "../components/BlogHero";
 
 export default function Blog({ posts, language, page, setPage, translations }) {
   const currentPosts = posts.filter((post) => post.lang === language);
   useEffect(() => setPage(1), []);
 
   return (
-    <div className="container-content">
-      <BlogHero translations={translations} />
+    <>
       <BlogPage
         posts={currentPosts}
         page={page}
         setPage={setPage}
         language={language}
         extended={true}
+        translations={translations}
       />
-    </div>
+    </>
   );
 }
 
