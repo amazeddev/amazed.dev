@@ -29,7 +29,7 @@ export default function Home({ translations }: { translations: any }) {
             </div>
             <div className="about-image">
               <img
-                src="/images/profile.jpeg"
+                src="/images/profile.webp"
                 alt="Sebastian Luszczek - Senior Backend Developer"
                 title="AmazedDEV"
               />
