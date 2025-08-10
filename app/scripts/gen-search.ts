@@ -1,7 +1,21 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { Post } from "../types";
+const fs = require("fs");
+const path = require("path");
+const matter = require("gray-matter");
+
+interface Post {
+  slug: string;
+  frontmatter: {
+    title: string;
+    excerpt?: string;
+    date: string;
+    tags: string[];
+    cover_img?: string;
+    published: boolean;
+    author?: string;
+    description?: string;
+  };
+  lang: "en" | "pl";
+}
 
 const posts: Post[] = [];
 ["en", "pl"].forEach((lang: "en" | "pl") => {
