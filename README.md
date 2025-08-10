@@ -155,7 +155,7 @@ Your content here...
 
 ### Search Functionality
 
-The search feature uses a pre-generated JSON index created by `scripts/gen-search.js`. This script:
+The search feature uses a pre-generated JSON index created by `scripts/gen-search.ts`. This script:
 
 - Indexes all published blog posts
 - Extracts searchable content from Markdown
@@ -166,7 +166,7 @@ The search feature uses a pre-generated JSON index created by `scripts/gen-searc
 Husky is configured to automatically regenerate the search index on commit:
 
 ```json
-"pre-commit": "npm run gen-search && git add search.js"
+"pre-commit": "npm run gen-search && git add search.json"
 ```
 
 ## 🚀 Deployment
