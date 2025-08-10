@@ -60,6 +60,34 @@ const MyApp: AppType = ({ Component, pageProps }: AppProps) => {
           content="backend,node,go,blog,aws,devops,terraform"
         />
         <meta name="robots" content="index,follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Sebastian Luszczek" />
+        <meta name="language" content="en,pl" />
+        <link rel="canonical" href="https://amazed.dev" />
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Open Graph */}
+        <meta property="og:title" key="og:title" content="Amazed.DEV" />
+        <meta
+          property="og:url"
+          key="og:url"
+          content="https://www.amazed.dev/"
+        />
+        <meta
+          property="og:image"
+          key="og:image"
+          content="https://www.amazed.dev/images/og_bgi.jpg"
+        />
+        <meta
+          property="og:description"
+          key="og:description"
+          content="Blog poświęcony nauce programowania"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Amazed.DEV" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter */}
         <meta
           name="twitter:card"
           key="twitter:card"
@@ -79,25 +107,22 @@ const MyApp: AppType = ({ Component, pageProps }: AppProps) => {
           name="twitter:image"
           content="https://www.amazed.dev/images/og_bgi.jpg"
         />
-        <meta property="og:title" key="og:title" content="Amazed.DEV" />
+        <meta name="twitter:title" content="Amazed.DEV" />
         <meta
-          property="og:url"
-          key="og:url"
-          content="https://www.amazed.dev/"
-        />
-        <meta
-          property="og:image"
-          key="og:image"
-          content="https://www.amazed.dev/images/og_bgi.jpg"
-        />
-        <meta
-          property="og:description"
-          key="og:description"
+          name="twitter:description"
           content="Blog poświęcony nauce programowania"
         />
+
+        {/* Mobile & PWA */}
         <meta name="theme-color" content={"#111"} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content={"#111"} />
+        <meta name="apple-mobile-web-app-title" content="Amazed.DEV" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 
         <link
           rel="stylesheet"

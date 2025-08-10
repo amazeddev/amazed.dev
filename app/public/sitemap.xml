@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://amazed.dev/</loc>
+    <lastmod>2025-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog</loc>
+    <lastmod>2025-08-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/about</loc>
+    <lastmod>2025-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/api-testing</loc>
+    <lastmod>December 17, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/dev-env-vars-manage</loc>
+    <lastmod>December 12, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/mysql-basics</loc>
+    <lastmod>October 27, 2019</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/restfull_api_jwt_authentication</loc>
+    <lastmod>January 15, 2023</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/ts-express-base-config</loc>
+    <lastmod>December 9, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/ts-express-base-crud</loc>
+    <lastmod>December 16, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/ts-express-linter-prettier</loc>
+    <lastmod>January 9, 2023</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/ts-express-middlewares</loc>
+    <lastmod>January 1, 2023</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/ts-express-mongo</loc>
+    <lastmod>December 27, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/ts-express-structure</loc>
+    <lastmod>December 22, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/en/ts-express-validation</loc>
+    <lastmod>December 29, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/api-testing</loc>
+    <lastmod>December 17, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/dev-env-vars-manage</loc>
+    <lastmod>December 12, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/matplotlib-basics</loc>
+    <lastmod>April 15, 2020</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/mongoose-populating-virtual</loc>
+    <lastmod>November 8, 2019</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/mysql-basics</loc>
+    <lastmod>October 27, 2019</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/nestjs-basics</loc>
+    <lastmod>November 29, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/numpy-basics-1</loc>
+    <lastmod>April 1, 2020</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/numpy-basics-2</loc>
+    <lastmod>April 5, 2020</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/pandas-basics-1</loc>
+    <lastmod>April 12, 2020</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/pandas-basics-2</loc>
+    <lastmod>April 13, 2020</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/restfull_api_jwt_authentication</loc>
+    <lastmod>January 15, 2023</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/ts-express-base-config</loc>
+    <lastmod>December 9, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/ts-express-base-crud</loc>
+    <lastmod>December 16, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/ts-express-linter-prettier</loc>
+    <lastmod>January 9, 2023</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/ts-express-middlewares</loc>
+    <lastmod>January 1, 2023</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/ts-express-mongo</loc>
+    <lastmod>December 27, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/ts-express-structure</loc>
+    <lastmod>December 22, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://amazed.dev/blog/pl/ts-express-validation</loc>
+    <lastmod>December 29, 2022</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

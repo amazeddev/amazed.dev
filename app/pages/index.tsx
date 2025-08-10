@@ -28,7 +28,11 @@ export default function Home({ translations }: { translations: any }) {
               </a>
             </div>
             <div className="about-image">
-              <img src="/images/profile.jpeg" title="AmazedDEV" />
+              <img
+                src="/images/profile.jpeg"
+                alt="Sebastian Luszczek - Senior Backend Developer"
+                title="AmazedDEV"
+              />
             </div>
           </div>
         </div>

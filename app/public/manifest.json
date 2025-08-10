@@ -1,0 +1,32 @@
+{
+  "name": "Amazed.DEV - Sebastian Luszczek",
+  "short_name": "Amazed.DEV",
+  "description": "Senior Backend Developer Portfolio & Blog",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/images/profile.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/profile.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["technology", "education", "business"],
+  "lang": "en",
+  "dir": "ltr"
+}

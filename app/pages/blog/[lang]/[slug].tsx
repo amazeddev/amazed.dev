@@ -53,37 +53,79 @@ export default function PostPage({
   return (
     <>
       <Head>
-        <title>Amazed.DEV - {frontmatter.title}</title>
+        <title>{frontmatter.title} - Amazed.DEV</title>
         <meta name="description" content={frontmatter.excerpt} />
         <meta name="keywords" content={frontmatter.tags.join(",")} />
         <meta
-          property="og:image"
-          key="og:image"
-          content={`https://amazed.dev/images/posts/${frontmatter.cover_img}`}
+          name="author"
+          content={frontmatter.author || "Sebastian Luszczek"}
         />
-        <meta
-          property="og:title"
-          key="og:title"
-          content={`${frontmatter.title} - Amazed.DEV`}
+        <meta name="robots" content="index,follow" />
+        <link
+          rel="canonical"
+          href={`https://amazed.dev/blog/${language}/${slug}`}
         />
+
+        {/* Article Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: frontmatter.title,
+              description: frontmatter.excerpt,
+              image: `https://amazed.dev/images/posts/${frontmatter.cover_img}`,
+              author: {
+                "@type": "Person",
+                name: frontmatter.author || "Sebastian Luszczek",
+              },
+              publisher: {
+                "@type": "Organization",
+                name: "Amazed.DEV",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://amazed.dev/images/profile.jpeg",
+                },
+              },
+              datePublished: frontmatter.date,
+              dateModified: frontmatter.date,
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `https://amazed.dev/blog/${language}/${slug}`,
+              },
+              keywords: frontmatter.tags.join(", "),
+            }),
+          }}
+        />
+
+        {/* Open Graph */}
         <meta property="og:type" content="article" />
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={frontmatter.excerpt} />
         <meta
           property="og:url"
-          key="og:url"
-          content={`https://amazed.dev/blog/${slug}`}
+          content={`https://amazed.dev/blog/${language}/${slug}`}
         />
         <meta
-          property="og:description"
-          key="og:description"
-          content={frontmatter.excerpt}
+          property="og:image"
+          content={`https://amazed.dev/images/posts/${frontmatter.cover_img}`}
         />
+        <meta property="og:site_name" content="Amazed.DEV" />
+        <meta property="article:published_time" content={frontmatter.date} />
+        <meta property="article:modified_time" content={frontmatter.date} />
+        <meta
+          property="article:author"
+          content={frontmatter.author || "Sebastian Luszczek"}
+        />
+        {frontmatter.tags.map((tag, index) => (
+          <meta key={index} property="article:tag" content={tag} />
+        ))}
+
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@AmazedDeveloper" />
-        <meta
-          name="twitter:creator"
-          key="twitter:creator"
-          content="@AmazedDeveloper"
-        />
+        <meta name="twitter:creator" content="@AmazedDeveloper" />
         <meta name="twitter:title" content={frontmatter.title} />
         <meta name="twitter:description" content={frontmatter.excerpt} />
         <meta

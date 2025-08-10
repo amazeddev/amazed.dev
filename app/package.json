@@ -7,7 +7,8 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "gen-search": "ts-node scripts/gen-search.ts"
+    "gen-search": "ts-node scripts/gen-search.ts",
+    "gen-sitemap": "node scripts/gen-sitemap.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
