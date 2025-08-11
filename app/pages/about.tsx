@@ -27,17 +27,6 @@ export default function About({ translations }: AboutProps) {
             <DesktopTechStack translations={translations} />
             <MobileTechStack translations={translations} />
           </div>
-
-          {/* <div className="about-contact" id="contact">
-            <h2 className="stack-title">Contact me</h2>
-            <p>
-              If you have any questions or want to discuss a project, feel free
-              to contact me.
-            </p>
-            <a href="mailto:luszczeksebastian@gmail.com">
-              luszczeksebastian@gmail.com
-            </a>
-          </div> */}
         </div>
       </div>
     </>

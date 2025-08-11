@@ -123,6 +123,16 @@ const MyApp: AppType = ({ Component, pageProps }: AppProps) => {
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+          rel="stylesheet"
+        />
 
         <link
           rel="stylesheet"

@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { slugify } from "../utils/posts";
 import { PostItemProps } from "../types";
 
-const PostItem: React.FC<PostItemProps & { extended?: boolean }> = ({
-  post,
-  language,
-  extended = true,
-}) => {
+const PostItem: React.FC<
+  PostItemProps & { extended?: boolean; viewCount?: number }
+> = ({ post, language, extended = true, viewCount = 0 }) => {
   return (
     <Link href={`/blog/${language}/${post.slug}`}>
       <div className="card">
@@ -18,11 +18,19 @@ const PostItem: React.FC<PostItemProps & { extended?: boolean }> = ({
             width={600}
             height={400}
           />
-          <h2>{post.frontmatter.title}</h2>
+          <div className="card-hero-overlay">
+            <h2>{post.frontmatter.title}</h2>
+          </div>
         </div>
         <div className="card-content">
           <div className="card-meta">
             <div className="card-date">{post.frontmatter.date}</div>
+            {viewCount > 0 && (
+              <div className="view-count">
+                <FontAwesomeIcon icon={faEye as any} />
+                <span>{viewCount.toLocaleString()}</span>
+              </div>
+            )}
           </div>
           <div className="tags">
             {post.frontmatter.tags &&
