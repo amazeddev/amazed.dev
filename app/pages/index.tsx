@@ -9,6 +9,7 @@ import { GetStaticProps } from "next";
 export default function Home({ translations }: { translations: any }) {
   return (
     <>
+      {/* No analytics needed for home page */}
       <div className="container-content">
         <div className="home">
           <div className="banner">

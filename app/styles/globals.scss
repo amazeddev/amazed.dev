@@ -4,6 +4,7 @@
 @import "_jupyter.scss";
 @import "_uniform.scss";
 @import "switch.scss";
+@import "analytics.scss";
 
 :root {
   --purple: rgb(216, 9, 216);
@@ -110,7 +111,7 @@ header {
   grid-template-columns: 5fr 1fr 4fr;
   align-items: center;
   z-index: 2;
-  background-color: var(--dark);
+  background-color: #000;
   border-radius: 3rem;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -184,7 +185,7 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  // min-height: 100vh;
+  min-height: 80vh;
   height: 100%;
 
   .container-content {
@@ -446,6 +447,28 @@ footer {
       black 99% 100%
     );
   }
+
+  .card-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1rem 0.5rem;
+
+    h2 {
+      margin: 0;
+      color: white;
+      font-size: 1.2rem;
+      flex: 1;
+      margin-right: 1rem;
+      z-index: 2;
+      position: relative;
+    }
+  }
   .card-content {
     padding: 0 0.5rem;
 
@@ -458,6 +481,17 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    .view-count {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: start;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      font-size: 1.4rem;
+      z-index: 2;
+    }
   }
 
   .card-date {
@@ -472,15 +506,7 @@ footer {
   //   grid-template-columns: 1fr 1fr;
   // }
 
-  h2 {
-    z-index: 2;
-    color: #fff;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    margin: 1rem 0.5rem;
-    font-size: 2rem;
-  }
+  // h2 styles moved to card-hero-overlay
 }
 
 .card:hover {
@@ -512,6 +538,17 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    .view-count {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: start;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      font-size: 1.4rem;
+      z-index: 2;
+    }
   }
 
   .post-body {
@@ -990,7 +1027,7 @@ blockquote {
 
     .logo {
       font-size: 0.9rem;
-      padding: 0 3rem 0 0;
+      padding: 0;
     }
     a {
       padding: 0.4rem;

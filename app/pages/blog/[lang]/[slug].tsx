@@ -17,6 +17,9 @@ import {
   GetStaticPropsParams,
   GetStaticPathsParams,
 } from "../../../types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { usePostViews } from "../../../hooks/usePostViews";
 
 export default function PostPage({
   frontmatter,
@@ -24,7 +27,28 @@ export default function PostPage({
   slug,
   language,
 }: PostPageProps) {
+  const { getPostViews } = usePostViews([{ slug, lang: language }]);
+  const viewCount = getPostViews(slug, language);
+
   useEffect(() => {
+    // Track post view
+    const trackPostView = async () => {
+      try {
+        await fetch("/api/analytics", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ postSlug: slug, postLang: language }),
+        });
+      } catch (error) {
+        console.error("Post view tracking failed:", error);
+      }
+    };
+
+    trackPostView();
+
+    // Code block functionality
     (async () => {
       // use a class selector if available
       let blocks = document.querySelectorAll(".remark-highlight");
@@ -48,7 +72,7 @@ export default function PostPage({
         }
       });
     })();
-  }, []);
+  }, [slug, language]);
 
   return (
     <>
@@ -145,6 +169,12 @@ export default function PostPage({
             <h1 className="post-title">{frontmatter.title}</h1>
             <div className="card-meta">
               <div className="date">{frontmatter.date}</div>
+              {viewCount > 0 && (
+                <div className="view-count">
+                  <FontAwesomeIcon icon={faEye as any} />
+                  <span>{viewCount.toLocaleString()}</span>
+                </div>
+              )}
             </div>
             <div className="tags">
               {frontmatter.tags &&

@@ -94,6 +94,16 @@
           "title": "Infrastruktura",
           "paragraph": "Zarówno w pracy, jak i w projektach prywatnych, staram się tworzyć rozwiązania od początku przygotowane do działania w chmurze. Najczęściej korzystam z AWS, Dockera oraz podejścia Infrastructure as Code przy użyciu Terraform. \n Regularnie pracuję z pipeline’ami CI/CD, głównie w oparciu o GitLab CI i GitHub Actions, a sporadycznie także Jenkins. Obecnie rozwijam swoją wiedzę w zakresie Kubernetesa oraz zaawansowanych usług AWS, aby móc tworzyć jeszcze bardziej skalowalne i odporne na awarie systemy."
         }
+      },
+      "certs": {
+        "title": "Certyfikaty",
+        "paragraph": "Certyfikaty, które zdążyłem zdobyć w ciągu ostatnich lat.",
+        "certificates": {
+          "ai_devs": {
+            "title": "AI Devs",
+            "paragraph": "Certyfikat AI Devs zdobyłem w 2024 roku, kiedy zdecydowałem się na specjalizację w sztucznej inteligencji. Certyfikat ten jest wynikiem mojej pracy nad projektami AI, które zostały zrealizowane w ramach mojej pracy zawodowej oraz prywatnych projektów."
+          }
+        }
       }
     }
   }

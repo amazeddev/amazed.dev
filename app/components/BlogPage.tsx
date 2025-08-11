@@ -1,10 +1,11 @@
 import Head from "next/head";
 import PostItem from "../components/PostItem";
-import React from "react";
+import React, { useMemo } from "react";
 import { pageCount } from "../utils/posts";
 import BlogHero from "./BlogHero";
 import { BlogPageProps } from "../types";
 import Pagination from "../components/Pagination";
+import { usePostViews } from "../hooks/usePostViews";
 
 const show_per_page = Number(process.env.SHOW_PER_PAGE) || 8;
 
@@ -16,6 +17,13 @@ const BlogPage: React.FC<BlogPageProps> = ({
   translations,
   extended = true,
 }) => {
+  // Memoize the filtered posts to prevent unnecessary re-renders
+  const filteredPosts = useMemo(() => {
+    return posts.filter((post) => post.lang === language);
+  }, [posts, language]);
+
+  const { getPostViews } = usePostViews(filteredPosts);
+
   return (
     <div className="container-content">
       <Head>
@@ -23,7 +31,7 @@ const BlogPage: React.FC<BlogPageProps> = ({
       </Head>{" "}
       <BlogHero translations={translations} />
       <div className="cards">
-        {posts
+        {filteredPosts
           .slice((page - 1) * show_per_page, show_per_page * page)
           .map((post, index) => (
             <PostItem
@@ -31,6 +39,7 @@ const BlogPage: React.FC<BlogPageProps> = ({
               key={index}
               language={language}
               extended={extended}
+              viewCount={getPostViews(post.slug, post.lang)}
             />
           ))}
       </div>

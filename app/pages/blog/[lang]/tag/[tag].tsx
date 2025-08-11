@@ -5,8 +5,14 @@ import Head from "next/head";
 import PostItem from "../../../../components/PostItem";
 import { slugify } from "../../../../utils/posts";
 import { TagPageProps, TagPageParams, Post } from "../../../../types";
+import { usePostViews } from "../../../../hooks/usePostViews";
+import { useMemo } from "react";
 
 export default function TagPage({ posts, tag, lang }: TagPageProps) {
+  // Memoize posts to prevent unnecessary re-renders
+  const memoizedPosts = useMemo(() => posts, [posts]);
+  const { getPostViews } = usePostViews(memoizedPosts);
+
   return (
     <div>
       <div className="container-content">
@@ -17,7 +23,12 @@ export default function TagPage({ posts, tag, lang }: TagPageProps) {
 
         <div className="cards">
           {posts.map((post, index) => (
-            <PostItem post={post} key={index} language={lang} />
+            <PostItem
+              post={post}
+              key={index}
+              language={lang}
+              viewCount={getPostViews(post.slug, post.lang)}
+            />
           ))}
         </div>
       </div>
