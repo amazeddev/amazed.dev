@@ -481,17 +481,6 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-
-    .view-count {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      justify-content: start;
-      align-items: center;
-      gap: 0.5rem;
-      color: white;
-      font-size: 1.4rem;
-      z-index: 2;
-    }
   }
 
   .card-date {
@@ -538,17 +527,6 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-between;
-
-    .view-count {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      justify-content: start;
-      align-items: center;
-      gap: 0.5rem;
-      color: white;
-      font-size: 1.4rem;
-      z-index: 2;
-    }
   }
 
   .post-body {

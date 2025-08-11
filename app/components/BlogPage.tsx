@@ -5,7 +5,6 @@ import { pageCount } from "../utils/posts";
 import BlogHero from "./BlogHero";
 import { BlogPageProps } from "../types";
 import Pagination from "../components/Pagination";
-import { usePostViews } from "../hooks/usePostViews";
 
 const show_per_page = Number(process.env.SHOW_PER_PAGE) || 8;
 
@@ -22,8 +21,6 @@ const BlogPage: React.FC<BlogPageProps> = ({
     return posts.filter((post) => post.lang === language);
   }, [posts, language]);
 
-  const { getPostViews } = usePostViews(filteredPosts);
-
   return (
     <div className="container-content">
       <Head>
@@ -39,7 +36,6 @@ const BlogPage: React.FC<BlogPageProps> = ({
               key={index}
               language={language}
               extended={extended}
-              viewCount={getPostViews(post.slug, post.lang)}
             />
           ))}
       </div>

@@ -34,17 +34,3 @@ const EnhancedIcon: React.FC<EnhancedIconProps> = ({
 };
 
 export default EnhancedIcon;
-
-// Usage examples:
-// <EnhancedIcon
-//   icon={<i className="devicon-react-original"></i>}
-//   size="3rem"
-//   color="blue"
-//   hoverColor="red"
-//   onClick={() => console.log('React clicked!')}
-// />
-//
-// <EnhancedIcon
-//   icon={<img src="/logo.png" alt="Logo" />}
-//   size="4rem"
-// />

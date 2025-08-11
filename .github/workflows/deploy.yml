@@ -57,8 +57,6 @@ jobs:
         run: npm run build
         working-directory: app
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_CLIENT_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_CLIENT_KEY }}
           SHOW_PER_PAGE: 10
 
       # Upload build artifact

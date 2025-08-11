@@ -5,6 +5,7 @@ import React from "react";
 import { structText } from "../utils/text";
 import { Post, Language, HomeProps } from "../types";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 
 export default function Home({ translations }: { translations: any }) {
   return (

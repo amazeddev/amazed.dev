@@ -65,20 +65,3 @@ const TechCard: React.FC<TechCardProps> = ({
 };
 
 export default TechCard;
-
-// Usage examples:
-// <TechCard
-//   icon={<i className="devicon-react-original"></i>}
-//   badge={<span>⭐</span>}
-//   title="React"
-//   subtitle="Frontend Library"
-//   onClick={() => alert('React clicked!')}
-// >
-//   <p>Build user interfaces</p>
-// </TechCard>
-//
-// <TechCard
-//   icon={<img src="/nodejs.png" alt="Node.js" style={{width: '3rem'}} />}
-//   title="Node.js"
-//   variant="highlighted"
-// />

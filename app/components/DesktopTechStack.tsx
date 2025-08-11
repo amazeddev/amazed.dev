@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TechStackBlock from "./TechStackBlock";
 import { Translation } from "../types";
+import Image from "next/image";
 
 interface DesktopTechStackProps {
   translations: Translation;
@@ -63,9 +64,9 @@ const DesktopTechStack: React.FC<DesktopTechStackProps> = ({
           translations={translations}
         >
           <i className="devicon-redis-plain" title="Redis"></i>
-          <img src="/images/lambda.png" title="AWS Lambda" />
+          <Image src="/images/lambda.png" title="AWS Lambda" alt="AWS Lambda" />
           <i className="devicon-mongodb-plain" title="MongoDB"></i>
-          <img src="/images/rabbitmq.png" title="RabbitMQ" />
+          <Image src="/images/rabbitmq.png" title="RabbitMQ" alt="RabbitMQ" />
           <i className="devicon-express-original" title="Express"></i>
           <i className="devicon-nestjs-plain" title="Nest"></i>
           <i className="devicon-nodejs-plain" title="Node.js"></i>
@@ -76,13 +77,21 @@ const DesktopTechStack: React.FC<DesktopTechStackProps> = ({
           tabName="ai"
           translations={translations}
         >
-          <img src="/images/cursor.png" title="Cursor" />
-          <img src="/images/mcp.png" title="MCP" />
-          <img src="/images/langfuse.png" title="Langfuse" />
-          <img src="/images/langchain.png" title="Langchain" />
-          <img src="/images/anthropic.png" title="Anthropic" />
-          <img src="/images/ollama.png" title="Ollama" />
-          <img src="/images/openai.png" title="OpenAI" />
+          <Image src="/images/cursor.png" title="Cursor" alt="Cursor" />
+          <Image src="/images/mcp.png" title="MCP" alt="MCP" />
+          <Image src="/images/langfuse.png" title="Langfuse" alt="Langfuse" />
+          <Image
+            src="/images/langchain.png"
+            title="Langchain"
+            alt="Langchain"
+          />
+          <Image
+            src="/images/anthropic.png"
+            title="Anthropic"
+            alt="Anthropic"
+          />
+          <Image src="/images/ollama.png" title="Ollama" alt="Ollama" />
+          <Image src="/images/openai.png" title="OpenAI" alt="OpenAI" />
         </TechStackBlock>
 
         <TechStackBlock
@@ -93,7 +102,7 @@ const DesktopTechStack: React.FC<DesktopTechStackProps> = ({
           <i className="devicon-kubernetes-plain" title="Kubernetes"></i>
           <i className="devicon-terraform-plain" title="Terraform"></i>
           <i className="devicon-docker-plain" title="Docker"></i>
-          <img src="/images/aws.png" title="AWS" />
+          <Image src="/images/aws.png" title="AWS" alt="AWS" />
         </TechStackBlock>
       </div>
     </div>

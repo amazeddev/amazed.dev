@@ -30,16 +30,3 @@ const FlexibleContainer: React.FC<FlexibleContainerProps> = ({
 };
 
 export default FlexibleContainer;
-
-// Usage examples:
-// <FlexibleContainer
-//   icon={<i className="devicon-javascript-plain"></i>}
-//   title="JavaScript"
-//   description="Programming language"
-// />
-//
-// <FlexibleContainer
-//   icon={<img src="/react-logo.png" alt="React" />}
-//   title="React"
-//   layout="vertical"
-// />
