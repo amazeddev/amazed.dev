@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TechStackBlock from "./TechStackBlock";
 import { Translation } from "../types";
-import Image from "next/image";
 
 interface MobileTechStackProps {
   translations: Translation;
@@ -49,13 +48,9 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
             translations={translations}
           >
             <i className="devicon-redis-plain" title="Redis"></i>
-            <Image
-              src="/images/lambda.png"
-              title="AWS Lambda"
-              alt="AWS Lambda"
-            />
+            <img src="/images/lambda.png" title="AWS Lambda" alt="AWS Lambda" />
             <i className="devicon-mongodb-plain" title="MongoDB"></i>
-            <Image src="/images/rabbitmq.png" title="RabbitMQ" alt="RabbitMQ" />
+            <img src="/images/rabbitmq.png" title="RabbitMQ" alt="RabbitMQ" />
             <i className="devicon-nestjs-plain" title="Nest"></i>
           </TechStackBlock>
           <div
@@ -71,21 +66,21 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
             tabName="ai"
             translations={translations}
           >
-            <Image src="/images/cursor.png" title="Cursor" alt="Cursor" />
-            <Image src="/images/mcp.png" title="MCP" alt="MCP" />
-            <Image src="/images/langfuse.png" title="Langfuse" alt="Langfuse" />
-            <Image
+            <img src="/images/cursor.png" title="Cursor" alt="Cursor" />
+            <img src="/images/mcp.png" title="MCP" alt="MCP" />
+            <img src="/images/langfuse.png" title="Langfuse" alt="Langfuse" />
+            <img
               src="/images/langchain.png"
               title="Langchain"
               alt="Langchain"
             />
-            <Image
+            <img
               src="/images/anthropic.png"
               title="Anthropic"
               alt="Anthropic"
             />
-            <Image src="/images/ollama.png" title="Ollama" alt="Ollama" />
-            <Image src="/images/openai.png" title="OpenAI" alt="OpenAI" />
+            <img src="/images/ollama.png" title="Ollama" alt="Ollama" />
+            <img src="/images/openai.png" title="OpenAI" alt="OpenAI" />
           </TechStackBlock>
           <div
             className={`tabBtn ${
@@ -106,7 +101,7 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
             <i className="devicon-kubernetes-plain" title="Kubernetes"></i>
             <i className="devicon-terraform-plain" title="Terraform"></i>
             <i className="devicon-docker-plain" title="Docker"></i>
-            <Image src="/images/aws.png" title="AWS" alt="AWS" />
+            <img src="/images/aws.png" title="AWS" alt="AWS" />
           </TechStackBlock>
         </div>
       </div>

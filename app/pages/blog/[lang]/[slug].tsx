@@ -10,7 +10,6 @@ import { codeTitle, copyCode } from "../../../utils/code-blocks";
 import Link from "next/link";
 import { slugify } from "../../../utils/posts";
 import React, { useEffect } from "react";
-import Image from "next/image";
 import { ShareButtons } from "../../../components/ShareButtons";
 import {
   PostPageProps,
@@ -136,7 +135,7 @@ export default function PostPage({
       </Head>
       <div className="post">
         <div className="post-baner">
-          <Image
+          <img
             src={`/images/posts/${frontmatter.cover_img}`}
             alt=""
             width={700}

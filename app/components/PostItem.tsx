@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { slugify } from "../utils/posts";
 import { PostItemProps } from "../types";
 
@@ -12,7 +11,7 @@ const PostItem: React.FC<PostItemProps & { extended?: boolean }> = ({
     <Link href={`/blog/${language}/${post.slug}`}>
       <div className="card">
         <div className="card-hero">
-          <Image
+          <img
             src={`/images/posts/${post.frontmatter.cover_img}`}
             alt=""
             width={600}
