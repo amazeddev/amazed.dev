@@ -1,3 +1,3 @@
 output "cf_distribution" {
-  value = aws_cloudfront_distribution.s3_distribution.id
+  value = module.static_website.cloudfront_distribution_id
 }

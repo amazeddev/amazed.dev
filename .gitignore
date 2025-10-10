@@ -39,3 +39,11 @@ next-env.d.ts
 
 # vsc
 *.code-workspace
+
+# Terraform state and backup files
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.*
+terraform/crash.log
+terraform/*.tfplan
