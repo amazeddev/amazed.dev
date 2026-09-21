@@ -1,78 +1,44 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import React from "react";
-import { structText } from "../utils/text";
-import { Post, Language, HomeProps } from "../types";
+import Head from "next/head";
+import Link from "next/link";
+import { useEffect } from "react";
 import { GetStaticProps } from "next";
-import Image from "next/image";
+import { getI18nProps } from "../lib/i18n";
+import { PageI18nProps } from "../types";
+import { LANGUAGE_COOKIE, isLanguage, pageAlternates } from "../utils/i18n";
 
-export default function Home({ translations }: { translations: any }) {
+// In production CloudFront redirects "/" before it reaches S3 (see
+// terraform/functions/rewrite-uri.js). This page is the fallback for
+// `next dev` and for any host without that function.
+export default function Root() {
+  useEffect(() => {
+    const saved = document.cookie
+      .split("; ")
+      .find((cookie) => cookie.startsWith(`${LANGUAGE_COOKIE}=`))
+      ?.split("=")[1];
+    const lang = isLanguage(saved)
+      ? saved
+      : navigator.language.toLowerCase().startsWith("pl")
+      ? "pl"
+      : "en";
+
+    window.location.replace(`/${lang}`);
+  }, []);
+
   return (
     <>
-      {/* No analytics needed for home page */}
+      <Head>
+        <title>Amazed.DEV</title>
+        <meta name="robots" content="noindex" />
+      </Head>
       <div className="container-content">
-        <div className="home">
-          <div className="banner">
-            <div>
-              <h1 className="title">
-                Senior <span className="highlight">{`{Backend}`}</span>
-                <br /> web & app developer
-              </h1>
-              {/* <h1 className="title">{translations.main.greeting}</h1> */}
-              <>{structText(translations.main.banner.paragraph)}</>
-
-              <a
-                href="/SebastianLuszczek_CV.pdf"
-                download="Sebastian_Luszczek_CV.pdf"
-              >
-                <button className="cv-btn">{translations.main.cvBtn}</button>
-              </a>
-            </div>
-            <div className="about-image">
-              <img
-                src="/images/profile.webp"
-                alt="Sebastian Luszczek - Senior Backend Developer"
-                title="AmazedDEV"
-              />
-            </div>
-          </div>
-        </div>
+        <p>
+          <Link href="/en">English</Link> · <Link href="/pl">Polski</Link>
+        </p>
       </div>
     </>
   );
 }
 
-const constructLangPosts = (files: string[], lang: Language): Post[] => {
-  return files.map((filename) => {
-    const slug = filename.replace(".md", "");
-
-    const markdowWithMeta = fs.readFileSync(
-      path.join("posts", lang, filename),
-      "utf-8"
-    );
-
-    const { data: frontmatter } = matter(markdowWithMeta);
-    return { slug, frontmatter: frontmatter as Post["frontmatter"], lang };
-  });
-};
-
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const enFiles = fs.readdirSync(path.join("posts", "en"));
-  const plFiles = fs.readdirSync(path.join("posts", "pl"));
-
-  return {
-    props: {
-      posts: [
-        ...constructLangPosts(enFiles, "en"),
-        ...constructLangPosts(plFiles, "pl"),
-      ]
-        .filter((post) => post.frontmatter.published)
-        .sort(
-          (a, b) =>
-            new Date(b.frontmatter.date).getTime() -
-            new Date(a.frontmatter.date).getTime()
-        ),
-    },
-  };
-};
+export const getStaticProps: GetStaticProps<PageI18nProps> = async () => ({
+  props: getI18nProps("en", pageAlternates()),
+});

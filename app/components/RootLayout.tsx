@@ -5,13 +5,11 @@ import SearchModal from "./SearchModal";
 import FloatingIcons from "./FloatingIcons";
 import { RootLayoutProps } from "../types";
 
-export const dynamic = "force-static";
-
 export default function RootLayout({
   children,
   language,
-  toggleLocale,
   translations,
+  alternates,
 }: RootLayoutProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -20,15 +18,15 @@ export default function RootLayout({
         <Header
           setIsOpen={setIsOpen}
           language={language}
-          toggleLocale={toggleLocale}
           translations={translations}
+          alternates={alternates}
         />
         <main className="main">
           <div className="container">{children}</div>
 
           <FloatingIcons />
         </main>
-        <Footer />
+        <Footer language={language} />
         {isOpen && (
           <SearchModal
             setIsOpen={setIsOpen}

@@ -12,7 +12,6 @@ const SearchModal: React.FC<SearchModalProps> = ({
 }) => {
   const [query, setQuery] = useState("");
   const [articleResult, setArticleResult] = useState<Post[]>([]);
-  const [tagResult, setTagResult] = useState<Post[]>([]);
 
   useEffect(() => {
     const results =
@@ -42,15 +41,6 @@ const SearchModal: React.FC<SearchModalProps> = ({
             )
         : [];
     setArticleResult(results);
-
-    const tagsResults =
-      query.length > 1
-        ? (search as Post[]).filter((post) =>
-            post.frontmatter.tags.some((t) => t.includes(query))
-          )
-        : [];
-
-    setTagResult(tagsResults);
   }, [query, language]);
 
   useEffect(() => {
@@ -72,16 +62,18 @@ const SearchModal: React.FC<SearchModalProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="search-wrapper">
-              <label htmlFor="search-form">
-                <input
-                  type="search"
-                  name="search-form"
-                  id="search-form"
-                  className="search-input"
-                  placeholder={translations.search.placeholder}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
+              <label htmlFor="search-form" className="visually-hidden">
+                {translations.search.placeholder}
               </label>
+              <input
+                type="search"
+                name="search-form"
+                id="search-form"
+                className="search-input"
+                placeholder={translations.search.placeholder}
+                autoFocus
+                onChange={(e) => setQuery(e.target.value)}
+              />
               <div className="search-close" onClick={() => setIsOpen(false)}>
                 <FontAwesomeIcon icon={faXmark as any} />
               </div>

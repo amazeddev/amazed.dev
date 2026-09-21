@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   faFacebookSquare,
   faTwitterSquare,
@@ -12,47 +11,38 @@ interface ShareButtonsProps {
 }
 
 export const ShareButtons: React.FC<ShareButtonsProps> = ({ link, title }) => {
+  const url = encodeURIComponent(link);
+  const text = encodeURIComponent(title);
+
   return (
     <div className="share-btns">
-      <Link
-        href={`http://www.facebook.com/share.php?u=${link}`}
-        legacyBehavior={true}
+      <a
+        href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="facebook share"
+        title="share on facebook"
       >
-        <a
-          target="_blank"
-          rel="facebook share"
-          aria-label="facebook share"
-          title="share on facebook"
-        >
-          <FontAwesomeIcon icon={faFacebookSquare as any} />
-        </a>
-      </Link>
-      <Link
-        href={`https://twitter.com/intent/tweet?text=${title}:%0A${link}`}
-        legacyBehavior={true}
+        <FontAwesomeIcon icon={faFacebookSquare as any} />
+      </a>
+      <a
+        href={`https://twitter.com/intent/tweet?text=${text}&url=${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="twitter share"
+        title="share on twitter"
       >
-        <a
-          target="_blank"
-          rel="twitter share"
-          aria-label="twitter share"
-          title="share on twitter"
-        >
-          <FontAwesomeIcon icon={faTwitterSquare as any} />
-        </a>
-      </Link>
-      <Link
-        href={`https://linkedin.com/shareArticle?url=${link}&title=${title}`}
-        legacyBehavior={true}
+        <FontAwesomeIcon icon={faTwitterSquare as any} />
+      </a>
+      <a
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="linkedin share"
+        title="share on linkedin"
       >
-        <a
-          target="_blank"
-          rel="linkedin share"
-          aria-label="linkedin share"
-          title="share on linkedin"
-        >
-          <FontAwesomeIcon icon={faLinkedin as any} />
-        </a>
-      </Link>
+        <FontAwesomeIcon icon={faLinkedin as any} />
+      </a>
     </div>
   );
 };

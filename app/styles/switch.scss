@@ -8,23 +8,26 @@
   font-size: 1.2rem;
   grid-template-columns: 1fr 1fr;
   margin-top: 1rem;
-  cursor: pointer;
-  p {
-    padding: 0 0.5rem;
-  }
 
   .switch-choice {
+    padding: 0 0.5rem;
     color: rgb(107, 106, 106);
+  }
+
+  .switch-choice:first-child {
+    border-right: 2px solid var(--dark);
   }
 
   .pressed {
     color: white;
   }
 
-  p:first-child {
-    border-right: 2px solid var(--dark);
+  a.switch-choice:hover {
+    color: var(--purple);
   }
-}
-.switch:hover {
-  color: var(--purple);
+
+  .disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }

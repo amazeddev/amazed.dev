@@ -19,32 +19,36 @@ const DesktopTechStack: React.FC<DesktopTechStackProps> = ({
     <div className="tech-stack-blocks-desktop">
       <div className="about-tabs">
         <div className="tab">
-          <div
+          <button
+            type="button"
             className={`tabBtn ${activeTab === "languages" ? "active" : ""}`}
             onClick={() => openTab("languages")}
           >
             {translations.about.stack.languages.title}
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             className={`tabBtn ${activeTab === "tools" ? "active" : ""}`}
             onClick={() => openTab("tools")}
           >
             {translations.about.stack.tools.title}
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             className={`tabBtn ${activeTab === "ai" ? "active" : ""}`}
             onClick={() => openTab("ai")}
           >
             {translations.about.stack.ai.title}
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             className={`tabBtn ${
               activeTab === "infrastructure" ? "active" : ""
             }`}
             onClick={() => openTab("infrastructure")}
           >
             {translations.about.stack.infrastructure.title}
-          </div>
+          </button>
         </div>
         <TechStackBlock
           activeTab={activeTab}
@@ -82,7 +86,7 @@ const DesktopTechStack: React.FC<DesktopTechStackProps> = ({
           <img src="/images/langchain.png" title="Langchain" alt="Langchain" />
           <img src="/images/anthropic.png" title="Anthropic" alt="Anthropic" />
           <img src="/images/ollama.png" title="Ollama" alt="Ollama" />
-          <img src="/images/openai.png" title="OpenAI" alt="OpenAI" />
+          <img src="/images/openai.svg" title="OpenAI" alt="OpenAI" />
         </TechStackBlock>
 
         <TechStackBlock

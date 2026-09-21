@@ -17,13 +17,14 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
     <div className="tech-stack-blocks-mobile">
       <div className="about-tabs">
         <div className="tab">
-          <div
+          <button
+            type="button"
             className={`tabBtn ${activeTab === "languages" ? "active" : ""}`}
             onClick={() => openTab("languages")}
           >
             {translations.about.stack.languages.title}
             {activeTab !== "languages" && <span className="tab-icon">+</span>}
-          </div>
+          </button>
 
           <TechStackBlock
             activeTab={activeTab}
@@ -35,13 +36,14 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
             <i className="devicon-javascript-plain" title="Javacript"></i>
             <i className="devicon-typescript-plain" title="TypeScript"></i>
           </TechStackBlock>
-          <div
+          <button
+            type="button"
             className={`tabBtn ${activeTab === "tools" ? "active" : ""}`}
             onClick={() => openTab("tools")}
           >
             {translations.about.stack.tools.title}
             {activeTab !== "tools" && <span className="tab-icon">+</span>}
-          </div>
+          </button>
           <TechStackBlock
             activeTab={activeTab}
             tabName="tools"
@@ -51,15 +53,18 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
             <img src="/images/lambda.png" title="AWS Lambda" alt="AWS Lambda" />
             <i className="devicon-mongodb-plain" title="MongoDB"></i>
             <img src="/images/rabbitmq.png" title="RabbitMQ" alt="RabbitMQ" />
+            <i className="devicon-express-original" title="Express"></i>
             <i className="devicon-nestjs-plain" title="Nest"></i>
+            <i className="devicon-nodejs-plain" title="Node.js"></i>
           </TechStackBlock>
-          <div
+          <button
+            type="button"
             className={`tabBtn ${activeTab === "ai" ? "active" : ""}`}
             onClick={() => openTab("ai")}
           >
             {translations.about.stack.ai.title}
             {activeTab !== "ai" && <span className="tab-icon">+</span>}
-          </div>
+          </button>
 
           <TechStackBlock
             activeTab={activeTab}
@@ -80,9 +85,10 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
               alt="Anthropic"
             />
             <img src="/images/ollama.png" title="Ollama" alt="Ollama" />
-            <img src="/images/openai.png" title="OpenAI" alt="OpenAI" />
+            <img src="/images/openai.svg" title="OpenAI" alt="OpenAI" />
           </TechStackBlock>
-          <div
+          <button
+            type="button"
             className={`tabBtn ${
               activeTab === "infrastructure" ? "active" : ""
             }`}
@@ -92,7 +98,7 @@ const MobileTechStack: React.FC<MobileTechStackProps> = ({ translations }) => {
             {activeTab !== "infrastructure" && (
               <span className="tab-icon">+</span>
             )}
-          </div>
+          </button>
           <TechStackBlock
             activeTab={activeTab}
             tabName="infrastructure"

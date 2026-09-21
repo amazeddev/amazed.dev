@@ -1,44 +1,44 @@
 import React from "react";
 import Link from "next/link";
-import { PaginationProps, Language } from "../types";
+import { PaginationProps } from "../types";
+import { localePath } from "../utils/i18n";
 
-interface ExtendedPaginationProps extends PaginationProps {
-  language: Language;
-}
-
-const Pagination: React.FC<ExtendedPaginationProps> = ({
+const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   currentPage,
-  onPageChange,
   language,
 }) => {
-  const pageIntoArray = Array.from(Array(totalPages).keys());
+  if (totalPages <= 1) {
+    return null;
+  }
 
-  return pageIntoArray.length > 1 ? (
-    <nav className="pagination">
+  return (
+    <nav className="pagination" aria-label="Blog pagination">
       <ul className="page-items">
-        {pageIntoArray.map((page) => {
-          return (
-            <Link
-              href={page === 0 ? "/" : `/blog/${language}/pages/${page + 1}`}
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+          (page) => (
+            <li
               key={page}
+              className={
+                page === currentPage ? "page-item current-page" : "page-item"
+              }
             >
-              <li
-                className={
-                  page + 1 === currentPage
-                    ? "page-item current-page"
-                    : "page-item"
+              <Link
+                href={
+                  page === 1
+                    ? localePath(language, "/blog")
+                    : localePath(language, `/blog/pages/${page}`)
                 }
-                onClick={() => onPageChange(page + 1)}
+                aria-current={page === currentPage ? "page" : undefined}
               >
-                {page + 1}
-              </li>
-            </Link>
-          );
-        })}
+                {page}
+              </Link>
+            </li>
+          )
+        )}
       </ul>
     </nav>
-  ) : null;
+  );
 };
 
 export default Pagination;

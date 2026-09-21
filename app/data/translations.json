@@ -3,7 +3,8 @@
     "header": {
       "home": "Home",
       "blog": "Blog",
-      "about": "About me"
+      "about": "About me",
+      "projects": "Projects"
     },
     "main": {
       "greeting": "Software engineer,\ntech enthusiast,\n lifelong learner.",
@@ -13,7 +14,12 @@
       "blogs": {
         "caption": "Latest blog posts"
       },
-      "cvBtn": "Get my CV"
+      "cvBtn": "Get my CV",
+      "title": {
+        "lead": "Senior",
+        "highlight": "{Backend}",
+        "tail": "web & app developer"
+      }
     },
     "search": {
       "noPosts": "Nothing found...",
@@ -47,21 +53,47 @@
           "paragraph": "In both my professional and personal projects, I aim to design solutions that are cloud-ready from the very beginning. I most frequently work with AWS, Docker, and the Infrastructure as Code approach using Terraform. \n I regularly work with CI/CD pipelines, mainly using GitLab CI and GitHub Actions, and occasionally Jenkins. Currently, I’m expanding my knowledge of Kubernetes and advanced AWS services to create even more scalable and fault-tolerant systems."
         }
       }
+    },
+    "projects": {
+      "banner": {
+        "title": "Projects",
+        "paragraph": "A few of the products I've designed, built, and shipped end-to-end - from idea to something real people use."
+      },
+      "techTitle": "Tech stack",
+      "visitSite": "Visit site",
+      "backToProjects": "Back to projects"
+    },
+    "seo": {
+      "home": "Portfolio and blog of Sebastian Luszczek - senior backend developer working with Node.js, Go, AWS and Terraform.",
+      "blog": "Articles about backend development: Node.js, TypeScript, databases, DevOps and data science.",
+      "about": "About Sebastian Luszczek - experience, tech stack and tools.",
+      "projects": "Products designed, built and shipped end-to-end."
+    },
+    "switcher": {
+      "unavailable": "No Polish version of this page"
     }
   },
   "pl": {
     "header": {
+      "home": "Start",
       "blog": "Blog",
-      "about": "O mnie"
+      "about": "O mnie",
+      "projects": "Projekty"
     },
     "main": {
+      "greeting": "Inżynier oprogramowania,\nentuzjasta technologii,\n wieczny uczeń.",
       "banner": {
         "paragraph": "Cześć! Jestem Sebastian - Backend Developer, specjalizujący się w Node.js (TypeScript), z wysokim naciskiem na integrację AI oraz Infrastructure as Code. Ekspercki w architekturach mikroserwisów i serverless, codziennie pracujący z AWS i Docker. \n Obecnie eksperymentuję z Agentic AI i uczę się Go w wolnym czasie."
       },
       "blogs": {
         "caption": "Najnowsze wpisy na blogu"
       },
-      "cvBtn": "Pobierz CV"
+      "cvBtn": "Pobierz CV",
+      "title": {
+        "lead": "Senior",
+        "highlight": "{Backend}",
+        "tail": "web & app developer"
+      }
     },
     "search": {
       "noPosts": "Brak pasujących wpisów...",
@@ -105,6 +137,24 @@
           }
         }
       }
+    },
+    "projects": {
+      "banner": {
+        "title": "Projekty",
+        "paragraph": "Kilka projektów, które zaprojektowałem, zbudowałem i wdrożyłem od pomysłu po działający produkt, z którego realnie korzystają ludzie."
+      },
+      "techTitle": "Stack technologiczny",
+      "visitSite": "Odwiedź stronę",
+      "backToProjects": "Wróć do projektów"
+    },
+    "seo": {
+      "home": "Portfolio i blog: senior backend developer, Node.js, Go, AWS, Terraform.",
+      "blog": "Artykuły o programowaniu backendowym: Node.js, TypeScript, bazy danych, DevOps i data science.",
+      "about": "O mnie - doświadczenie, stack technologiczny i narzędzia.",
+      "projects": "Projekty zaprojektowane, zbudowane i wdrożone od pomysłu po działający produkt."
+    },
+    "switcher": {
+      "unavailable": "Brak angielskiej wersji tej strony"
     }
   }
 }

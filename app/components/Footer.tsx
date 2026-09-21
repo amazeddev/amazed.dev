@@ -1,45 +1,40 @@
-import Link from "next/link";
 import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faEnvelopeSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import { Language } from "../types";
+import { localePath } from "../utils/i18n";
 
-const Footer: React.FC = () => {
+const Footer: React.FC<{ language: Language }> = ({ language }) => {
   return (
     <footer>
       <div className="footer-grid">
         <div className="socials">
-          <Link href="https://github.com/amazeddev" legacyBehavior={true}>
-            <a target="_blank" rel="Github profile" aria-label="Github profile">
-              <FontAwesomeIcon icon={faGithubSquare as any} />
-            </a>
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/luszczeksebastian/"
-            legacyBehavior={true}
+          <a
+            href="https://github.com/amazeddev"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Github profile"
           >
-            <a
-              target="_blank"
-              rel="LinkedIn profile"
-              aria-label="LinkedIn profile"
-            >
-              <FontAwesomeIcon icon={faLinkedin as any} />
-            </a>
-          </Link>
-          <Link href="mailto:luszczeksebastian@gmail.com" legacyBehavior={true}>
-            <a
-              target="_blank"
-              rel="Email address luszczeksebastian@gmail.com"
-              aria-label="Email address luszczeksebastian@gmail.com"
-            >
-              <FontAwesomeIcon icon={faEnvelopeSquare as any} />
-            </a>
-          </Link>
+            <FontAwesomeIcon icon={faGithubSquare as any} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/luszczeksebastian/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+          >
+            <FontAwesomeIcon icon={faLinkedin as any} />
+          </a>
+          <a
+            href="mailto:luszczeksebastian@gmail.com"
+            aria-label="Email address luszczeksebastian@gmail.com"
+          >
+            <FontAwesomeIcon icon={faEnvelopeSquare as any} />
+          </a>
         </div>
         <div className="info">
-          <Link href="/" legacyBehavior={true}>
+          <Link href={localePath(language)}>
             <strong>amazed.dev</strong>
           </Link>{" "}
           Software © Copyright {new Date().getFullYear()}

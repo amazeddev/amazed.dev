@@ -1,10 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lacquer&display=swap");
-
+// Web fonts are loaded via <link> tags in pages/_document.tsx.
 @import "_jupyter.scss";
 @import "_uniform.scss";
 @import "switch.scss";
-@import "analytics.scss";
 
 :root {
   --purple: rgb(216, 9, 216);
@@ -61,6 +58,22 @@ a {
   color: inherit;
 }
 
+:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 p > a {
   text-decoration: underline;
   font-weight: bold;
@@ -71,6 +84,19 @@ p > a {
 img {
   width: 100%;
   // border-radius: 10px;
+}
+
+// Available to screen readers only.
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .content {
   width: 100%;
@@ -130,6 +156,10 @@ header {
 
   .burger {
     display: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
 
   .logo {
@@ -168,6 +198,11 @@ header {
   .search-btn {
     cursor: pointer;
     transition: 0.3s;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
 
     svg {
       width: 1.5rem;
@@ -429,6 +464,10 @@ footer {
   transition: 0.3s;
   cursor: pointer;
 
+  .card-link {
+    display: block;
+  }
+
   .card-hero {
     display: block;
     position: relative;
@@ -619,6 +658,38 @@ footer {
   color: var(--purple);
 }
 
+.btn-primary {
+  margin-top: 1.5rem;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--purple);
+  color: black;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: "Lacquer", system-ui;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+.projects {
+  position: relative;
+
+  .projects-banner {
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+
+    p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+}
+
 .scroll-btn {
   position: fixed;
   bottom: 6rem;
@@ -745,6 +816,7 @@ blockquote {
       display: block;
       background-color: transparent;
 
+      border: none;
       border-left: 8px solid transparent;
       color: var(--purple);
       font-family: "Lacquer", system-ui;
@@ -752,7 +824,6 @@ blockquote {
 
       padding: 22px 16px;
       width: 100%;
-      outline: none;
       text-align: left;
       cursor: pointer;
       transition: 0.3s;
@@ -895,9 +966,13 @@ blockquote {
   }
 
   .page-item {
-    padding: 1rem;
     transition: 0.3s;
     cursor: pointer;
+
+    a {
+      display: block;
+      padding: 1rem;
+    }
 
     &:hover {
       background-color: #444;
@@ -1094,6 +1169,7 @@ blockquote {
         display: block;
         background-color: transparent;
 
+        border: none;
         border-left: 8px solid transparent;
         color: var(--purple);
         font-family: "Lacquer", system-ui;
@@ -1101,7 +1177,6 @@ blockquote {
 
         padding: 22px 16px;
         width: 100%;
-        outline: none;
         text-align: left;
         cursor: pointer;
         transition: 0.3s;

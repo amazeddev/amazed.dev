@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "root_bucket" {
   bucket = var.bucket_name
-  acl = "public-read"
+  acl    = "public-read"
   policy = templatefile("templates/s3-policy.json", { bucket = var.bucket_name })
 
   cors_rule {
@@ -15,6 +15,6 @@ resource "aws_s3_bucket" "root_bucket" {
   }
 
   force_destroy = true
-  tags = var.common_tags
+  tags          = var.common_tags
 }
 

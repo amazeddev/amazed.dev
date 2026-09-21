@@ -1,7 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import Head from "next/head";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import html from "remark-html";
@@ -11,17 +10,18 @@ import Link from "next/link";
 import { slugify } from "../../../utils/posts";
 import React, { useEffect } from "react";
 import { ShareButtons } from "../../../components/ShareButtons";
-import {
-  PostPageProps,
-  GetStaticPropsParams,
-  GetStaticPathsParams,
-} from "../../../types";
+import Seo from "../../../components/Seo";
+import { getI18nProps, postAlternates } from "../../../lib/i18n";
+import { getAllPosts } from "../../../lib/posts";
+import { SITE_URL, localePath } from "../../../utils/i18n";
+import { PostPageProps, GetStaticPropsParams } from "../../../types";
 
 export default function PostPage({
   frontmatter,
   parsed,
   slug,
   language,
+  alternates,
 }: PostPageProps) {
   useEffect(() => {
     // Code block functionality
@@ -52,21 +52,29 @@ export default function PostPage({
 
   return (
     <>
-      <Head>
-        <title>{frontmatter.title} - Amazed.DEV</title>
-        <meta name="description" content={frontmatter.excerpt} />
+      <Seo
+        title={`${frontmatter.title} - Amazed.DEV`}
+        description={frontmatter.excerpt ?? ""}
+        language={language}
+        path={`/blog/${slug}`}
+        alternates={alternates}
+        image={`${SITE_URL}/images/posts/${frontmatter.cover_img}`}
+        type="article"
+      >
         <meta name="keywords" content={frontmatter.tags.join(",")} />
         <meta
           name="author"
           content={frontmatter.author || "Sebastian Luszczek"}
         />
-        <meta name="robots" content="index,follow" />
-        <link
-          rel="canonical"
-          href={`https://amazed.dev/blog/${language}/${slug}`}
+        <meta property="article:published_time" content={frontmatter.date} />
+        <meta property="article:modified_time" content={frontmatter.date} />
+        <meta
+          property="article:author"
+          content={frontmatter.author || "Sebastian Luszczek"}
         />
-
-        {/* Article Schema */}
+        {frontmatter.tags.map((tag) => (
+          <meta key={tag} property="article:tag" content={tag} />
+        ))}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -75,7 +83,7 @@ export default function PostPage({
               "@type": "BlogPosting",
               headline: frontmatter.title,
               description: frontmatter.excerpt,
-              image: `https://amazed.dev/images/posts/${frontmatter.cover_img}`,
+              image: `${SITE_URL}/images/posts/${frontmatter.cover_img}`,
               author: {
                 "@type": "Person",
                 name: frontmatter.author || "Sebastian Luszczek",
@@ -85,59 +93,26 @@ export default function PostPage({
                 name: "Amazed.DEV",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://amazed.dev/images/profile.jpeg",
+                  url: `${SITE_URL}/images/profile.webp`,
                 },
               },
               datePublished: frontmatter.date,
               dateModified: frontmatter.date,
+              inLanguage: language,
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://amazed.dev/blog/${language}/${slug}`,
+                "@id": `${SITE_URL}/${language}/blog/${slug}`,
               },
               keywords: frontmatter.tags.join(", "),
             }),
           }}
         />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={frontmatter.title} />
-        <meta property="og:description" content={frontmatter.excerpt} />
-        <meta
-          property="og:url"
-          content={`https://amazed.dev/blog/${language}/${slug}`}
-        />
-        <meta
-          property="og:image"
-          content={`https://amazed.dev/images/posts/${frontmatter.cover_img}`}
-        />
-        <meta property="og:site_name" content="Amazed.DEV" />
-        <meta property="article:published_time" content={frontmatter.date} />
-        <meta property="article:modified_time" content={frontmatter.date} />
-        <meta
-          property="article:author"
-          content={frontmatter.author || "Sebastian Luszczek"}
-        />
-        {frontmatter.tags.map((tag, index) => (
-          <meta key={index} property="article:tag" content={tag} />
-        ))}
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@AmazedDeveloper" />
-        <meta name="twitter:creator" content="@AmazedDeveloper" />
-        <meta name="twitter:title" content={frontmatter.title} />
-        <meta name="twitter:description" content={frontmatter.excerpt} />
-        <meta
-          name="twitter:image"
-          content={`https://amazed.dev/images/posts/${frontmatter.cover_img}`}
-        />
-      </Head>
+      </Seo>
       <div className="post">
         <div className="post-baner">
           <img
             src={`/images/posts/${frontmatter.cover_img}`}
-            alt=""
+            alt={frontmatter.title}
             width={700}
             height={500}
           />
@@ -150,7 +125,7 @@ export default function PostPage({
               {frontmatter.tags &&
                 frontmatter.tags.map((tag, index) => (
                   <Link
-                    href={`/blog/${language}/tag/${slugify(tag)}`}
+                    href={localePath(language, `/blog/tag/${slugify(tag)}`)}
                     key={index}
                   >
                     <div className="tag-btn">#{slugify(tag)}</div>
@@ -158,7 +133,7 @@ export default function PostPage({
                 ))}
             </div>
             <ShareButtons
-              link={`https://amazed.dev/blog/${slug}`}
+              link={`${SITE_URL}/${language}/blog/${slug}`}
               title={frontmatter.title}
             />
           </div>
@@ -173,23 +148,14 @@ export default function PostPage({
 }
 
 export async function getStaticPaths() {
-  const enFiles = fs.readdirSync(path.join("posts", "en"));
-  const plFiles = fs.readdirSync(path.join("posts", "pl"));
-  const enPaths = enFiles.map((filename) => ({
-    params: {
-      slug: filename.replace(".md", ""),
-      lang: "en",
-    },
-  }));
-  const plPaths = plFiles.map((filename) => ({
-    params: {
-      slug: filename.replace(".md", ""),
-      lang: "pl",
-    },
+  // Unpublished posts are not rendered at all - they used to stay reachable
+  // by direct URL even though nothing linked to them.
+  const paths = getAllPosts().map((post) => ({
+    params: { slug: post.slug, lang: post.lang },
   }));
 
   return {
-    paths: [...enPaths, ...plPaths],
+    paths,
     fallback: false,
   };
 }
@@ -213,10 +179,10 @@ export async function getStaticProps({
   const parsed = processedContent.toString();
   return {
     props: {
+      ...getI18nProps(lang, postAlternates(slug)),
       slug,
       frontmatter,
       parsed,
-      language: lang,
     },
   };
 }

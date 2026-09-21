@@ -1,14 +1,14 @@
 variable "bucket_name" {
-  type = string
+  type        = string
   description = "The name of the bucket "
 }
 variable "aws_region" {
-  type = string
+  type    = string
   default = "eu-central-1"
 }
 
 variable "domain_name" {
-  type = string
+  type        = string
   description = "The domain name for the website."
 }
 
