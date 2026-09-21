@@ -42,3 +42,14 @@ resource "aws_route53_record" "cert_validation" {
   type            = each.value.type
   zone_id         = each.value.zone_id
 }
+
+# Google Search Console domain verification. Route 53 keeps all TXT values of
+# one name in a single record, so any future apex TXT (e.g. SPF) goes into
+# this list as well.
+resource "aws_route53_record" "apex_txt" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = var.domain_name
+  type    = "TXT"
+  ttl     = 300
+  records = ["google-site-verification=hQv69QAeHY6dPfvoC7Gadt794BW5hkFFJtJpkhnAy3E"]
+}
