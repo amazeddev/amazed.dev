@@ -10,7 +10,9 @@ on:
 
 env:
   NODE_VERSION: 20
-  TERRAFORM_VERSION: 1.6.0
+  # Old Terraform releases embed an expired HashiCorp signing key and cannot
+  # install providers (`openpgp: key expired`); keep this in line with local.
+  TERRAFORM_VERSION: 1.14.2
 
 jobs:
   build:
@@ -110,10 +112,8 @@ jobs:
       - name: Cache Terraform
         uses: actions/cache@v4
         with:
-          path: |
-            terraform/.terraform
-            terraform/.terraform.lock.hcl
-          key: terraform-${{ hashFiles('terraform/*.tf') }}
+          path: terraform/.terraform
+          key: terraform-${{ hashFiles('terraform/*.tf', 'terraform/.terraform.lock.hcl') }}
 
       # Terraform steps
       - name: Terraform Format Check
